@@ -6,7 +6,15 @@ function activeKey(user)   { return `${user}:active_session` }
 
 function loadSessions(user) {
   try {
-    return JSON.parse(localStorage.getItem(sessionsKey(user)) || '[]')
+    let sessions = JSON.parse(localStorage.getItem(sessionsKey(user)) || '[]')
+    // Migrate: 'climbing' category was renamed to 'strength'
+    if (sessions.some((s) => s.category === 'climbing')) {
+      sessions = sessions.map((s) =>
+        s.category === 'climbing' ? { ...s, category: 'strength' } : s
+      )
+      saveSessions(user, sessions)
+    }
+    return sessions
   } catch {
     return []
   }

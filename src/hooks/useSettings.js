@@ -13,7 +13,14 @@ function getDefaults() {
 function loadSettings(user) {
   try {
     const saved = JSON.parse(localStorage.getItem(`${user}:settings`) || 'null')
-    return saved ? { ...getDefaults(), ...saved } : getDefaults()
+    if (!saved) return getDefaults()
+    // Migrate: 'climbing' settings key was renamed to 'strength'
+    if (saved.climbing) {
+      saved.strength = saved.strength ?? saved.climbing
+      delete saved.climbing
+      localStorage.setItem(`${user}:settings`, JSON.stringify(saved))
+    }
+    return { ...getDefaults(), ...saved }
   } catch {
     return getDefaults()
   }
