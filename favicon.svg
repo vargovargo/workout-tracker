@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Dark rounded background -->
+  <rect width="100" height="100" rx="22" fill="#0f172a"/>
+  <!-- Arc track -->
+  <path d="M 18 68 A 34 34 0 1 1 82 68" fill="none" stroke="#1e3a5f" stroke-width="9" stroke-linecap="round"/>
+  <!-- Arc fill (~75%) -->
+  <path d="M 18 68 A 34 34 0 1 1 74 81" fill="none" stroke="#3b82f6" stroke-width="9" stroke-linecap="round"/>
+  <!-- Lightning bolt -->
+  <path d="M60 14 L36 52 L51 52 L40 86 L66 46 L51 46 Z" fill="white"/>
+</svg>
