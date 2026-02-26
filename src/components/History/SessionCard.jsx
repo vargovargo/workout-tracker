@@ -3,6 +3,7 @@ import { WORKOUT_CONFIG } from '../../config.js'
 
 export default function SessionCard({ session, onEdit, onDelete }) {
   const cfg = WORKOUT_CONFIG[session.category]
+  const icon = (session.subtype && cfg.subtypeIcons?.[session.subtype]) ?? cfg.icon
 
   // Prefer occurredAt (when workout happened) for primary display
   const displayDate = new Date(session.occurredAt || session.loggedAt)
@@ -18,7 +19,7 @@ export default function SessionCard({ session, onEdit, onDelete }) {
 
   return (
     <div className={`flex items-start gap-3 p-4 rounded-xl bg-slate-800 border ${cfg.borderClass}`}>
-      <span className="text-2xl mt-0.5">{cfg.icon}</span>
+      <span className="text-2xl mt-0.5">{icon}</span>
 
       <div className="flex-1 min-w-0">
         <p className={`text-sm font-bold ${cfg.accentClass}`}>

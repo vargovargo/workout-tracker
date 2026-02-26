@@ -6,8 +6,8 @@ const GROUPS = Object.entries(WORKOUT_CONFIG).map(([catKey, cfg]) => ({
   catKey,
   cfg,
   items: cfg.subtypes.length > 0
-    ? cfg.subtypes.map((sub) => ({ label: sub, subtype: sub }))
-    : [{ label: cfg.label, subtype: null }],
+    ? cfg.subtypes.map((sub) => ({ label: sub, subtype: sub, icon: cfg.subtypeIcons?.[sub] ?? cfg.icon }))
+    : [{ label: cfg.label, subtype: null, icon: cfg.icon }],
 }))
 
 export default function FlatActivityPicker({ onSelect }) {
@@ -27,13 +27,13 @@ export default function FlatActivityPicker({ onSelect }) {
             )}
 
             <div className="flex flex-wrap gap-2">
-              {items.map(({ label, subtype }) => (
+              {items.map(({ label, subtype, icon }) => (
                 <button
                   key={label}
                   onClick={() => onSelect(catKey, subtype)}
                   className={`flex items-center gap-2 px-4 py-3 rounded-2xl border ${cfg.bgClass} ${cfg.borderClass} active:scale-95 transition-transform`}
                 >
-                  <span className="text-lg">{cfg.icon}</span>
+                  <span className="text-lg">{icon}</span>
                   <span className={`text-sm font-semibold capitalize ${cfg.accentClass}`}>
                     {label}
                   </span>
