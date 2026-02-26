@@ -5,7 +5,8 @@
       "Bash(export:*)",
       "Bash(pkill:*)",
       "Bash(.:*)",
-      "Bash(ipconfig getifaddr:*)"
+      "Bash(ipconfig getifaddr:*)",
+      "Bash(git:*)"
     ]
   }
 }
