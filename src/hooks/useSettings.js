@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { doc, setDoc, onSnapshot } from 'firebase/firestore'
+import { db } from '../firebase.js'
 import { WORKOUT_CONFIG } from '../config.js'
 
 function getDefaults() {
@@ -10,34 +12,51 @@ function getDefaults() {
   )
 }
 
-function loadSettings(user) {
-  try {
-    const saved = JSON.parse(localStorage.getItem(`${user}:settings`) || 'null')
-    if (!saved) return getDefaults()
-    // Migrate: 'climbing' settings key was renamed to 'strength'
-    if (saved.climbing) {
-      saved.strength = saved.strength ?? saved.climbing
-      delete saved.climbing
-      localStorage.setItem(`${user}:settings`, JSON.stringify(saved))
-    }
-    return { ...getDefaults(), ...saved }
-  } catch {
-    return getDefaults()
+function migrateSettings(saved) {
+  if (saved?.climbing) {
+    saved = { ...saved, strength: saved.strength ?? saved.climbing }
+    const { climbing: _, ...rest } = saved
+    saved = rest
   }
+  return { ...getDefaults(), ...saved }
 }
 
 export function useSettings(user) {
-  const [settings, setSettings] = useState(() => loadSettings(user))
+  const [settings, setSettings] = useState(getDefaults())
+  const migratedUsers = useRef(new Set())
 
   useEffect(() => {
-    setSettings(loadSettings(user))
+    setSettings(getDefaults())
+    const docRef = doc(db, 'users', user, 'meta', 'settings')
+
+    const unsubscribe = onSnapshot(docRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setSettings(migrateSettings(snapshot.data()))
+      } else if (!migratedUsers.current.has(user)) {
+        migratedUsers.current.add(user)
+        // Firestore has no settings — try migrating from localStorage
+        try {
+          const saved = JSON.parse(localStorage.getItem(`${user}:settings`) || 'null')
+          if (saved) {
+            const migrated = migrateSettings(saved)
+            setDoc(docRef, migrated)
+            return // onSnapshot fires again once the write lands
+          }
+        } catch {
+          // localStorage unreadable
+        }
+        setSettings(getDefaults())
+      }
+    })
+
+    return unsubscribe
   }, [user])
 
   const updateSetting = useCallback(
     (category, field, value) => {
       setSettings((prev) => {
         const updated = { ...prev, [category]: { ...prev[category], [field]: value } }
-        localStorage.setItem(`${user}:settings`, JSON.stringify(updated))
+        setDoc(doc(db, 'users', user, 'meta', 'settings'), updated)
         return updated
       })
     },
