@@ -1,9 +1,9 @@
 import React from 'react'
 import { useApp } from '../../App.jsx'
 import WeekHeader from './WeekHeader.jsx'
-import ProgressGrid from './ProgressGrid.jsx'
 import StreakDisplay from './StreakDisplay.jsx'
 import SuggestionBanner from './SuggestionBanner.jsx'
+import WeeklyRings from './WeeklyRings.jsx'
 import MinutesByDayChart from './MinutesByDayChart.jsx'
 import WeekMinutesChart from './WeekMinutesChart.jsx'
 
@@ -17,15 +17,13 @@ export default function DashboardView() {
         weeklyStreak={streak.weeklyStreak}
         activeDayStreak={streak.activeDayStreak}
       />
-      <div className="mt-3">
-        <ProgressGrid weekSessions={currentWeekSessions} />
-      </div>
+      <SuggestionBanner weekSessions={currentWeekSessions} />
+      <WeeklyRings weekSessions={currentWeekSessions} />
       <MinutesByDayChart
         weekKey={currentWeekKey}
         weekSessions={currentWeekSessions}
       />
       <WeekMinutesChart weekSessions={currentWeekSessions} />
-      <SuggestionBanner weekSessions={currentWeekSessions} />
     </div>
   )
 }

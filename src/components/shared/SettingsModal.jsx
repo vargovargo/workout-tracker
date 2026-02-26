@@ -59,14 +59,30 @@ export default function SettingsModal({ onClose }) {
                     {/* Target stepper */}
                     <div className="flex items-center gap-1 ml-auto">
                       <button
-                        onClick={() => updateSetting(key, 'target', Math.max(1, s.target - (s.unit === 'minutes' ? 15 : 1)))}
+                        onClick={() => updateSetting(key, 'target', Math.max(0, s.target - 1))}
                         className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-800 text-slate-300 text-lg active:bg-slate-700"
                       >−</button>
-                      <span className="w-12 text-center text-sm font-bold text-white">
-                        {s.target}{s.unit === 'minutes' ? 'm' : 'x'}
-                      </span>
+                      {s.unit === 'minutes' ? (
+                        <div className="flex items-center">
+                          <input
+                            type="number"
+                            min="0"
+                            value={s.target}
+                            onChange={(e) => {
+                              const v = parseInt(e.target.value, 10)
+                              if (!isNaN(v) && v >= 0) updateSetting(key, 'target', v)
+                            }}
+                            className="w-14 text-center text-sm font-bold text-white bg-slate-700 rounded-lg py-1 border border-slate-600 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          />
+                          <span className="text-xs text-slate-400 ml-1">m</span>
+                        </div>
+                      ) : (
+                        <span className="w-12 text-center text-sm font-bold text-white">
+                          {s.target}x
+                        </span>
+                      )}
                       <button
-                        onClick={() => updateSetting(key, 'target', s.target + (s.unit === 'minutes' ? 15 : 1))}
+                        onClick={() => updateSetting(key, 'target', s.target + 1)}
                         className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-800 text-slate-300 text-lg active:bg-slate-700"
                       >+</button>
                     </div>
