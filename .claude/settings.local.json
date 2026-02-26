@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(export:*)",
+      "Bash(pkill:*)",
+      "Bash(.:*)",
+      "Bash(ipconfig getifaddr:*)"
+    ]
+  }
+}
