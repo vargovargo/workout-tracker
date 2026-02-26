@@ -4,11 +4,11 @@ import FlatActivityPicker from './FlatActivityPicker.jsx'
 import SessionForm from './SessionForm.jsx'
 
 export default function LogView() {
-  const { onSessionSaved, activeSession } = useApp()
+  const { onSessionSaved } = useApp()
 
-  const [step, setStep] = useState(() => (activeSession ? 'form' : 'pick'))
-  const [category, setCategory] = useState(activeSession?.category || null)
-  const [subtype, setSubtype] = useState(activeSession?.subtype || null)
+  const [step, setStep] = useState('pick')
+  const [category, setCategory] = useState(null)
+  const [subtype, setSubtype] = useState(null)
 
   function handleActivitySelect(catKey, sub) {
     setCategory(catKey)

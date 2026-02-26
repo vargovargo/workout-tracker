@@ -11,7 +11,6 @@ import UserSelector, { loadLastUser, saveLastUser } from './components/UserSelec
 import DashboardView from './components/Dashboard/DashboardView.jsx'
 import LogView from './components/Log/LogView.jsx'
 import HistoryView from './components/History/HistoryView.jsx'
-import ActiveSessionBanner from './components/shared/ActiveSessionBanner.jsx'
 import CelebrationModal from './components/shared/CelebrationModal.jsx'
 import SettingsModal from './components/shared/SettingsModal.jsx'
 
@@ -96,8 +95,6 @@ export default function App() {
           onUserChange={handleUserChange}
           onOpenSettings={() => setShowSettings(true)}
         />
-
-        {workouts.activeSession && <ActiveSessionBanner />}
 
         <main className="flex-1 overflow-y-auto overscroll-none">
           {tab === 'dashboard' && <DashboardView />}
