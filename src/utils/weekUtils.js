@@ -39,7 +39,9 @@ export function weekKeyToMonday(weekKey) {
  */
 export function toDateString(date = new Date()) {
   const d = new Date(date);
-  return d.toISOString().slice(0, 10);
+  // Use local date parts to avoid UTC-offset shifting the date
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
 /**

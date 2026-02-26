@@ -1,8 +1,10 @@
 import React, { useState, createContext, useContext, useCallback } from 'react'
 import { useWorkouts } from './hooks/useWorkouts.js'
 import { useStreak } from './hooks/useStreak.js'
+import { useSettings } from './hooks/useSettings.js'
 import { WORKOUT_CONFIG } from './config.js'
 import { getWeekKey } from './utils/weekUtils.js'
+import { getCategoryProgress } from './utils/progressUtils.js'
 import { fetchCelebrationGif, fireBigConfetti, fireSmallConfetti } from './utils/celebrationUtils.js'
 import BottomNav from './components/BottomNav.jsx'
 import UserSelector, { loadLastUser, saveLastUser } from './components/UserSelector.jsx'
@@ -11,6 +13,7 @@ import LogView from './components/Log/LogView.jsx'
 import HistoryView from './components/History/HistoryView.jsx'
 import ActiveSessionBanner from './components/shared/ActiveSessionBanner.jsx'
 import CelebrationModal from './components/shared/CelebrationModal.jsx'
+import SettingsModal from './components/shared/SettingsModal.jsx'
 
 export const AppContext = createContext(null)
 
@@ -21,8 +24,10 @@ export function useApp() {
 export default function App() {
   const [tab, setTab] = useState('dashboard')
   const [currentUser, setCurrentUser] = useState(loadLastUser)
+  const [showSettings, setShowSettings] = useState(false)
   const workouts = useWorkouts(currentUser)
-  const streak = useStreak(workouts.sessions, currentUser)
+  const { settings, updateSetting } = useSettings(currentUser)
+  const streak = useStreak(workouts.sessions, currentUser, settings)
   const [celebration, setCelebration] = useState(null)
 
   const currentWeekKey = getWeekKey()
@@ -39,13 +44,13 @@ export default function App() {
       const weekSessions = workouts.getSessionsForWeek(newSession.weekKey)
       const all = [...weekSessions.filter((s) => s.id !== newSession.id), newSession]
 
-      const weekComplete = Object.entries(WORKOUT_CONFIG).every(([key, cfg]) => {
-        return all.filter((s) => s.category === key).length >= cfg.weeklyTarget
+      const weekComplete = Object.keys(WORKOUT_CONFIG).every((key) => {
+        const { value, target } = getCategoryProgress(all, key, settings)
+        return value >= target
       })
 
-      const catCount = all.filter((s) => s.category === newSession.category).length
-      const catTarget = WORKOUT_CONFIG[newSession.category]?.weeklyTarget
-      const catMilestone = catCount === catTarget
+      const { value, target } = getCategoryProgress(all, newSession.category, settings)
+      const catMilestone = value === target && target > 0
 
       if (weekComplete) {
         fireBigConfetti()
@@ -57,7 +62,7 @@ export default function App() {
         setCelebration({ gif, big: false })
       }
     },
-    [workouts]
+    [workouts, settings]
   )
 
   const handleSessionSaved = useCallback(
@@ -71,33 +76,35 @@ export default function App() {
   const ctx = {
     ...workouts,
     streak,
+    settings,
+    updateSetting,
     currentUser,
     currentWeekKey,
     currentWeekSessions,
     setTab,
     onSessionSaved: handleSessionSaved,
+    openSettings: () => setShowSettings(true),
   }
 
   return (
     <AppContext.Provider value={ctx}>
       <div className="flex flex-col h-[100dvh] bg-slate-900 text-white overflow-hidden">
-        {/* Safe area top padding */}
         <div style={{ paddingTop: 'var(--safe-top)' }} />
 
-        {/* User selector */}
-        <UserSelector currentUser={currentUser} onUserChange={handleUserChange} />
+        <UserSelector
+          currentUser={currentUser}
+          onUserChange={handleUserChange}
+          onOpenSettings={() => setShowSettings(true)}
+        />
 
-        {/* Active session banner */}
         {workouts.activeSession && <ActiveSessionBanner />}
 
-        {/* Main content */}
         <main className="flex-1 overflow-y-auto overscroll-none">
           {tab === 'dashboard' && <DashboardView />}
           {tab === 'log' && <LogView />}
           {tab === 'history' && <HistoryView />}
         </main>
 
-        {/* Bottom nav */}
         <BottomNav activeTab={tab} onTabChange={setTab} />
       </div>
 
@@ -107,6 +114,10 @@ export default function App() {
           big={celebration.big}
           onClose={() => setCelebration(null)}
         />
+      )}
+
+      {showSettings && (
+        <SettingsModal onClose={() => setShowSettings(false)} />
       )}
     </AppContext.Provider>
   )

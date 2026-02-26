@@ -1,9 +1,9 @@
 export const WORKOUT_CONFIG = {
-  climbing: {
-    label: 'Climbing',
-    icon: '🧗',
+  strength: {
+    label: 'Strength',
+    icon: '💪',
     weeklyTarget: 3,
-    subtypes: ['bouldering', 'lead', 'hangboard'],
+    subtypes: ['climbing', 'weights', 'HIIT', 'Orange Theory'],
     color: 'blue',
     accentClass: 'text-blue-400',
     bgClass: 'bg-blue-400/10',

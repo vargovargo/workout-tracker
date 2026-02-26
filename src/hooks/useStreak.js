@@ -1,6 +1,7 @@
 import { useMemo, useEffect } from 'react'
 import { WORKOUT_CONFIG } from '../config.js'
 import { getWeekKey, prevWeekKey, toDateString } from '../utils/weekUtils.js'
+import { isWeekComplete } from '../utils/progressUtils.js'
 
 function loadStreakRecords(user) {
   try {
@@ -10,14 +11,7 @@ function loadStreakRecords(user) {
   }
 }
 
-function isWeekComplete(weekSessions) {
-  return Object.entries(WORKOUT_CONFIG).every(([key, cfg]) => {
-    const count = weekSessions.filter((s) => s.category === key).length
-    return count >= cfg.weeklyTarget
-  })
-}
-
-export function useStreak(sessions, user) {
+export function useStreak(sessions, user, settings) {
   const currentWeekKey = getWeekKey()
 
   const weeklyStreak = useMemo(() => {
@@ -36,12 +30,12 @@ export function useStreak(sessions, user) {
     // Only go back as far as we have data (max 104 weeks = 2 years)
     for (let i = 0; i < 104; i++) {
       const weekSessions = byWeek[wk] || []
-      if (!isWeekComplete(weekSessions)) break
+      if (!isWeekComplete(weekSessions, settings)) break
       streak++
       wk = prevWeekKey(wk)
     }
     return streak
-  }, [sessions, currentWeekKey])
+  }, [sessions, currentWeekKey, settings])
 
   const activeDayStreak = useMemo(() => {
     // Use occurredAt (when workout happened) if set, otherwise loggedAt

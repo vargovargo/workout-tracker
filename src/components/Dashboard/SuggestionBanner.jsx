@@ -1,11 +1,10 @@
 import React from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
 import { getSuggestions } from '../../utils/suggestionUtils.js'
 import { useApp } from '../../App.jsx'
 
 export default function SuggestionBanner({ weekSessions }) {
-  const { setTab } = useApp()
-  const suggestions = getSuggestions(weekSessions)
+  const { setTab, settings } = useApp()
+  const suggestions = getSuggestions(weekSessions, settings)
 
   if (suggestions.length === 0) {
     return (
@@ -22,7 +21,7 @@ export default function SuggestionBanner({ weekSessions }) {
         Suggested today
       </p>
       <div className="flex flex-col gap-2">
-        {suggestions.map(({ key, cfg, remaining }) => (
+        {suggestions.map(({ key, cfg, remaining, unit }) => (
           <button
             key={key}
             onClick={() => setTab('log')}
@@ -32,7 +31,9 @@ export default function SuggestionBanner({ weekSessions }) {
             <div className="flex-1 text-left">
               <p className={`text-sm font-semibold ${cfg.accentClass}`}>{cfg.label}</p>
               <p className="text-xs text-slate-400">
-                {remaining} session{remaining !== 1 ? 's' : ''} remaining
+                {unit === 'minutes'
+                  ? `${remaining} min remaining`
+                  : `${remaining} session${remaining !== 1 ? 's' : ''} remaining`}
               </p>
             </div>
             <span className="text-slate-500">›</span>
