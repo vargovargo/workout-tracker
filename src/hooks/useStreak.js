@@ -2,11 +2,9 @@ import { useMemo, useEffect } from 'react'
 import { WORKOUT_CONFIG } from '../config.js'
 import { getWeekKey, prevWeekKey, toDateString } from '../utils/weekUtils.js'
 
-const STREAK_RECORDS_KEY = 'streak_records'
-
-function loadStreakRecords() {
+function loadStreakRecords(user) {
   try {
-    return JSON.parse(localStorage.getItem(STREAK_RECORDS_KEY) || '{"longestWeekly":0,"longestActiveDay":0}')
+    return JSON.parse(localStorage.getItem(`${user}:streak_records`) || '{"longestWeekly":0,"longestActiveDay":0}')
   } catch {
     return { longestWeekly: 0, longestActiveDay: 0 }
   }
@@ -19,7 +17,7 @@ function isWeekComplete(weekSessions) {
   })
 }
 
-export function useStreak(sessions) {
+export function useStreak(sessions, user) {
   const currentWeekKey = getWeekKey()
 
   const weeklyStreak = useMemo(() => {
@@ -89,7 +87,7 @@ export function useStreak(sessions) {
 
   // Update longest records
   useEffect(() => {
-    const records = loadStreakRecords()
+    const records = loadStreakRecords(user)
     let updated = false
     if (weeklyStreak > records.longestWeekly) {
       records.longestWeekly = weeklyStreak
@@ -100,9 +98,9 @@ export function useStreak(sessions) {
       updated = true
     }
     if (updated) {
-      localStorage.setItem(STREAK_RECORDS_KEY, JSON.stringify(records))
+      localStorage.setItem(`${user}:streak_records`, JSON.stringify(records))
     }
-  }, [weeklyStreak, activeDayStreak])
+  }, [user, weeklyStreak, activeDayStreak])
 
   return { weeklyStreak, activeDayStreak, currentWeekOnTrack }
 }

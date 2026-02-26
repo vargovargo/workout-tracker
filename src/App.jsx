@@ -5,6 +5,7 @@ import { WORKOUT_CONFIG } from './config.js'
 import { getWeekKey } from './utils/weekUtils.js'
 import { fetchCelebrationGif, fireBigConfetti, fireSmallConfetti } from './utils/celebrationUtils.js'
 import BottomNav from './components/BottomNav.jsx'
+import UserSelector, { loadLastUser, saveLastUser } from './components/UserSelector.jsx'
 import DashboardView from './components/Dashboard/DashboardView.jsx'
 import LogView from './components/Log/LogView.jsx'
 import HistoryView from './components/History/HistoryView.jsx'
@@ -19,25 +20,29 @@ export function useApp() {
 
 export default function App() {
   const [tab, setTab] = useState('dashboard')
-  const workouts = useWorkouts()
-  const streak = useStreak(workouts.sessions)
-  const [celebration, setCelebration] = useState(null) // { gif, big }
+  const [currentUser, setCurrentUser] = useState(loadLastUser)
+  const workouts = useWorkouts(currentUser)
+  const streak = useStreak(workouts.sessions, currentUser)
+  const [celebration, setCelebration] = useState(null)
 
   const currentWeekKey = getWeekKey()
   const currentWeekSessions = workouts.getSessionsForWeek(currentWeekKey)
 
+  function handleUserChange(user) {
+    setCurrentUser(user)
+    saveLastUser(user)
+    setTab('dashboard')
+  }
+
   const checkCelebration = useCallback(
     async (newSession) => {
       const weekSessions = workouts.getSessionsForWeek(newSession.weekKey)
-      // Include the new session
       const all = [...weekSessions.filter((s) => s.id !== newSession.id), newSession]
 
-      // Check week complete
       const weekComplete = Object.entries(WORKOUT_CONFIG).every(([key, cfg]) => {
         return all.filter((s) => s.category === key).length >= cfg.weeklyTarget
       })
 
-      // Check category milestone
       const catCount = all.filter((s) => s.category === newSession.category).length
       const catTarget = WORKOUT_CONFIG[newSession.category]?.weeklyTarget
       const catMilestone = catCount === catTarget
@@ -66,6 +71,7 @@ export default function App() {
   const ctx = {
     ...workouts,
     streak,
+    currentUser,
     currentWeekKey,
     currentWeekSessions,
     setTab,
@@ -77,6 +83,9 @@ export default function App() {
       <div className="flex flex-col h-[100dvh] bg-slate-900 text-white overflow-hidden">
         {/* Safe area top padding */}
         <div style={{ paddingTop: 'var(--safe-top)' }} />
+
+        {/* User selector */}
+        <UserSelector currentUser={currentUser} onUserChange={handleUserChange} />
 
         {/* Active session banner */}
         {workouts.activeSession && <ActiveSessionBanner />}
@@ -92,7 +101,6 @@ export default function App() {
         <BottomNav activeTab={tab} onTabChange={setTab} />
       </div>
 
-      {/* Celebration overlay */}
       {celebration && (
         <CelebrationModal
           gif={celebration.gif}

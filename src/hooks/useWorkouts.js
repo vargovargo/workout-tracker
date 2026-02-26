@@ -1,43 +1,48 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { getWeekKey } from '../utils/weekUtils.js'
 
-const SESSIONS_KEY = 'workout_sessions'
-const ACTIVE_KEY = 'active_session'
+function sessionsKey(user) { return `${user}:workout_sessions` }
+function activeKey(user)   { return `${user}:active_session` }
 
-function loadSessions() {
+function loadSessions(user) {
   try {
-    return JSON.parse(localStorage.getItem(SESSIONS_KEY) || '[]')
+    return JSON.parse(localStorage.getItem(sessionsKey(user)) || '[]')
   } catch {
     return []
   }
 }
 
-function saveSessions(sessions) {
-  localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions))
+function saveSessions(user, sessions) {
+  localStorage.setItem(sessionsKey(user), JSON.stringify(sessions))
 }
 
-function loadActive() {
+function loadActive(user) {
   try {
-    return JSON.parse(localStorage.getItem(ACTIVE_KEY) || 'null')
+    return JSON.parse(localStorage.getItem(activeKey(user)) || 'null')
   } catch {
     return null
   }
 }
 
-function saveActive(active) {
+function saveActive(user, active) {
   if (active === null) {
-    localStorage.removeItem(ACTIVE_KEY)
+    localStorage.removeItem(activeKey(user))
   } else {
-    localStorage.setItem(ACTIVE_KEY, JSON.stringify(active))
+    localStorage.setItem(activeKey(user), JSON.stringify(active))
   }
 }
 
-export function useWorkouts() {
-  const [sessions, setSessions] = useState(loadSessions)
-  const [activeSession, setActiveSessionState] = useState(loadActive)
+export function useWorkouts(user) {
+  const [sessions, setSessions] = useState(() => loadSessions(user))
+  const [activeSession, setActiveSessionState] = useState(() => loadActive(user))
+
+  // Reload data whenever the active user changes
+  useEffect(() => {
+    setSessions(loadSessions(user))
+    setActiveSessionState(loadActive(user))
+  }, [user])
 
   const addSession = useCallback((sessionData) => {
-    // Use occurredAt if provided (retroactive), otherwise loggedAt, for week assignment
     const dateForWeek = sessionData.occurredAt || sessionData.loggedAt || new Date().toISOString()
     const newSession = {
       id: crypto.randomUUID(),
@@ -46,27 +51,27 @@ export function useWorkouts() {
     }
     setSessions((prev) => {
       const updated = [...prev, newSession]
-      saveSessions(updated)
+      saveSessions(user, updated)
       return updated
     })
     return newSession
-  }, [])
+  }, [user])
 
   const updateSession = useCallback((id, updates) => {
     setSessions((prev) => {
       const updated = prev.map((s) => (s.id === id ? { ...s, ...updates } : s))
-      saveSessions(updated)
+      saveSessions(user, updated)
       return updated
     })
-  }, [])
+  }, [user])
 
   const deleteSession = useCallback((id) => {
     setSessions((prev) => {
       const updated = prev.filter((s) => s.id !== id)
-      saveSessions(updated)
+      saveSessions(user, updated)
       return updated
     })
-  }, [])
+  }, [user])
 
   const startSession = useCallback((category, subtype) => {
     const active = {
@@ -74,9 +79,9 @@ export function useWorkouts() {
       subtype: subtype || undefined,
       startedAt: new Date().toISOString(),
     }
-    saveActive(active)
+    saveActive(user, active)
     setActiveSessionState(active)
-  }, [])
+  }, [user])
 
   const finishSession = useCallback(
     (durationMinutes, notes) => {
@@ -91,17 +96,17 @@ export function useWorkouts() {
         notes: notes || undefined,
         loggedAt: now,
       })
-      saveActive(null)
+      saveActive(user, null)
       setActiveSessionState(null)
       return session
     },
-    [activeSession, addSession]
+    [user, activeSession, addSession]
   )
 
   const clearActiveSession = useCallback(() => {
-    saveActive(null)
+    saveActive(user, null)
     setActiveSessionState(null)
-  }, [])
+  }, [user])
 
   const logRetroactive = useCallback(
     (category, subtype, durationMinutes, notes, occurredAt) => {

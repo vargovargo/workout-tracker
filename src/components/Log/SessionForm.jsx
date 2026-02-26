@@ -56,17 +56,6 @@ export default function SessionForm({ categoryKey, subtype, onBack, onSaved }) {
 
         <div className="flex flex-col gap-4">
           <button
-            onClick={handleStart}
-            className={`flex items-center gap-4 p-5 rounded-2xl ${cfg.bgClass} border ${cfg.borderClass} active:scale-95 transition-transform`}
-          >
-            <span className="text-2xl">▶️</span>
-            <div className="text-left">
-              <p className={`text-base font-bold ${cfg.accentClass}`}>Start Now</p>
-              <p className="text-xs text-slate-400 mt-0.5">Timer banner appears while you work out</p>
-            </div>
-          </button>
-
-          <button
             onClick={() => setMode('retro')}
             className="flex items-center gap-4 p-5 rounded-2xl bg-slate-800 border border-slate-700 active:scale-95 transition-transform"
           >
@@ -74,6 +63,17 @@ export default function SessionForm({ categoryKey, subtype, onBack, onSaved }) {
             <div className="text-left">
               <p className="text-base font-bold text-slate-200">Log Completed</p>
               <p className="text-xs text-slate-400 mt-0.5">Already done? Enter time and duration</p>
+            </div>
+          </button>
+
+          <button
+            onClick={handleStart}
+            className={`flex items-center gap-4 p-5 rounded-2xl ${cfg.bgClass} border ${cfg.borderClass} active:scale-95 transition-transform`}
+          >
+            <span className="text-2xl">▶️</span>
+            <div className="text-left">
+              <p className={`text-base font-bold ${cfg.accentClass}`}>Start Now</p>
+              <p className="text-xs text-slate-400 mt-0.5">Timer banner appears while you work out</p>
             </div>
           </button>
         </div>
