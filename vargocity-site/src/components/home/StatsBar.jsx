@@ -2,12 +2,13 @@ import AnimatedCounter from '../shared/AnimatedCounter'
 import scholar from '../../data/scholar.json'
 import peaks from '../../data/peaks.json'
 import countries from '../../data/countries.json'
+import publications from '../../data/publications.json'
 
 const stats = [
   { value: scholar.citations, label: 'Citations', suffix: '+' },
   { value: peaks.length, label: 'Sierra Peaks' },
   { value: countries.length, label: 'Countries' },
-  { value: 18, label: 'Publications', suffix: '+' },
+  { value: publications.length, label: 'Publications', suffix: '+' },
 ]
 
 export default function StatsBar() {
