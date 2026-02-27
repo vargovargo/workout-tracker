@@ -1,34 +1,72 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
+import { collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore'
+import { db } from '../firebase.js'
 import { getWeekKey } from '../utils/weekUtils.js'
 
 function sessionsKey(user) { return `${user}:workout_sessions` }
 
-function loadSessions(user) {
-  try {
-    let sessions = JSON.parse(localStorage.getItem(sessionsKey(user)) || '[]')
-    // Migrate: 'climbing' category was renamed to 'strength'
-    if (sessions.some((s) => s.category === 'climbing')) {
-      sessions = sessions.map((s) =>
-        s.category === 'climbing' ? { ...s, category: 'strength' } : s
-      )
-      saveSessions(user, sessions)
-    }
-    return sessions
-  } catch {
-    return []
-  }
+// Firestore does not accept undefined values — omit any field that is undefined.
+function stripUndefined(obj) {
+  return Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined))
 }
 
-function saveSessions(user, sessions) {
-  localStorage.setItem(sessionsKey(user), JSON.stringify(sessions))
+function migrateSession(s) {
+  // climbing was briefly its own top-level category
+  if (s.category === 'climbing')    return { ...s, category: 'strength',   subtype: 'climbing' }
+  // plyometrics and stretching merge into mobility
+  if (s.category === 'plyometrics') return { ...s, category: 'mobility',   subtype: 'plyometrics' }
+  if (s.category === 'stretching')  return { ...s, category: 'mobility',   subtype: 'stretching' }
+  // team_sports moves to cardio; subtypes (basketball/soccer/frisbee) are unchanged
+  if (s.category === 'team_sports') return { ...s, category: 'cardio' }
+  return s
+}
+
+function migrateLocalSessions(sessions) {
+  return sessions.map(migrateSession)
 }
 
 export function useWorkouts(user) {
-  const [sessions, setSessions] = useState(() => loadSessions(user))
+  const [sessions, setSessions] = useState([])
+  // Track which users we've already attempted a localStorage migration for,
+  // so we only do it once per app session even if onSnapshot fires multiple times.
+  const migratedUsers = useRef(new Set())
 
-  // Reload data whenever the active user changes
   useEffect(() => {
-    setSessions(loadSessions(user))
+    setSessions([])
+    const colRef = collection(db, 'users', user, 'sessions')
+
+    const unsubscribe = onSnapshot(colRef, (snapshot) => {
+      const firestoreSessions = snapshot.docs.map((d) => d.data())
+
+      // If Firestore is empty for this user and we haven't migrated yet,
+      // upload any existing localStorage data so it isn't lost.
+      if (firestoreSessions.length === 0 && !migratedUsers.current.has(user)) {
+        migratedUsers.current.add(user)
+        try {
+          const local = JSON.parse(localStorage.getItem(sessionsKey(user)) || '[]')
+          if (local.length > 0) {
+            const migrated = migrateLocalSessions(local)
+            migrated.forEach((s) => setDoc(doc(colRef, s.id), stripUndefined(s)))
+            return // onSnapshot will fire again once uploads land
+          }
+        } catch {
+          // localStorage unreadable — continue with empty state
+        }
+      }
+
+      const migrated = migrateLocalSessions(firestoreSessions)
+      // Write back any sessions whose category changed so the migration only runs once.
+      snapshot.docs.forEach((d) => {
+        const original = d.data()
+        const updated = migrateSession(original)
+        if (updated.category !== original.category) {
+          setDoc(doc(colRef, updated.id), stripUndefined(updated))
+        }
+      })
+      setSessions(migrated)
+    })
+
+    return unsubscribe
   }, [user])
 
   const addSession = useCallback((sessionData) => {
@@ -38,28 +76,18 @@ export function useWorkouts(user) {
       weekKey: getWeekKey(new Date(dateForWeek)),
       ...sessionData,
     }
-    setSessions((prev) => {
-      const updated = [...prev, newSession]
-      saveSessions(user, updated)
-      return updated
-    })
+    const colRef = collection(db, 'users', user, 'sessions')
+    setDoc(doc(colRef, newSession.id), stripUndefined(newSession))
     return newSession
   }, [user])
 
   const updateSession = useCallback((id, updates) => {
-    setSessions((prev) => {
-      const updated = prev.map((s) => (s.id === id ? { ...s, ...updates } : s))
-      saveSessions(user, updated)
-      return updated
-    })
+    const docRef = doc(db, 'users', user, 'sessions', id)
+    updateDoc(docRef, stripUndefined(updates))
   }, [user])
 
   const deleteSession = useCallback((id) => {
-    setSessions((prev) => {
-      const updated = prev.filter((s) => s.id !== id)
-      saveSessions(user, updated)
-      return updated
-    })
+    deleteDoc(doc(db, 'users', user, 'sessions', id))
   }, [user])
 
   const logRetroactive = useCallback(
