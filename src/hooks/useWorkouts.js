@@ -32,10 +32,12 @@ export function useWorkouts(user) {
   const migratedUsers = useRef(new Set())
 
   useEffect(() => {
+    let stale = false
     setSessions([])
     const colRef = collection(db, 'users', user, 'sessions')
 
     const unsubscribe = onSnapshot(colRef, (snapshot) => {
+      if (stale) return
       const firestoreSessions = snapshot.docs.map((d) => d.data())
 
       // If Firestore is empty for this user and we haven't migrated yet,
@@ -66,7 +68,7 @@ export function useWorkouts(user) {
       setSessions(migrated)
     })
 
-    return unsubscribe
+    return () => { stale = true; unsubscribe() }
   }, [user])
 
   const addSession = useCallback((sessionData) => {
