@@ -10,10 +10,19 @@ function stripUndefined(obj) {
   return Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined))
 }
 
+function migrateSession(s) {
+  // climbing was briefly its own top-level category
+  if (s.category === 'climbing')    return { ...s, category: 'strength',   subtype: 'climbing' }
+  // plyometrics and stretching merge into mobility
+  if (s.category === 'plyometrics') return { ...s, category: 'mobility',   subtype: 'plyometrics' }
+  if (s.category === 'stretching')  return { ...s, category: 'mobility',   subtype: 'stretching' }
+  // team_sports moves to cardio; subtypes (basketball/soccer/frisbee) are unchanged
+  if (s.category === 'team_sports') return { ...s, category: 'cardio' }
+  return s
+}
+
 function migrateLocalSessions(sessions) {
-  return sessions.map((s) =>
-    s.category === 'climbing' ? { ...s, category: 'strength' } : s
-  )
+  return sessions.map(migrateSession)
 }
 
 export function useWorkouts(user) {
@@ -45,7 +54,16 @@ export function useWorkouts(user) {
         }
       }
 
-      setSessions(migrateLocalSessions(firestoreSessions))
+      const migrated = migrateLocalSessions(firestoreSessions)
+      // Write back any sessions whose category changed so the migration only runs once.
+      snapshot.docs.forEach((d) => {
+        const original = d.data()
+        const updated = migrateSession(original)
+        if (updated.category !== original.category) {
+          setDoc(doc(colRef, updated.id), stripUndefined(updated))
+        }
+      })
+      setSessions(migrated)
     })
 
     return unsubscribe
