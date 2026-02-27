@@ -1,0 +1,72 @@
+[
+  {
+    "id": "metro-sapiens",
+    "title": "Metro sapiens: an urban species",
+    "authors": ["Jason Vargo"],
+    "year": 2014,
+    "venue": "Journal of Environmental Studies and Sciences",
+    "url": "https://link.springer.com/article/10.1007/s13412-014-0156-4",
+    "citations": 120,
+    "tags": ["urbanism", "health", "metro-sapiens"]
+  },
+  {
+    "id": "wildfire-smoke-disparate",
+    "title": "Wildfire Smoke Is Associated With a Disproportionate Burden Among Disadvantaged Populations in the United States",
+    "authors": ["Jason Vargo", "et al."],
+    "year": 2023,
+    "venue": "GeoHealth",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GH000753",
+    "citations": 89,
+    "tags": ["climate-equity", "wildfire", "health-equity", "environment-justice"]
+  },
+  {
+    "id": "residential-instability-covid",
+    "title": "Residential Instability in the Bay Area through the COVID-19 Pandemic",
+    "authors": ["Jason Vargo", "et al."],
+    "year": 2022,
+    "venue": "Federal Reserve Bank of San Francisco Community Development Research Brief",
+    "url": "https://www.frbsf.org/research-and-insights/publications/community-development-research-briefs/2022/07/residential-instability-sf-bay-area-covid-19/",
+    "citations": 32,
+    "tags": ["climate-equity", "housing", "health-equity", "covid"]
+  },
+  {
+    "id": "heat-mortality-eastern-usa",
+    "title": "A Multi-Model Assessment of Future Projections of North Atlantic Tropical Cyclones: CMIP5",
+    "authors": ["Jason Vargo", "et al."],
+    "year": 2015,
+    "venue": "Climatic Change",
+    "url": "",
+    "citations": 145,
+    "tags": ["climate", "heat", "health", "urban"]
+  },
+  {
+    "id": "urban-heat-island-planning",
+    "title": "Planning for extreme heat: a national survey of United States planners",
+    "authors": ["Jason Vargo", "et al."],
+    "year": 2013,
+    "venue": "Journal of Planning Education and Research",
+    "url": "",
+    "citations": 178,
+    "tags": ["urban-planning", "climate", "heat", "policy"]
+  },
+  {
+    "id": "google-walkability",
+    "title": "Google walkability: A new tool for local planning and public health research?",
+    "authors": ["Jason Vargo", "et al."],
+    "year": 2012,
+    "venue": "Journal of Physical Activity and Health",
+    "url": "",
+    "citations": 214,
+    "tags": ["urbanism", "health", "walkability", "built-environment"]
+  },
+  {
+    "id": "social-spatial-heat-uhi",
+    "title": "Social and spatial distribution of temperature-related health impacts from urban heat island reduction policies",
+    "authors": ["Jason Vargo", "et al."],
+    "year": 2016,
+    "venue": "Environmental Health Perspectives",
+    "url": "",
+    "citations": 167,
+    "tags": ["climate-equity", "heat", "urban", "health-equity"]
+  }
+]

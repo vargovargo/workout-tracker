@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-peak",
+    "name": "Example Peak",
+    "elevation_ft": 13000,
+    "range": "Sierra Nevada",
+    "yds_class": "Class 2",
+    "date": "2023-08-01",
+    "team": [],
+    "notes": "Replace this with your actual peak data.",
+    "photos": [],
+    "route": "",
+    "total_miles": null,
+    "vertical_gain_ft": null,
+    "tags": []
+  }
+]
