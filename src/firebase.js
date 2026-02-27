@@ -21,13 +21,14 @@ import { getFirestore } from 'firebase/firestore'
 //    }
 // ---------------------------------------------------------------------------
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
-}
+  apiKey: "AIzaSyA-BVe-XAkexaOejvP-v-7U5PllAybWl0U",
+  authDomain: "vargo-88ad4.firebaseapp.com",
+  projectId: "vargo-88ad4",
+  storageBucket: "vargo-88ad4.firebasestorage.app",
+  messagingSenderId: "387632472914",
+  appId: "1:387632472914:web:3f06d98ccd1a6cce6f908b",
+  measurementId: "G-SRB673JHCY"
+};
 
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
