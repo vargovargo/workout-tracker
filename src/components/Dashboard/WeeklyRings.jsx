@@ -21,7 +21,7 @@ function Ring({ categoryKey, value, target, unit }) {
   const trackOffset = GAP / 2
   const fillLength = fraction * SPAN
   const fillOffset = CIRC - fillLength - trackOffset
-  const arcColor = done ? '#34d399' : fraction > 0 ? cfg.arcColor : '#334155'
+  const arcColor = fraction > 0 ? cfg.arcColor : '#334155'
 
   useEffect(() => {
     const el = arcRef.current
