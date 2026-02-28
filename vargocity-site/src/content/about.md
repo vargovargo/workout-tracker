@@ -20,6 +20,10 @@ The goal, in my work and in my life, has been to make healthy choices easy choic
 
 ---
 
+Lately, the question has grown. The framework I've used for climate — measuring who bears the burden, identifying root causes, building tools that make the disparity legible to people who can act on it — applies directly to AI systems. I'm drawn to that intersection: powerful technology and who bears its costs. It's the same question in a new habitat.
+
+---
+
 Outside of work, I spend a lot of time in the Sierra Nevada — measuring altitude, because the window for hard climbing is finite and worth paying attention to. I build furniture from salvaged wood. I read widely and write when I can. I've been to a few dozen countries and am always planning the next trip.
 
 This site is a log of the things worth protecting — and what I've done with the time.

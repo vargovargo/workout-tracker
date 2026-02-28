@@ -21,6 +21,11 @@ const themes = [
     title: 'Metro Sapiens',
     description: 'The central provocation of my early work: we are becoming an urban species. More than half of humanity now lives in cities. Understanding that habitat — and designing it well — is the challenge of our century.',
   },
+  {
+    id: 'technology-society',
+    title: 'Technology & Society',
+    description: 'The question I\'ve spent a career asking — who bears the cost of powerful systems, and what can change that — applies equally to AI. Causal inference, disparity measurement, and policy translation don\'t care which domain you\'re in.',
+  },
 ]
 
 export default function ThemeCards() {
