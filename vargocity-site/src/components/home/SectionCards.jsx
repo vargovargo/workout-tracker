@@ -17,7 +17,7 @@ const cards = [
     to: '/adventures',
     label: 'Adventures',
     title: 'Sierra Peaks & Far Places',
-    description: 'A log of summits in the Sierra Nevada and countries visited — the personal rate of change.',
+    description: 'The window for hard adventuring is finite. A running count of Sierra peaks and far places.',
   },
   {
     to: '/writing',

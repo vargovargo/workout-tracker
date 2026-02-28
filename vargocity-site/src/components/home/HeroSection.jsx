@@ -14,9 +14,11 @@ export default function HeroSection() {
           Researcher. Builder. Climber. Reader.
         </p>
         <p className="mt-4 text-base leading-relaxed max-w-xl" style={{ color: '#4A4A4A' }}>
-          Senior Researcher in Community Development at the Federal Reserve Bank of
-          San Francisco. I study how climate risk and economic opportunity intersect
-          in the communities that need it most.
+          Senior Researcher at the Federal Reserve Bank of San Francisco. I study how
+          climate risk and economic opportunity intersect in the communities that need
+          it most. The through-line from chemical engineering to climate science:
+          learning at the cutting edge, doing hard things that matter, building
+          something real.
         </p>
       </div>
     </section>

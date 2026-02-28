@@ -28,7 +28,7 @@ export default function AdventuresPage() {
       <SectionHeader
         label="Adventures"
         title="Sierra Peaks & Far Places"
-        description="A log of summits in the Sierra Nevada and countries visited — the personal rate of change."
+        description="The window for hard adventuring is finite. A log of Sierra summits and far places — and what I've done with it so far."
       />
 
       <div className="mb-8">
