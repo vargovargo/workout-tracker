@@ -17,13 +17,13 @@ export default function DashboardView() {
         weeklyStreak={streak.weeklyStreak}
         activeDayStreak={streak.activeDayStreak}
       />
-      <SuggestionBanner weekSessions={currentWeekSessions} />
       <WeeklyRings weekSessions={currentWeekSessions} />
       <MinutesByDayChart
         weekKey={currentWeekKey}
         weekSessions={currentWeekSessions}
       />
       <WeekMinutesChart weekSessions={currentWeekSessions} />
+      <SuggestionBanner weekSessions={currentWeekSessions} />
     </div>
   )
 }
