@@ -12,7 +12,8 @@ export default function HistoryView() {
 
   const sessions = getSessionsForWeek(weekKey)
   const sorted = [...sessions].sort(
-    (a, b) => new Date(b.loggedAt) - new Date(a.loggedAt)
+    (a, b) =>
+      new Date(b.occurredAt || b.loggedAt) - new Date(a.occurredAt || a.loggedAt)
   )
 
   function handleDelete(id) {
