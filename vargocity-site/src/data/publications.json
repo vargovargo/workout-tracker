@@ -6,7 +6,7 @@
     "year": 2006,
     "venue": "Georgia Institute of Technology (Technical Report)",
     "url": "",
-    "citations": 0,
+    "citations": 7,
     "tags": ["urban-planning", "demographics"]
   },
   {
@@ -16,7 +16,7 @@
     "year": 2012,
     "venue": "Landscape and Urban Planning",
     "url": "",
-    "citations": 0,
+    "citations": 322,
     "tags": ["urban-heat", "climate", "policy", "urban-planning"]
   },
   {
@@ -26,7 +26,7 @@
     "year": 2012,
     "venue": "Journal of Physical Activity and Health",
     "url": "",
-    "citations": 214,
+    "citations": 83,
     "tags": ["walkability", "built-environment", "urbanism", "health"]
   },
   {
@@ -36,7 +36,7 @@
     "year": 2012,
     "venue": "Dissertation (Georgia Institute of Technology)",
     "url": "",
-    "citations": 0,
+    "citations": 1,
     "tags": ["urban-planning", "climate", "heat"]
   },
   {
@@ -46,7 +46,7 @@
     "year": 2013,
     "venue": "Environmental Science & Technology",
     "url": "",
-    "citations": 0,
+    "citations": 75,
     "tags": ["urban-heat", "climate", "policy", "heat"]
   },
   {
@@ -56,7 +56,7 @@
     "year": 2013,
     "venue": "Journal of Environmental Management",
     "url": "",
-    "citations": 0,
+    "citations": 81,
     "tags": ["urban-heat", "climate", "built-environment", "land-use"]
   },
   {
@@ -66,7 +66,7 @@
     "year": 2013,
     "venue": "Paving the Way Forward in Urbanization (book chapter)",
     "url": "",
-    "citations": 0,
+    "citations": 1,
     "tags": ["urban-heat", "climate"]
   },
   {
@@ -76,7 +76,7 @@
     "year": 2014,
     "venue": "Journal of Environmental Studies and Sciences",
     "url": "https://link.springer.com/article/10.1007/s13412-014-0195-7",
-    "citations": 120,
+    "citations": 10,
     "tags": ["urbanism", "health", "metro-sapiens"]
   },
   {
@@ -86,7 +86,7 @@
     "year": 2014,
     "venue": "PLOS ONE",
     "url": "",
-    "citations": 0,
+    "citations": 224,
     "tags": ["urban-heat", "climate", "health", "heat", "policy"]
   },
   {
@@ -96,7 +96,7 @@
     "year": 2015,
     "venue": "Natural Hazards",
     "url": "",
-    "citations": 0,
+    "citations": 395,
     "tags": ["urban-heat", "climate", "heat"]
   },
   {
@@ -106,7 +106,7 @@
     "year": 2015,
     "venue": "MMWR Morbidity and Mortality Weekly Report",
     "url": "",
-    "citations": 0,
+    "citations": 23,
     "tags": ["active-transport", "health", "epidemiology"]
   },
   {
@@ -116,7 +116,7 @@
     "year": 2015,
     "venue": "Advances in Meteorology",
     "url": "",
-    "citations": 0,
+    "citations": 12,
     "tags": ["urban-heat", "heat", "climate"]
   },
   {
@@ -126,7 +126,7 @@
     "year": 2016,
     "venue": "Sustainability",
     "url": "",
-    "citations": 0,
+    "citations": 40,
     "tags": ["urban-heat", "health", "policy"]
   },
   {
@@ -136,7 +136,7 @@
     "year": 2016,
     "venue": "Environmental Science & Policy",
     "url": "",
-    "citations": 167,
+    "citations": 124,
     "tags": ["climate-equity", "heat", "urban", "health-equity"]
   },
   {
@@ -146,7 +146,7 @@
     "year": 2017,
     "venue": "Accident Analysis & Prevention",
     "url": "",
-    "citations": 0,
+    "citations": 29,
     "tags": ["active-transport", "health", "transportation"]
   },
   {
@@ -156,7 +156,7 @@
     "year": 2017,
     "venue": "The Journal of Law, Medicine & Ethics",
     "url": "",
-    "citations": 0,
+    "citations": 9,
     "tags": ["climate", "policy", "health"]
   },
   {
@@ -166,7 +166,7 @@
     "year": 2017,
     "venue": "Journal of Transport & Health",
     "url": "",
-    "citations": 0,
+    "citations": 2,
     "tags": ["active-transport", "health", "transportation"]
   },
   {
@@ -176,7 +176,7 @@
     "year": 2018,
     "venue": "PLOS Medicine",
     "url": "",
-    "citations": 0,
+    "citations": 204,
     "tags": ["wildfire", "health", "air-quality", "epidemiology"]
   },
   {
@@ -186,7 +186,7 @@
     "year": 2018,
     "venue": "EcoHealth",
     "url": "",
-    "citations": 0,
+    "citations": 75,
     "tags": ["climate", "heat", "health", "epidemiology"]
   },
   {
@@ -196,7 +196,7 @@
     "year": 2019,
     "venue": "Traffic Injury Prevention",
     "url": "",
-    "citations": 0,
+    "citations": 18,
     "tags": ["active-transport", "health", "epidemiology"]
   },
   {
@@ -206,7 +206,7 @@
     "year": 2019,
     "venue": "Environmental Epidemiology",
     "url": "",
-    "citations": 0,
+    "citations": 1,
     "tags": ["wildfire", "air-quality", "health", "epidemiology"]
   },
   {
@@ -216,7 +216,7 @@
     "year": 2019,
     "venue": "Social Science & Medicine",
     "url": "",
-    "citations": 0,
+    "citations": 98,
     "tags": ["climate", "health-equity", "health"]
   },
   {
@@ -226,7 +226,7 @@
     "year": 2020,
     "venue": "Journal of the American Heart Association",
     "url": "",
-    "citations": 0,
+    "citations": 109,
     "tags": ["wildfire", "air-quality", "health", "epidemiology"]
   },
   {
@@ -236,7 +236,7 @@
     "year": 2020,
     "venue": "Frontiers in Public Health",
     "url": "",
-    "citations": 0,
+    "citations": 24,
     "tags": ["wildfire", "air-quality", "health"]
   },
   {
@@ -246,7 +246,7 @@
     "year": 2021,
     "venue": "JAMA Dermatology",
     "url": "",
-    "citations": 0,
+    "citations": 133,
     "tags": ["wildfire", "air-quality", "health", "dermatology"]
   },
   {
@@ -266,7 +266,7 @@
     "year": 2021,
     "venue": "Open Forum Infectious Diseases",
     "url": "",
-    "citations": 0,
+    "citations": 11,
     "tags": ["covid", "policy", "epidemiology"]
   },
   {
@@ -276,7 +276,7 @@
     "year": 2021,
     "venue": "Journal of the Air & Waste Management Association",
     "url": "",
-    "citations": 0,
+    "citations": 50,
     "tags": ["wildfire", "air-quality", "health", "epidemiology"]
   },
   {
@@ -286,7 +286,7 @@
     "year": 2021,
     "venue": "Health Affairs",
     "url": "",
-    "citations": 0,
+    "citations": 170,
     "tags": ["covid", "health-equity", "epidemiology"]
   },
   {
@@ -296,7 +296,7 @@
     "year": 2021,
     "venue": "Health Affairs Forefront",
     "url": "",
-    "citations": 0,
+    "citations": 8,
     "tags": ["covid", "health-equity", "policy"]
   },
   {
@@ -316,7 +316,7 @@
     "year": 2022,
     "venue": "JAMA Network Open",
     "url": "",
-    "citations": 0,
+    "citations": 26,
     "tags": ["wildfire", "air-quality", "health", "dermatology"]
   },
   {
@@ -336,7 +336,7 @@
     "year": 2022,
     "venue": "Federal Reserve Bank of San Francisco Community Development Research Brief",
     "url": "",
-    "citations": 0,
+    "citations": 3,
     "tags": ["wildfire", "health-equity", "climate-equity"]
   },
   {
@@ -346,7 +346,7 @@
     "year": 2022,
     "venue": "International Journal of Environmental Research and Public Health",
     "url": "",
-    "citations": 0,
+    "citations": 30,
     "tags": ["climate", "health", "policy", "urban-planning"]
   },
   {
@@ -356,7 +356,7 @@
     "year": 2022,
     "venue": "Journal of Clinical and Translational Science",
     "url": "",
-    "citations": 0,
+    "citations": 8,
     "tags": ["covid", "epidemiology", "modeling"]
   },
   {
@@ -366,7 +366,7 @@
     "year": 2023,
     "venue": "JAMA Network Open",
     "url": "",
-    "citations": 0,
+    "citations": 20,
     "tags": ["wildfire", "air-quality", "health", "dermatology"]
   },
   {
@@ -376,7 +376,7 @@
     "year": 2023,
     "venue": "Journal of Planning Education and Research",
     "url": "",
-    "citations": 0,
+    "citations": 68,
     "tags": ["urban-heat", "climate", "policy", "urban-planning"]
   },
   {
@@ -386,7 +386,7 @@
     "year": 2023,
     "venue": "American Journal of Public Health",
     "url": "",
-    "citations": 0,
+    "citations": 45,
     "tags": ["wildfire", "health-equity", "climate-equity", "air-quality"]
   },
   {
@@ -396,7 +396,7 @@
     "year": 2024,
     "venue": "Atmosphere",
     "url": "",
-    "citations": 0,
+    "citations": 3,
     "tags": ["wildfire", "air-quality"]
   },
   {
@@ -416,7 +416,7 @@
     "year": 2025,
     "venue": "Earth's Future",
     "url": "",
-    "citations": 0,
+    "citations": 1,
     "tags": ["wildfire", "climate", "air-quality", "heat"]
   },
   {
@@ -426,7 +426,7 @@
     "year": 2025,
     "venue": "GeoHealth",
     "url": "",
-    "citations": 0,
+    "citations": 3,
     "tags": ["wildfire", "climate", "heat", "health", "epidemiology"]
   },
   {
@@ -436,7 +436,7 @@
     "year": 2025,
     "venue": "PLOS ONE",
     "url": "",
-    "citations": 0,
+    "citations": 6,
     "tags": ["covid", "health-equity", "policy"]
   },
   {
@@ -446,7 +446,7 @@
     "year": 2025,
     "venue": "American Journal of Epidemiology",
     "url": "",
-    "citations": 0,
+    "citations": 2,
     "tags": ["covid", "policy", "health"]
   },
   {

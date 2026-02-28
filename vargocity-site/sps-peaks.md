@@ -2,7 +2,9 @@
 
 **Sierra Peaks Section — 247 Peaks**
 
-Track your SPS list progress by filling in **Date Completed** and **Notes** for each peak you've summited, then commit the change.
+Track your SPS list progress by filling in **Dates** and **Notes** for each peak you've summited, then commit the change.
+
+**Date format:** ISO dates, comma-separated — `YYYY-MM-DD` or `YYYY-MM-DD, YYYY-MM-DD` for repeat ascents. The site parser splits on `, ` to build a list of summit dates per peak.
 
 **Legend:** `[E]` = Emblem peak (15 total) · `[M]` = Mountaineers peak (35 total)
 
@@ -24,8 +26,8 @@ Regions are listed **south to north**, matching the official SPS list order.
 
 ## Peaks
 
-| Peak | Region | Elevation (ft) | Class | Date Completed | Notes |
-|------|--------|---------------|-------|----------------|-------|
+| Peak | Region | Elevation (ft) | Class | Dates | Notes |
+|------|--------|---------------|-------|-------|-------|
 | Olancha Peak | Olancha | 12,123 | 2 | | |
 | Cirque Peak | Cirque / Langley | 12,900 | 2 | | |
 | Mt. Langley **[E]** | Cirque / Langley | 14,026 | 2 | | |
