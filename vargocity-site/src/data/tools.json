@@ -1,0 +1,18 @@
+[
+  {
+    "id": "workout-tracker",
+    "name": "Workout Tracker",
+    "description": "A PWA for tracking weekly workouts across strength, cardio, mobility, and mindfulness. Multi-user, real-time sync via Firebase, with streak tracking and celebration animations.",
+    "url": "https://vargovargo.github.io/workout-tracker/",
+    "tech": ["React", "Firebase", "Tailwind", "PWA"],
+    "status": "live"
+  },
+  {
+    "id": "campsite-dashboard",
+    "name": "Campsite Dashboard",
+    "description": "A planning dashboard for backcountry camping trips — tracking permits, gear checklists, and route data.",
+    "url": "",
+    "tech": ["React", "Tailwind"],
+    "status": "in-progress"
+  }
+]

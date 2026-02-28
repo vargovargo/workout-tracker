@@ -1,0 +1,462 @@
+[
+  {
+    "id": "ross2006georgia",
+    "title": "Georgia coast 2030: population projections for the 10-county coastal region",
+    "authors": ["Catherine L Ross", "Jason Vargo", "et al."],
+    "year": 2006,
+    "venue": "Georgia Institute of Technology (Technical Report)",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-planning", "demographics"]
+  },
+  {
+    "id": "stone2012managing",
+    "title": "Managing climate change in cities: Will climate action plans work?",
+    "authors": ["Brian Stone", "Jason Vargo", "Dana Habeeb"],
+    "year": 2012,
+    "venue": "Landscape and Urban Planning",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "climate", "policy", "urban-planning"]
+  },
+  {
+    "id": "vargo2012google",
+    "title": "Google walkability: a new tool for local planning and public health research?",
+    "authors": ["Jason Vargo", "Brian Stone", "Karen Glanz"],
+    "year": 2012,
+    "venue": "Journal of Physical Activity and Health",
+    "url": "",
+    "citations": 214,
+    "tags": ["walkability", "built-environment", "urbanism", "health"]
+  },
+  {
+    "id": "vargo2012planning",
+    "title": "Planning for the New Urban Climate: Interactions of Local Environmental Planning and Regional Extreme Heat",
+    "authors": ["Jason Adam Vargo"],
+    "year": 2012,
+    "venue": "Dissertation (Georgia Institute of Technology)",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-planning", "climate", "heat"]
+  },
+  {
+    "id": "stone2013climate",
+    "title": "Climate change adaptation through urban heat management in Atlanta, Georgia",
+    "authors": ["Brian Stone Jr", "Jason Vargo", "Peng Liu", "Yongtao Hu", "Armistead Russell"],
+    "year": 2013,
+    "venue": "Environmental Science & Technology",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "climate", "policy", "heat"]
+  },
+  {
+    "id": "vargo2013importance",
+    "title": "The importance of land cover change across urban–rural typologies for climate modeling",
+    "authors": ["Jason Vargo", "Dana Habeeb", "Brian Stone Jr"],
+    "year": 2013,
+    "venue": "Journal of Environmental Management",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "climate", "built-environment", "land-use"]
+  },
+  {
+    "id": "vargo2013getting",
+    "title": "Getting off the Island: Understanding Urban Heat in a Changing World",
+    "authors": ["Jason Vargo"],
+    "year": 2013,
+    "venue": "Paving the Way Forward in Urbanization (book chapter)",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "climate"]
+  },
+  {
+    "id": "metro-sapiens",
+    "title": "Metro sapiens: an urban species",
+    "authors": ["Jason Vargo"],
+    "year": 2014,
+    "venue": "Journal of Environmental Studies and Sciences",
+    "url": "https://link.springer.com/article/10.1007/s13412-014-0195-7",
+    "citations": 120,
+    "tags": ["urbanism", "health", "metro-sapiens"]
+  },
+  {
+    "id": "stone2014avoided",
+    "title": "Avoided heat-related mortality through climate adaptation strategies in three US cities",
+    "authors": ["Brian Stone Jr", "Jason Vargo", "Peng Liu", "Dana Habeeb", "Anthony DeLucia", "Marcus Trail", "Yongtao Hu", "Armistead Russell"],
+    "year": 2014,
+    "venue": "PLOS ONE",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "climate", "health", "heat", "policy"]
+  },
+  {
+    "id": "habeeb2015rising",
+    "title": "Rising heat wave trends in large US cities",
+    "authors": ["Dana Habeeb", "Jason Vargo", "Brian Stone Jr"],
+    "year": 2015,
+    "venue": "Natural Hazards",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "climate", "heat"]
+  },
+  {
+    "id": "vargo2015bicyclist",
+    "title": "Bicyclist deaths associated with motor vehicle traffic—United States, 1975–2012",
+    "authors": ["Jason Vargo", "Benjamin G Gerhardstein", "Geoffrey P Whitfield", "Arthur Wendel"],
+    "year": 2015,
+    "venue": "MMWR Morbidity and Mortality Weekly Report",
+    "url": "",
+    "citations": 0,
+    "tags": ["active-transport", "health", "epidemiology"]
+  },
+  {
+    "id": "vargo2015performance",
+    "title": "The performance of the National Weather Service Heat Warning System against ground observations and satellite imagery",
+    "authors": ["Jason Vargo", "Qingyang Xiao", "Yang Liu"],
+    "year": 2015,
+    "venue": "Advances in Meteorology",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "heat", "climate"]
+  },
+  {
+    "id": "sailor2016improving",
+    "title": "Improving heat-related health outcomes in an urban environment with science-based policy",
+    "authors": ["David Sailor", "Marshall Shepherd", "Scott Sheridan", "Brian Stone", "Laurence Kalkstein", "Armistead Russell", "Jason Vargo", "Theresa Andersen"],
+    "year": 2016,
+    "venue": "Sustainability",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "health", "policy"]
+  },
+  {
+    "id": "social-spatial-heat-uhi",
+    "title": "The social and spatial distribution of temperature-related health impacts from urban heat island reduction policies",
+    "authors": ["Jason Vargo", "Brian Stone", "Dana Habeeb", "Peng Liu", "Armistead Russell"],
+    "year": 2016,
+    "venue": "Environmental Science & Policy",
+    "url": "",
+    "citations": 167,
+    "tags": ["climate-equity", "heat", "urban", "health-equity"]
+  },
+  {
+    "id": "schneider2017comparison",
+    "title": "Comparison of US metropolitan region pedestrian and bicyclist fatality rates",
+    "authors": ["Robert J Schneider", "Jason Vargo", "Aida Sanatizadeh"],
+    "year": 2017,
+    "venue": "Accident Analysis & Prevention",
+    "url": "",
+    "citations": 0,
+    "tags": ["active-transport", "health", "transportation"]
+  },
+  {
+    "id": "smith2017climate",
+    "title": "Climate change and public health policy",
+    "authors": ["Jason A Smith", "Jason Vargo", "Sara Pollock Hoverter"],
+    "year": 2017,
+    "venue": "The Journal of Law, Medicine & Ethics",
+    "url": "",
+    "citations": 0,
+    "tags": ["climate", "policy", "health"]
+  },
+  {
+    "id": "vargo2017new",
+    "title": "A new implementation of the integrated transport and health impacts model for the United States",
+    "authors": ["Jason Vargo", "Samuel Younkin", "Jonathan Patz"],
+    "year": 2017,
+    "venue": "Journal of Transport & Health",
+    "url": "",
+    "citations": 0,
+    "tags": ["active-transport", "health", "transportation"]
+  },
+  {
+    "id": "hutchinson2018san",
+    "title": "The San Diego 2007 wildfires and Medi-Cal emergency department presentations, inpatient hospitalizations, and outpatient visits",
+    "authors": ["Justine A Hutchinson", "Jason Vargo", "Meredith Milet", "Nancy HF French", "Michael Billmire", "Jeffrey Johnson", "Sumi Hoshiko"],
+    "year": 2018,
+    "venue": "PLOS Medicine",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "health", "air-quality", "epidemiology"]
+  },
+  {
+    "id": "limaye2018climate",
+    "title": "Climate Change and Heat-Related Excess Mortality in the Eastern USA",
+    "authors": ["Vijay S Limaye", "Jason Vargo", "Monica Harkey", "Tracey Holloway", "Jonathan A Patz"],
+    "year": 2018,
+    "venue": "EcoHealth",
+    "url": "",
+    "citations": 0,
+    "tags": ["climate", "heat", "health", "epidemiology"]
+  },
+  {
+    "id": "fergus2019trends",
+    "title": "Trends in bicycle-related injuries, hospital admissions, and deaths in the USA 1997–2013",
+    "authors": ["Kirkpatrick B Fergus", "Thomas Sanford", "Jason Vargo", "Benjamin N Breyer"],
+    "year": 2019,
+    "venue": "Traffic Injury Prevention",
+    "url": "",
+    "citations": 0,
+    "tags": ["active-transport", "health", "epidemiology"]
+  },
+  {
+    "id": "jones2019cardiac",
+    "title": "Out-of-Hospital Cardiac Arrests and Fine Particulate Matter (PM2.5) during 2015–2017 California Wildfires",
+    "authors": ["Caitlin Jones", "Ana Rappold", "Jason Vargo", "Sumi Hoshiko", "et al."],
+    "year": 2019,
+    "venue": "Environmental Epidemiology",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality", "health", "epidemiology"]
+  },
+  {
+    "id": "parry2019visible",
+    "title": "The (in)visible health risks of climate change",
+    "authors": ["Luke Parry", "Claudia Radel", "Susana B Adamo", "Nigel Clark", "Miriam Counterman", "Nadia Flores-Yeffal", "Diego Pons", "Paty Romero-Lankao", "Jason Vargo"],
+    "year": 2019,
+    "venue": "Social Science & Medicine",
+    "url": "",
+    "citations": 0,
+    "tags": ["climate", "health-equity", "health"]
+  },
+  {
+    "id": "jones2020cardiac-wildfires",
+    "title": "Out-of-hospital cardiac arrests and wildfire-related particulate matter during 2015–2017 California wildfires",
+    "authors": ["Caitlin G Jones", "Ana G Rappold", "Jason Vargo", "Wayne E Cascio", "Martin Kharrazi", "Bryan McNally", "Sumi Hoshiko"],
+    "year": 2020,
+    "venue": "Journal of the American Heart Association",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality", "health", "epidemiology"]
+  },
+  {
+    "id": "vargo2020time",
+    "title": "Time series of potential US wildland fire smoke exposures",
+    "authors": ["Jason A Vargo"],
+    "year": 2020,
+    "venue": "Frontiers in Public Health",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality", "health"]
+  },
+  {
+    "id": "fadadu2021dermatitis",
+    "title": "Association of wildfire air pollution and health care use for atopic dermatitis and itch",
+    "authors": ["Raj P Fadadu", "Barbara Grimes", "Nicholas P Jewell", "Jason Vargo", "Albert T Young", "Katrina Abuabara", "John R Balmes", "Maria L Wei"],
+    "year": 2021,
+    "venue": "JAMA Dermatology",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality", "health", "dermatology"]
+  },
+  {
+    "id": "goldhaber2021reply",
+    "title": "Health Disparities And COVID-19: The Authors Reply",
+    "authors": ["Jeremy D Goldhaber-Fiebert", "Joshua A Salomon", "Jason Vargo"],
+    "year": 2021,
+    "venue": "Health Affairs",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "health-equity"]
+  },
+  {
+    "id": "leon2021nonpharmaceutical",
+    "title": "Nonpharmaceutical interventions remain essential to reducing coronavirus disease 2019 burden even in a well-vaccinated society: A modeling study",
+    "authors": ["Tomás M León", "Jason Vargo", "Erica S Pan", "Seema Jain", "Priya B Shete"],
+    "year": 2021,
+    "venue": "Open Forum Infectious Diseases",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "policy", "epidemiology"]
+  },
+  {
+    "id": "o2021multi",
+    "title": "A multi-analysis approach for estimating regional health impacts from the 2017 Northern California wildfires",
+    "authors": ["Susan M O'Neill", "Minghui Diao", "Sean Raffuse", "Mohammad Al-Hamdan", "Jason Vargo", "et al."],
+    "year": 2021,
+    "venue": "Journal of the Air & Waste Management Association",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality", "health", "epidemiology"]
+  },
+  {
+    "id": "reitsma2021racial",
+    "title": "Racial/Ethnic Disparities In COVID-19 Exposure Risk, Testing, And Cases At The Subcounty Level In California",
+    "authors": ["Marissa B Reitsma", "Anneke L Claypool", "Jason Vargo", "Priya B Shete", "et al."],
+    "year": 2021,
+    "venue": "Health Affairs",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "health-equity", "epidemiology"]
+  },
+  {
+    "id": "shete2021equity",
+    "title": "Equity metrics: Toward a more effective and inclusive pandemic response",
+    "authors": ["Priya B Shete", "Jason Vargo", "Alice Hm Chen", "Kirsten Bibbins-Domingo"],
+    "year": 2021,
+    "venue": "Health Affairs Forefront",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "health-equity", "policy"]
+  },
+  {
+    "id": "diao2022satellite",
+    "title": "A satellite-based decision support tool for surface PM2.5 estimates in California",
+    "authors": ["Minghui Diao", "Frank Freedman", "Mohammad Al-Hamdan", "Jason Vargo"],
+    "year": 2022,
+    "venue": "Authorea Preprints",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality"]
+  },
+  {
+    "id": "fadadu2022older-adults",
+    "title": "Association of exposure to wildfire air pollution with exacerbations of atopic dermatitis and itch among older adults",
+    "authors": ["Raj P Fadadu", "Marcus Green", "Nicholas P Jewell", "Barbara Grimes", "Jason Vargo", "Maria L Wei"],
+    "year": 2022,
+    "venue": "JAMA Network Open",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality", "health", "dermatology"]
+  },
+  {
+    "id": "hwang2022residential",
+    "title": "Residential Instability in the Bay Area through the COVID-19 Pandemic",
+    "authors": ["Jackelyn Hwang", "Vasudha Kumar", "Becky Liang", "Jason Vargo"],
+    "year": 2022,
+    "venue": "Federal Reserve Bank of San Francisco Community Development Research Brief",
+    "url": "https://www.frbsf.org/research-and-insights/publications/community-development-research-briefs/2022/07/residential-instability-sf-bay-area-covid-19/",
+    "citations": 32,
+    "tags": ["covid", "housing", "health-equity"]
+  },
+  {
+    "id": "lappe2022disruptions",
+    "title": "Disruptions from Wildfire Smoke: Vulnerabilities in Local Economies and Disadvantaged Communities in the US",
+    "authors": ["Brooke Lappe", "Jason Vargo"],
+    "year": 2022,
+    "venue": "Federal Reserve Bank of San Francisco Community Development Research Brief",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "health-equity", "climate-equity"]
+  },
+  {
+    "id": "mallen2022overcoming",
+    "title": "Overcoming barriers to successful climate and health adaptation practice: notes from the field",
+    "authors": ["Evan Mallen", "Heather A Joseph", "Megan McLaughlin", "Dorette Quintana English", "Carmen Olmedo", "Matt Roach", "Carmen Tirdea", "Jason Vargo", "Matt Wolff", "Emily York"],
+    "year": 2022,
+    "venue": "International Journal of Environmental Research and Public Health",
+    "url": "",
+    "citations": 0,
+    "tags": ["climate", "health", "policy", "urban-planning"]
+  },
+  {
+    "id": "olshen2022covidnearterm",
+    "title": "COVIDNearTerm: A simple method to forecast COVID-19 hospitalizations",
+    "authors": ["Adam B Olshen", "Ariadna Garcia", "Kristopher I Kapphahn", "Yingjie Weng", "Jason Vargo", "et al."],
+    "year": 2022,
+    "venue": "Journal of Clinical and Translational Science",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "epidemiology", "modeling"]
+  },
+  {
+    "id": "fadadu2023psoriasis",
+    "title": "Association of wildfire air pollution with clinic visits for psoriasis",
+    "authors": ["Raj P Fadadu", "Marcus Green", "Barbara Grimes", "Nicholas P Jewell", "Divya Seth", "Jason Vargo", "Maria L Wei"],
+    "year": 2023,
+    "venue": "JAMA Network Open",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality", "health", "dermatology"]
+  },
+  {
+    "id": "stone2023urban",
+    "title": "Urban heat management in Louisville, Kentucky: A framework for climate adaptation planning",
+    "authors": ["Brian Stone Jr", "Kevin Lanza", "Evan Mallen", "Jason Vargo", "Armistead Russell"],
+    "year": 2023,
+    "venue": "Journal of Planning Education and Research",
+    "url": "",
+    "citations": 0,
+    "tags": ["urban-heat", "climate", "policy", "urban-planning"]
+  },
+  {
+    "id": "vargo2023social",
+    "title": "Social vulnerability in US communities affected by wildfire smoke, 2011 to 2021",
+    "authors": ["Jason Vargo", "Brooke Lappe", "Maria C Mirabelli", "Kathryn C Conlon"],
+    "year": 2023,
+    "venue": "American Journal of Public Health",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "health-equity", "climate-equity", "air-quality"]
+  },
+  {
+    "id": "jones2024daily",
+    "title": "Daily fine resolution estimates of the influence of wildfires on fine particulate matter in California, 2011–2020",
+    "authors": ["Caitlin G Jones-Ngo", "Kathryn C Conlon", "Mohammad Al-Hamdan", "Jason Vargo"],
+    "year": 2024,
+    "venue": "Atmosphere",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "air-quality"]
+  },
+  {
+    "id": "vargo2024planning",
+    "title": "Planning Healthy and Sustainable Built Environments",
+    "authors": ["Jason Vargo"],
+    "year": 2024,
+    "venue": "Climate Change and Public Health (Oxford University Press)",
+    "url": "",
+    "citations": 0,
+    "tags": ["built-environment", "urban-planning", "policy"]
+  },
+  {
+    "id": "jones2025increasing",
+    "title": "Increasing exposures to compound wildfire smoke and extreme heat hazards in California, 2011–2020",
+    "authors": ["Caitlin G Jones-Ngo", "Sara Ludwick", "Mohammad Z Al-Hamdan", "Jason Vargo", "Rebecca J Schmidt", "Erwan Monier", "Kathryn C Conlon"],
+    "year": 2025,
+    "venue": "Earth's Future",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "climate", "air-quality", "heat"]
+  },
+  {
+    "id": "jones2025joint",
+    "title": "Joint effects of wildfire smoke and extreme heat on hospitalizations in California, 2011–2020",
+    "authors": ["Caitlin G Jones-Ngo", "Rebecca J Schmidt", "Erwan Monier", "Sara Ludwick", "Mohammad Z Al-Hamdan", "Jason Vargo", "Kathryn C Conlon"],
+    "year": 2025,
+    "venue": "GeoHealth",
+    "url": "",
+    "citations": 0,
+    "tags": ["wildfire", "climate", "heat", "health", "epidemiology"]
+  },
+  {
+    "id": "kwan2025integration",
+    "title": "The integration of health equity into policy to reduce disparities: Lessons from California during the COVID-19 pandemic",
+    "authors": ["Ada T Kwan", "Jason Vargo", "Caroline Kurtz", "Mayuri Panditrao", "et al."],
+    "year": 2025,
+    "venue": "PLOS ONE",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "health-equity", "policy"]
+  },
+  {
+    "id": "leon2025fostering",
+    "title": "Fostering public health and academic partnerships during and beyond a public health emergency: lessons learned from COVID-19",
+    "authors": ["Tomás M León", "Lauren A White", "Hilary Spindler", "Jason Vargo", "et al."],
+    "year": 2025,
+    "venue": "American Journal of Epidemiology",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "policy", "health"]
+  },
+  {
+    "id": "thakur2025dashboard",
+    "title": "Keeping a modeling-driven public health dashboard relevant—lessons learned from the California Communicable Diseases Assessment Tool",
+    "authors": ["Mugdha Thakur", "Lauren A White", "John Pugliese", "David Crow", "Jason Vargo", "et al."],
+    "year": 2025,
+    "venue": "Frontiers in Public Health",
+    "url": "",
+    "citations": 0,
+    "tags": ["covid", "policy", "modeling"]
+  }
+]
