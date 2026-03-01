@@ -21,19 +21,25 @@ const milestones = [
     year: '2012',
     role: 'Assistant Scientist',
     org: 'Global Health Institute & Nelson Institute, UW–Madison',
-    note: 'Postdoctoral research on cities, climate, and environmental health.',
+    note: 'Postdoctoral research on cities, climate, and environmental health — working alongside Jonathan Patz, whose IPCC contributions helped earn the 2007 Nobel Peace Prize.',
   },
   {
     year: '2015',
     role: 'Founder & Director, UniverCity Alliance',
     org: 'University of Wisconsin–Madison',
-    note: 'Built a cross-campus initiative connecting UW research to Wisconsin communities. Twenty-nine partnerships. The work was about building trust as much as generating knowledge.',
+    note: 'Built a cross-campus initiative connecting UW research to Wisconsin communities. Twenty-nine partnerships. Joel Rogers — MacArthur Fellow and architect of the High Road framework — was across campus; his argument that economic and environmental wellbeing aren\'t trade-offs has never left me.',
   },
   {
     year: '2019',
     role: 'Lead Scientist, Climate Change & Health Equity',
     org: 'California Department of Public Health',
-    note: 'Developed the state\'s COVID-19 Health Equity Metric. Research on wildfire smoke, extreme heat, and who bears the burden — and why.',
+    note: 'Research on wildfire smoke, extreme heat, and the communities that bear the burden — and why that burden is distributed the way it is.',
+  },
+  {
+    year: '2020',
+    role: 'Lead, COVID-19 Modeling & Forecasting',
+    org: 'California Department of Public Health',
+    note: 'Pulled from the climate team to lead the state\'s COVID-19 modeling effort. Built a public forecasting dashboard drawing on data ensembles from hundreds of citizen scientists. Developed the COVID-19 Health Equity Metric to direct state resources toward the communities at greatest risk. Working with DJ Patil — the first U.S. Chief Data Scientist — sharpened a framework for the ethics of data science that I carry into every project since.',
   },
   {
     year: '2022',
