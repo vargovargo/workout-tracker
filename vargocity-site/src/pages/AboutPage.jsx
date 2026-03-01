@@ -11,7 +11,7 @@ import aboutRaw from '../content/about.md?raw'
 export default function AboutPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-16">
-      <SectionHeader label="About" title="How I Got Here" />
+      <SectionHeader label="About" title="In Motion" />
 
       <div className="grid lg:grid-cols-5 gap-16">
         {/* Narrative prose */}

@@ -39,6 +39,15 @@ export default function AdventuresPage() {
         <div>
           <AdventureStats section="peaks" />
 
+          {/* SPS list context */}
+          <p className="text-sm leading-relaxed mt-6" style={{ color: '#4A4A4A' }}>
+            The <strong>Sierra Peaks Section (SPS) List</strong> is a roster of 248 peaks maintained
+            by the Angeles Chapter of the Sierra Club — a lifetime project for most who attempt it.
+            The peaks span the length of the Sierra Nevada, from the volcanic tableland near Mammoth
+            to the granite walls of Sequoia. About half require technical scrambling (Class 3–4);
+            a handful demand ropes.
+          </p>
+
           {/* Peak sub-view switcher */}
           <div className="flex gap-3 my-6">
             {peakViews.map(v => (

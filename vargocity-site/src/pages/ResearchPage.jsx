@@ -16,8 +16,8 @@ export default function ResearchPage() {
     <div className="max-w-5xl mx-auto px-6 py-16">
       <SectionHeader
         label="Research"
-        title="Urban Health & Climate Equity"
-        description="I study how climate risk, urban design, and economic systems shape who thrives and who doesn't — and what policies can change those outcomes."
+        title="A Career of Asking For Whom"
+        description="I study how large systems — urban environments, climate, economies — distribute harm unevenly, and what measurement and policy can do about it. The work is now pointing toward AI."
       />
 
       {/* Research Themes */}
