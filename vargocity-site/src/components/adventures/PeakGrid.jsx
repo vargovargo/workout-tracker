@@ -47,7 +47,16 @@ export default function PeakGrid() {
             })
           : null
         return (
-          <div key={peak.id} className="p-5" style={{ backgroundColor: '#FFFFFF' }}>
+          <div key={peak.id} className="overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
+            {lastAscent?.photos?.[0] && (
+              <img
+                src={lastAscent.photos[0]}
+                alt={peak.name}
+                className="w-full object-cover"
+                style={{ height: '140px' }}
+              />
+            )}
+            <div className="p-5">
             <div className="flex items-start justify-between gap-2">
               <h3 className="text-sm font-semibold" style={{ color: '#1A1A1A' }}>{peak.name}</h3>
               <span className="text-xs tabular-nums shrink-0" style={{ color: '#8A8A8A' }}>
@@ -73,6 +82,7 @@ export default function PeakGrid() {
               </p>
             )}
             <StravaLink url={lastAscent?.strava_url} />
+            </div>
           </div>
         )
       })}
