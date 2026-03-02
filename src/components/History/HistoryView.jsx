@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useApp } from '../../App.jsx'
-import { getWeekKey } from '../../utils/weekUtils.js'
+import { getWeekKey, toDateString } from '../../utils/weekUtils.js'
 import WeekNavigator from './WeekNavigator.jsx'
 import SessionCard from './SessionCard.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
@@ -15,6 +15,14 @@ export default function HistoryView() {
     (a, b) =>
       new Date(b.occurredAt || b.loggedAt) - new Date(a.occurredAt || a.loggedAt)
   )
+
+  const groups = []
+  let lastDate = null
+  for (const s of sorted) {
+    const d = toDateString(new Date(s.occurredAt || s.loggedAt))
+    if (d !== lastDate) { groups.push({ date: d, items: [] }); lastDate = d }
+    groups.at(-1).items.push(s)
+  }
 
   function handleDelete(id) {
     if (window.confirm('Delete this workout?')) {
@@ -37,13 +45,26 @@ export default function HistoryView() {
             <p className="text-slate-400 text-sm">No workouts logged this week.</p>
           </div>
         ) : (
-          sorted.map((session) => (
-            <SessionCard
-              key={session.id}
-              session={session}
-              onEdit={setEditingSession}
-              onDelete={handleDelete}
-            />
+          groups.map(({ date, items }) => (
+            <div key={date}>
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 pt-2 pb-1 px-1">
+                {new Date(date + 'T12:00:00').toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </p>
+              <div className="flex flex-col gap-3">
+                {items.map((session) => (
+                  <SessionCard
+                    key={session.id}
+                    session={session}
+                    onEdit={setEditingSession}
+                    onDelete={handleDelete}
+                  />
+                ))}
+              </div>
+            </div>
           ))
         )}
       </div>
