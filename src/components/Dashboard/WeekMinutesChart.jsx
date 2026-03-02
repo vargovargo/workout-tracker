@@ -24,7 +24,7 @@ export default function WeekMinutesChart({ weekSessions }) {
     <div className="mx-4 mt-3 p-4 rounded-xl bg-slate-800 border border-slate-700">
       <div className="flex items-baseline justify-between mb-3">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-          Weekly Minutes
+          Last 7 Days — Minutes
         </p>
         {grandTotal > 0 && (
           <p className="text-xs font-semibold text-slate-400">
