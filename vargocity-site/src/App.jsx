@@ -10,7 +10,7 @@ import WritingPage from './pages/WritingPage'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#FAFAF8' }}>
         <SiteNav />
         <main style={{ flex: 1 }}>

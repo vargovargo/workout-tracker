@@ -10,15 +10,16 @@ export default function HeroSection() {
           style={{ color: '#1A1A1A' }}>
           measuring my own<br />rate of change
         </h1>
-        <p className="mt-5 text-lg" style={{ color: '#4A4A4A' }}>
-          Researcher. Builder. Climber. Reader.
+        <p className="mt-6 text-base leading-relaxed max-w-xl" style={{ color: '#4A4A4A' }}>
+          For twenty-five years I've been asking the same question across different problems:
+          who bears the cost of powerful systems — and what can be built to change that?
+          I've tracked it through urban heat, wildfire smoke, COVID, and economic vulnerability.
+          Now the question has found its most consequential application. AGI is arriving, and
+          how that transition is distributed across society may be the defining challenge of
+          the next generation. That's where I'm pointed.
         </p>
-        <p className="mt-4 text-base leading-relaxed max-w-xl" style={{ color: '#4A4A4A' }}>
-          Senior Researcher at the Federal Reserve Bank of San Francisco. I study how
-          climate risk and economic opportunity intersect in the communities that need
-          it most. The through-line from chemical engineering to climate science:
-          learning at the cutting edge, doing hard things that matter, building
-          something real.
+        <p className="mt-3 text-sm" style={{ color: '#8A8A8A' }}>
+          Senior Researcher · Federal Reserve Bank of San Francisco
         </p>
       </div>
     </section>

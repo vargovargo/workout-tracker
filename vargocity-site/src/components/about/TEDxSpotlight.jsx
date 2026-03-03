@@ -17,7 +17,7 @@ export default function TEDxSpotlight() {
       <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
         <iframe
           className="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/7CaM4oopBRg"
+          src="https://youtu.be/7B9hSUXmTP8"
           title="Our Urban Nature — TEDxUWMadison"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

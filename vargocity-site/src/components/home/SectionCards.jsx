@@ -4,14 +4,14 @@ const cards = [
   {
     to: '/research',
     label: 'Research',
-    title: 'Urban Health & Climate Equity',
-    description: 'Measuring who bears the cost of climate change and how cities can build environments where healthy choices are the easy choices.',
+    title: 'A Career of Asking For Whom',
+    description: 'Twenty-five years of measuring how powerful systems distribute harm — through cities, climate, and now AI. The publications carry the detail; this is the through-line.',
   },
   {
     to: '/making',
     label: 'Making',
     title: 'Code & Wood',
-    description: 'Software tools for health and fitness, and furniture built from salvaged materials. Making things with hands and head.',
+    description: 'Software tools and furniture built from salvaged materials. If something useful doesn\'t exist, build it.',
   },
   {
     to: '/adventures',
