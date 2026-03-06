@@ -7,7 +7,7 @@ import SessionCard from './SessionCard.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
 
 export default function HistoryView() {
-  const { getSessionsForWeek, deleteSession, updateSession, sessions, currentUser } = useApp()
+  const { getSessionsForWeek, deleteSession, updateSession, sessions: allSessions, currentUser } = useApp()
   const [weekKey, setWeekKey] = useState(getWeekKey())
   const [editingSession, setEditingSession] = useState(null)
 
@@ -27,7 +27,7 @@ export default function HistoryView() {
 
   function exportCSV() {
     const headers = ['Date', 'Time', 'Category', 'Subtype', 'Duration (min)', 'Notes', 'Logged At']
-    const rows = [...sessions]
+    const rows = [...allSessions]
       .sort((a, b) => new Date(b.occurredAt || b.loggedAt) - new Date(a.occurredAt || a.loggedAt))
       .map((s) => {
         const dt = new Date(s.occurredAt || s.loggedAt)
