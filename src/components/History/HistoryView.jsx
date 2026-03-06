@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useApp } from '../../App.jsx'
 import { getWeekKey, toDateString } from '../../utils/weekUtils.js'
+import { WORKOUT_CONFIG } from '../../config.js'
 import WeekNavigator from './WeekNavigator.jsx'
 import SessionCard from './SessionCard.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
 
 export default function HistoryView() {
-  const { getSessionsForWeek, deleteSession, updateSession } = useApp()
+  const { getSessionsForWeek, deleteSession, updateSession, sessions, currentUser } = useApp()
   const [weekKey, setWeekKey] = useState(getWeekKey())
   const [editingSession, setEditingSession] = useState(null)
 
@@ -24,6 +25,32 @@ export default function HistoryView() {
     groups.at(-1).items.push(s)
   }
 
+  function exportCSV() {
+    const headers = ['Date', 'Time', 'Category', 'Subtype', 'Duration (min)', 'Notes', 'Logged At']
+    const rows = [...sessions]
+      .sort((a, b) => new Date(b.occurredAt || b.loggedAt) - new Date(a.occurredAt || a.loggedAt))
+      .map((s) => {
+        const dt = new Date(s.occurredAt || s.loggedAt)
+        return [
+          toDateString(dt),
+          dt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+          WORKOUT_CONFIG[s.category]?.label || s.category,
+          s.subtype || '',
+          s.durationMinutes || '',
+          (s.notes || '').replace(/"/g, '""'),
+          toDateString(new Date(s.loggedAt)),
+        ].map((v) => `"${v}"`).join(',')
+      })
+    const csv = [headers.join(','), ...rows].join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `workouts-${currentUser}-${toDateString(new Date())}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   function handleDelete(id) {
     if (window.confirm('Delete this workout?')) {
       deleteSession(id)
@@ -32,8 +59,20 @@ export default function HistoryView() {
 
   return (
     <div className="pb-6 slide-up">
-      <div className="px-4 pt-5 pb-1">
+      <div className="px-4 pt-5 pb-1 flex items-center justify-between">
         <h2 className="text-xl font-bold text-white">History</h2>
+        <button
+          onClick={exportCSV}
+          className="flex items-center gap-1.5 text-xs text-slate-400 active:text-slate-200 transition-colors"
+          aria-label="Export CSV"
+        >
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Export
+        </button>
       </div>
 
       <WeekNavigator weekKey={weekKey} onWeekChange={setWeekKey} />
