@@ -91,7 +91,7 @@ export default function WeekMinutesChart({ weekSessions }) {
                         className="flex items-center justify-between text-xs text-slate-400"
                       >
                         <span className="flex items-center gap-1">
-                          {subtypeIcon && <span>{subtypeIcon}</span>}
+                          <span>{subtypeIcon || cfg.icon}</span>
                           <span>{s.subtype || cfg.label}</span>
                         </span>
                         <span className="text-slate-500">{dateStr}</span>
