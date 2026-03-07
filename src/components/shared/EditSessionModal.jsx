@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { WORKOUT_CONFIG } from '../../config.js'
 
+function extractUrls(text) {
+  return (text.match(/https?:\/\/[^\s]+/g) || [])
+}
+
 export default function EditSessionModal({ session, onSave, onClose }) {
   const cfg = WORKOUT_CONFIG[session.category]
   const [duration, setDuration] = useState(String(session.durationMinutes))
@@ -12,9 +16,11 @@ export default function EditSessionModal({ session, onSave, onClose }) {
     onSave({ durationMinutes: mins, notes: notes || undefined })
   }
 
+  const urls = extractUrls(notes)
+
   return (
     <div
-      className="fixed inset-0 z-40 flex items-end justify-center p-4 fade-in"
+      className="fixed inset-0 z-40 flex items-center justify-center p-4 fade-in"
       style={{ background: 'rgba(0,0,0,0.6)' }}
       onClick={onClose}
     >
@@ -46,7 +52,7 @@ export default function EditSessionModal({ session, onSave, onClose }) {
           />
         </label>
 
-        <label className="block mb-6">
+        <label className="block mb-3">
           <span className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2 block">
             Notes
           </span>
@@ -57,6 +63,23 @@ export default function EditSessionModal({ session, onSave, onClose }) {
             className="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 resize-none"
           />
         </label>
+
+        {urls.length > 0 && (
+          <div className="mb-4 flex flex-col gap-1">
+            {urls.map((url, i) => (
+              <a
+                key={i}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-blue-400 underline break-all"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {url}
+              </a>
+            ))}
+          </div>
+        )}
 
         <div className="flex gap-3">
           <button

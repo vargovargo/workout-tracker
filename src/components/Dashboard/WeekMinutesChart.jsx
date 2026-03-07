@@ -3,7 +3,7 @@ import { WORKOUT_CONFIG } from '../../config.js'
 
 const CATEGORY_KEYS = Object.keys(WORKOUT_CONFIG)
 
-export default function WeekMinutesChart({ weekSessions }) {
+export default function WeekMinutesChart({ weekSessions, onEdit }) {
   const [expandedKey, setExpandedKey] = useState(null)
 
   const totals = {}
@@ -88,7 +88,8 @@ export default function WeekMinutesChart({ weekSessions }) {
                     return (
                       <div
                         key={s.id}
-                        className="flex items-center justify-between text-xs text-slate-400"
+                        className={`flex items-center justify-between text-xs text-slate-400 ${onEdit ? 'cursor-pointer active:opacity-60' : ''}`}
+                        onClick={() => onEdit && onEdit(s)}
                       >
                         <span className="flex items-center gap-1">
                           <span>{subtypeIcon || cfg.icon}</span>

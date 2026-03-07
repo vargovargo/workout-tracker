@@ -14,7 +14,7 @@ const N = 7
 const COL_W = W / N  // ~42.9 px per column
 const BAR_W = 24
 
-export default function MinutesByDayChart({ sessions }) {
+export default function MinutesByDayChart({ sessions, onEdit }) {
   const todayStr = toDateString(new Date())
   const [selectedDate, setSelectedDate] = useState(null)
 
@@ -216,7 +216,11 @@ export default function MinutesByDayChart({ sessions }) {
               {selDay.sessions.map((s) => {
                 const cfg = WORKOUT_CONFIG[s.category]
                 return (
-                  <div key={s.id} className="flex flex-col">
+                  <div
+                    key={s.id}
+                    className={`flex flex-col ${onEdit ? 'cursor-pointer active:opacity-60' : ''}`}
+                    onClick={() => onEdit && onEdit(s)}
+                  >
                     <span className={`text-xs font-medium ${cfg.accentClass}`}>
                       {cfg.icon} {s.subtype || cfg.label}
                     </span>

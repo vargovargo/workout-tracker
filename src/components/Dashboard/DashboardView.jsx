@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useApp } from '../../App.jsx'
 import { toDateString } from '../../utils/weekUtils.js'
 import WeekHeader from './WeekHeader.jsx'
@@ -7,9 +7,11 @@ import SuggestionBanner from './SuggestionBanner.jsx'
 import WeeklyRings from './WeeklyRings.jsx'
 import MinutesByDayChart from './MinutesByDayChart.jsx'
 import WeekMinutesChart from './WeekMinutesChart.jsx'
+import EditSessionModal from '../shared/EditSessionModal.jsx'
 
 export default function DashboardView() {
-  const { currentWeekKey, currentWeekSessions, streak, sessions } = useApp()
+  const { currentWeekKey, currentWeekSessions, streak, sessions, updateSession } = useApp()
+  const [editingSession, setEditingSession] = useState(null)
 
   const sevenDaysAgoStr = toDateString(new Date(Date.now() - 6 * 864e5))
   const todayStr = toDateString(new Date())
@@ -25,10 +27,21 @@ export default function DashboardView() {
         weeklyStreak={streak.weeklyStreak}
         activeDayStreak={streak.activeDayStreak}
       />
-      <WeekMinutesChart weekSessions={lastSevenDaysSessions} />
+      <WeekMinutesChart weekSessions={lastSevenDaysSessions} onEdit={setEditingSession} />
       <SuggestionBanner weekSessions={currentWeekSessions} />
       <WeeklyRings weekSessions={currentWeekSessions} />
-      <MinutesByDayChart sessions={lastSevenDaysSessions} />
+      <MinutesByDayChart sessions={lastSevenDaysSessions} onEdit={setEditingSession} />
+
+      {editingSession && (
+        <EditSessionModal
+          session={editingSession}
+          onSave={(updates) => {
+            updateSession(editingSession.id, updates)
+            setEditingSession(null)
+          }}
+          onClose={() => setEditingSession(null)}
+        />
+      )}
     </div>
   )
 }
