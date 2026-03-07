@@ -215,10 +215,11 @@ export default function MinutesByDayChart({ sessions }) {
             <div className="space-y-2">
               {selDay.sessions.map((s) => {
                 const cfg = WORKOUT_CONFIG[s.category]
+                const icon = (s.subtype && cfg.subtypeIcons?.[s.subtype]) ?? cfg.icon
                 return (
                   <div key={s.id} className="flex flex-col">
                     <span className={`text-xs font-medium ${cfg.accentClass}`}>
-                      {cfg.icon} {s.subtype || cfg.label}
+                      {icon} {s.subtype || cfg.label}
                     </span>
                     <span className="text-xs text-slate-400 tabular-nums">
                       {s.durationMinutes} min
