@@ -7,11 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "generate-icons": "node scripts/generate-icons.js"
+    "generate-icons": "node scripts/generate-icons.js",
+    "goal-advisor": "node scripts/goal-advisor.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "canvas-confetti": "^1.9.3",
+    "dotenv": "^17.3.1",
     "firebase": "^12.9.0",
+    "firebase-admin": "^13.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

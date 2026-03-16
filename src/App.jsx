@@ -11,6 +11,7 @@ import UserSelector, { loadLastUser, saveLastUser } from './components/UserSelec
 import DashboardView from './components/Dashboard/DashboardView.jsx'
 import LogView from './components/Log/LogView.jsx'
 import HistoryView from './components/History/HistoryView.jsx'
+import ProgressView from './components/Progress/ProgressView.jsx'
 import CelebrationModal from './components/shared/CelebrationModal.jsx'
 import SettingsModal from './components/shared/SettingsModal.jsx'
 
@@ -100,6 +101,7 @@ export default function App() {
           {tab === 'dashboard' && <DashboardView />}
           {tab === 'log' && <LogView />}
           {tab === 'history' && <HistoryView />}
+          {tab === 'progress' && <ProgressView />}
         </main>
 
         <BottomNav activeTab={tab} onTabChange={setTab} />

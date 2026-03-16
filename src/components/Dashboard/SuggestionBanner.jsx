@@ -3,8 +3,8 @@ import { getSuggestions } from '../../utils/suggestionUtils.js'
 import { useApp } from '../../App.jsx'
 
 export default function SuggestionBanner({ weekSessions }) {
-  const { setTab, settings } = useApp()
-  const suggestions = getSuggestions(weekSessions, settings)
+  const { setTab, settings, sessions } = useApp()
+  const suggestions = getSuggestions(weekSessions, settings, sessions)
 
   if (suggestions.length === 0) {
     return (
@@ -21,7 +21,7 @@ export default function SuggestionBanner({ weekSessions }) {
         Suggested today
       </p>
       <div className="flex flex-col gap-2">
-        {suggestions.map(({ key, cfg, remaining, unit }) => (
+        {suggestions.map(({ key, cfg, remaining, unit, suggestedSubtype }) => (
           <button
             key={key}
             onClick={() => setTab('log')}
@@ -29,7 +29,11 @@ export default function SuggestionBanner({ weekSessions }) {
           >
             <span className="text-xl">{cfg.icon}</span>
             <div className="flex-1 text-left">
-              <p className={`text-sm font-semibold ${cfg.accentClass}`}>{cfg.label}</p>
+              <p className={`text-sm font-semibold ${cfg.accentClass}`}>
+                {suggestedSubtype
+                  ? <span>Try <span className="capitalize">{suggestedSubtype}</span> <span className="font-normal opacity-70">({cfg.label})</span></span>
+                  : cfg.label}
+              </p>
               <p className="text-xs text-slate-400">
                 {unit === 'minutes'
                   ? `${remaining} min remaining`

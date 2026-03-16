@@ -1,0 +1,309 @@
+import React, { useState, useMemo } from 'react'
+import { useApp } from '../../App.jsx'
+import { WORKOUT_CONFIG, SECONDARY_ATTRIBUTES, sumSecondaryScores } from '../../config.js'
+import { getCategoryProgress } from '../../utils/progressUtils.js'
+import { getWeekKey, weekKeyToMonday } from '../../utils/weekUtils.js'
+import RadarChart from './RadarChart.jsx'
+import ACWRGauge from './ACWRGauge.jsx'
+import CalendarHeatmap from './CalendarHeatmap.jsx'
+import TrendSummary from './TrendSummary.jsx'
+
+const RANGES = [
+  { id: '4w', label: '4W', weeks: 4 },
+  { id: '12w', label: '12W', weeks: 12 },
+  { id: 'all', label: 'All', weeks: 999 },
+]
+
+// Returns Monday-anchored ISO week keys for the last N completed weeks
+function lastNWeekKeys(n) {
+  const keys = []
+  const today = new Date()
+  const dow = today.getDay()
+  // Go to start of current week's Monday
+  const thisMonday = new Date(today)
+  thisMonday.setDate(today.getDate() - (dow === 0 ? 6 : dow - 1))
+  // Start from last completed week
+  const lastMonday = new Date(thisMonday)
+  lastMonday.setDate(thisMonday.getDate() - 7)
+  for (let i = 0; i < n; i++) {
+    const d = new Date(lastMonday)
+    d.setDate(lastMonday.getDate() - i * 7)
+    keys.push(getWeekKey(d))
+  }
+  return keys
+}
+
+// Compute primary category normalised scores for radar (indexed to personal max)
+function buildPrimaryDatasets(sessions, settings, weekKeys) {
+  const categories = Object.keys(WORKOUT_CONFIG)
+
+  function weekValues(keys) {
+    return categories.map((cat) => {
+      const total = keys.reduce((sum, wk) => {
+        const wkSessions = sessions.filter((s) => s.weekKey === wk)
+        const { value } = getCategoryProgress(wkSessions, cat, settings)
+        return sum + value
+      }, 0)
+      return keys.length > 0 ? total / keys.length : 0
+    })
+  }
+
+  const currentWk = getWeekKey(new Date())
+  const currentVals = categories.map((cat) => {
+    const { value } = getCategoryProgress(sessions.filter((s) => s.weekKey === currentWk), cat, settings)
+    return value
+  })
+
+  const recent4 = weekValues(weekKeys.slice(0, 4))
+  const allAvg = weekValues(weekKeys)
+
+  // Normalise to personal max across all three datasets
+  const allValues = [...currentVals, ...recent4, ...allAvg]
+  const maxVal = Math.max(...allValues, 1)
+
+  return {
+    axes: categories.map((cat) => ({
+      label: WORKOUT_CONFIG[cat].label,
+      icon: WORKOUT_CONFIG[cat].icon,
+      color: WORKOUT_CONFIG[cat].arcColor,
+    })),
+    datasets: [
+      {
+        label: 'All-time avg',
+        values: allAvg.map((v) => v / maxVal),
+        color: '#94a3b8',
+        opacity: 0.1,
+        dashed: true,
+      },
+      {
+        label: '4-week avg',
+        values: recent4.map((v) => v / maxVal),
+        color: '#60a5fa',
+        opacity: 0.15,
+        dashed: false,
+      },
+      {
+        label: 'This week',
+        values: currentVals.map((v) => v / maxVal),
+        color: '#34d399',
+        opacity: 0.25,
+        dashed: false,
+      },
+    ],
+  }
+}
+
+// Compute secondary attribute normalised scores for radar
+function buildSecondaryDatasets(sessions, weekKeys) {
+  const attrs = Object.keys(SECONDARY_ATTRIBUTES)
+
+  function weekSecondaryAvg(keys) {
+    if (!keys.length) return attrs.map(() => 0)
+    const total = keys.reduce((sum, wk) => {
+      const wkSessions = sessions.filter((s) => s.weekKey === wk)
+      const scores = sumSecondaryScores(wkSessions)
+      return attrs.map((a, i) => (sum[i] || 0) + scores[a])
+    }, [])
+    return total.map((v) => v / keys.length)
+  }
+
+  const currentWk = getWeekKey(new Date())
+  const currentSessions = sessions.filter((s) => s.weekKey === currentWk)
+  const currentScores = sumSecondaryScores(currentSessions)
+  const currentVals = attrs.map((a) => currentScores[a])
+
+  const recent4Vals = weekSecondaryAvg(weekKeys.slice(0, 4))
+  const allAvgVals = weekSecondaryAvg(weekKeys)
+
+  const maxVal = Math.max(...currentVals, ...recent4Vals, ...allAvgVals, 1)
+
+  return {
+    axes: attrs.map((attr) => ({
+      label: SECONDARY_ATTRIBUTES[attr].label,
+      icon: SECONDARY_ATTRIBUTES[attr].icon,
+      color: SECONDARY_ATTRIBUTES[attr].arcColor,
+    })),
+    datasets: [
+      {
+        label: 'All-time avg',
+        values: allAvgVals.map((v) => v / maxVal),
+        color: '#94a3b8',
+        opacity: 0.1,
+        dashed: true,
+      },
+      {
+        label: '4-week avg',
+        values: recent4Vals.map((v) => v / maxVal),
+        color: '#f59e0b',
+        opacity: 0.15,
+        dashed: false,
+      },
+      {
+        label: 'This week',
+        values: currentVals.map((v) => v / maxVal),
+        color: '#818cf8',
+        opacity: 0.25,
+        dashed: false,
+      },
+    ],
+  }
+}
+
+// ACWR calculation
+function computeACWR(sessions) {
+  const now = Date.now()
+  const ms7 = 7 * 24 * 60 * 60 * 1000
+  const ms28 = 28 * 24 * 60 * 60 * 1000
+
+  const acute = sessions
+    .filter((s) => {
+      const t = new Date(s.occurredAt || s.loggedAt).getTime()
+      return t >= now - ms7
+    })
+    .reduce((sum, s) => sum + (s.durationMinutes || 0), 0)
+
+  const chronic28 = sessions
+    .filter((s) => {
+      const t = new Date(s.occurredAt || s.loggedAt).getTime()
+      return t >= now - ms28 && t < now - ms7
+    })
+    .reduce((sum, s) => sum + (s.durationMinutes || 0), 0)
+
+  const chronicAvg = chronic28 / 3
+  return chronicAvg > 0 ? acute / chronicAvg : null
+}
+
+export default function ProgressView() {
+  const { sessions, settings } = useApp()
+  const [range, setRange] = useState('12w')
+
+  const rangeConfig = RANGES.find((r) => r.id === range)
+  const allWeekKeys = useMemo(() => {
+    const keys = new Set(sessions.map((s) => s.weekKey))
+    return Array.from(keys).sort().reverse()
+  }, [sessions])
+
+  const weekKeys = useMemo(() => {
+    const full = lastNWeekKeys(rangeConfig.weeks)
+    return range === 'all' ? allWeekKeys : full.filter((wk) => allWeekKeys.includes(wk))
+  }, [range, allWeekKeys, rangeConfig])
+
+  const primaryData = useMemo(
+    () => buildPrimaryDatasets(sessions, settings, weekKeys),
+    [sessions, settings, weekKeys]
+  )
+  const secondaryData = useMemo(
+    () => buildSecondaryDatasets(sessions, weekKeys),
+    [sessions, weekKeys]
+  )
+  const acwr = useMemo(() => computeACWR(sessions), [sessions])
+
+  // Recovery debt indicator
+  const recoveryDebt = useMemo(() => {
+    if (!weekKeys.length) return null
+    const recentSessions = sessions.filter((s) => weekKeys.slice(0, 4).includes(s.weekKey))
+    const totals = sumSecondaryScores(recentSessions)
+    const output = totals.peakOutput
+    const restore = totals.restoration
+    if (output === 0) return null
+    const ratio = restore / output
+    return ratio < 0.75 ? Math.round(ratio * 100) : null
+  }, [sessions, weekKeys])
+
+  return (
+    <div className="pb-6 slide-up">
+      {/* Header */}
+      <div className="px-4 pt-4 pb-2">
+        <h1 className="text-lg font-bold text-white">Progress</h1>
+        <p className="text-xs text-slate-400">Historical trends & fitness balance</p>
+      </div>
+
+      {/* Time range selector */}
+      <div className="flex gap-2 px-4 mb-4">
+        {RANGES.map((r) => (
+          <button
+            key={r.id}
+            onClick={() => setRange(r.id)}
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+              range === r.id
+                ? 'bg-blue-500 text-white'
+                : 'bg-slate-800 text-slate-400 active:bg-slate-700'
+            }`}
+          >
+            {r.label}
+          </button>
+        ))}
+        <span className="ml-auto text-xs text-slate-500 self-center">
+          {weekKeys.length} weeks
+        </span>
+      </div>
+
+      {/* Recovery debt banner */}
+      {recoveryDebt !== null && (
+        <div className="mx-4 mb-3 px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/30">
+          <p className="text-xs text-amber-400">
+            ⚠️ Restoration is {recoveryDebt}% of your Peak Output this period — consider more recovery work.
+          </p>
+        </div>
+      )}
+
+      {/* Trend pills */}
+      <div className="px-4 mb-4">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Category Momentum</p>
+        <TrendSummary sessions={sessions} settings={settings} weekKeys={weekKeys} />
+      </div>
+
+      {/* Radar charts */}
+      <div className="grid grid-cols-2 gap-4 px-4 mb-4">
+        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
+          <RadarChart
+            title="Primary"
+            axes={primaryData.axes}
+            datasets={primaryData.datasets}
+          />
+        </div>
+        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
+          <RadarChart
+            title="Secondary"
+            axes={secondaryData.axes}
+            datasets={secondaryData.datasets}
+          />
+        </div>
+      </div>
+
+      {/* Radar legend */}
+      <div className="flex gap-4 px-4 mb-4 justify-center">
+        {[
+          { color: '#34d399', label: 'This week' },
+          { color: '#60a5fa', label: '4-week avg' },
+          { color: '#94a3b8', label: 'All-time avg', dashed: true },
+        ].map(({ color, label, dashed }) => (
+          <div key={label} className="flex items-center gap-1.5">
+            <svg width="16" height="8">
+              <line
+                x1="0" y1="4" x2="16" y2="4"
+                stroke={color}
+                strokeWidth={dashed ? 1.5 : 2}
+                strokeDasharray={dashed ? '3 2' : undefined}
+              />
+            </svg>
+            <span className="text-xs text-slate-500">{label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* ACWR gauge */}
+      <div className="mx-4 mb-4 bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+        <ACWRGauge acwr={acwr} />
+      </div>
+
+      {/* Calendar heatmap */}
+      <div className="mx-4 mb-2">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Activity Calendar</p>
+        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
+          <CalendarHeatmap sessions={sessions} />
+        </div>
+      </div>
+    </div>
+  )
+}
