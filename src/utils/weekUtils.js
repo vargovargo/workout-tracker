@@ -12,10 +12,11 @@ export function getWeekKey(date = new Date()) {
   const day = (d.getDay() + 6) % 7; // Mon=0, Tue=1...Sun=6
   d.setDate(d.getDate() - day); // rewind to Monday
   const year = d.getFullYear();
-  const startOfYear = new Date(year, 0, 1);
-  // ISO week: days since Jan 1 / 7, accounting for start-of-year day
-  const startDay = (startOfYear.getDay() + 6) % 7; // Mon=0
-  const weekNum = Math.floor((d - startOfYear) / (7 * 24 * 3600 * 1000) + startDay / 7) + 1;
+  // Use UTC to avoid DST causing ms arithmetic to land on the wrong week
+  const mondayUTC = Date.UTC(year, d.getMonth(), d.getDate());
+  const jan1UTC = Date.UTC(year, 0, 1);
+  const startDay = (new Date(jan1UTC).getUTCDay() + 6) % 7; // Mon=0
+  const weekNum = Math.floor((mondayUTC - jan1UTC) / (7 * 24 * 3600 * 1000) + startDay / 7) + 1;
   return `${year}-${String(weekNum).padStart(2, '0')}`;
 }
 
