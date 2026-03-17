@@ -1,8 +1,8 @@
 import React from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 
 export default function SubtypePicker({ categoryKey, onSelect, onBack }) {
-  const cfg = WORKOUT_CONFIG[categoryKey]
+  const cfg = FITNESS_CONFIG[categoryKey]
 
   return (
     <div className="px-4 pt-6 pb-4 slide-up">

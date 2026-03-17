@@ -1,10 +1,10 @@
 import React from 'react'
 
 const TABS = [
-  { id: 'dashboard', label: 'Dashboard', icon: DashboardIcon },
+  { id: 'dashboard', label: 'This Week', icon: DashboardIcon },
+  { id: 'progress',  label: 'Progress',  icon: ProgressIcon },
   { id: 'log',       label: 'Log',       icon: PlusIcon },
   { id: 'history',   label: 'History',   icon: HistoryIcon },
-  { id: 'progress',  label: 'Progress',  icon: ProgressIcon },
 ]
 
 function DashboardIcon({ active }) {

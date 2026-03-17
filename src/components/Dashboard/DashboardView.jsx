@@ -10,7 +10,7 @@ import WeekMinutesChart from './WeekMinutesChart.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
 
 export default function DashboardView() {
-  const { currentWeekKey, currentWeekSessions, streak, sessions, updateSession } = useApp()
+  const { currentWeekKey, currentWeekSessions, streak, sessions, updateSession, report, openAdvisor } = useApp()
   const [editingSession, setEditingSession] = useState(null)
 
   const sevenDaysAgoStr = toDateString(new Date(Date.now() - 6 * 864e5))
@@ -22,7 +22,7 @@ export default function DashboardView() {
 
   return (
     <div className="pb-6 slide-up">
-      <WeekHeader weekKey={currentWeekKey} />
+      <WeekHeader weekKey={currentWeekKey} hasReport={!!report} onShowAdvisor={openAdvisor} />
       <StreakDisplay
         weeklyStreak={streak.weeklyStreak}
         activeDayStreak={streak.activeDayStreak}

@@ -54,8 +54,9 @@ Respond ONLY with a valid JSON object — no markdown, no commentary outside the
 ${physioContent}`
 }
 
-export function buildUserPrompt(userId, analysis, survey) {
-  const { categoryStats, secondaryAvg, acwr, currentWeekProgress } = analysis
+export function buildUserPrompt(userId, analysis, survey, prevReport = null) {
+  const { categoryStats, secondaryAvg, acwr, currentWeekProgress, weeksAnalyzed } = analysis
+  const window = weeksAnalyzed
 
   // Build category summary
   const catLines = Object.entries(categoryStats)
@@ -64,7 +65,7 @@ export function buildUserPrompt(userId, analysis, survey) {
       return `  ${cat}:
     Current goal: ${s.target} ${s.unit}/week
     This week so far: ${current.value}/${current.target} ${current.unit}
-    8-week completion rate: ${percent(s.completionRate)} (${s.completions}/${analysis.weeksAnalyzed} weeks)
+    ${window}-week completion rate: ${percent(s.completionRate)} (${s.completions}/${window} weeks)
     Trend: ${trendArrow(s.trend)}
     Consecutive weeks hitting goal: ${s.streak}`
     })
@@ -78,30 +79,54 @@ export function buildUserPrompt(userId, analysis, survey) {
   // Survey interpretation hint
   const surveyHint = buildSurveyHint(survey)
 
+  // Previous recommendation context
+  let prevSection = ''
+  if (prevReport) {
+    const prevDate = prevReport.generatedAt
+      ? new Date(prevReport.generatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+      : 'last session'
+    const prevGoals = Object.entries(prevReport.suggestedGoals || {})
+      .map(([cat, g]) => `  ${cat}: ${g.target} ${g.unit}/week${g.changed ? ' (was changed)' : ''}`)
+      .join('\n')
+    const prevFocus = (prevReport.focusThisWeek || []).map((f) => `  • ${f}`).join('\n')
+    prevSection = `
+=== LAST RECOMMENDATION (${prevDate}) ===
+Overall tone: ${prevReport.overallTone ?? 'maintain'}
+Goals suggested:
+${prevGoals}
+Focus activities:
+${prevFocus}
+Trajectory note: ${prevReport.trajectoryNote ?? 'none'}
+
+NOTE: Consider whether the previous recommendations were followed and factor that into this week's suggestions.
+`
+  }
+
   return `User: ${userId}
+NOTE: This analysis covers ${window} week${window !== 1 ? 's' : ''} of data${window < 8 ? ` (app is new — do not penalize for short history; treat this as an early baseline)` : ''}.
 
 === CURRENT WEEK PROGRESS (partial) ===
 ${Object.entries(currentWeekProgress)
   .map(([c, p]) => `  ${c}: ${p.value}/${p.target} ${p.unit}`)
   .join('\n')}
 
-=== 8-WEEK CATEGORY ANALYSIS ===
+=== ${window}-WEEK CATEGORY ANALYSIS ===
 ${catLines}
 
-=== SECONDARY ATTRIBUTE AVERAGES (last 8 weeks) ===
+=== SECONDARY ATTRIBUTE AVERAGES (last ${window} weeks) ===
 ${secLines}
 
 === TRAINING LOAD (ACWR) ===
   7-day minutes: ${analysis.acwrAcuteMinutes}
   28-day avg/week: ${analysis.acwrChronicAvgMinutes.toFixed(0)}
   ACWR ratio: ${acwrStatus(acwr)}
-
+${prevSection}
 === WEEKLY CHECK-IN SURVEY ===
   Q1 Effort level (1–5): ${survey.effort}  [${survey.effort >= 4 ? '⚠️ HIGH' : survey.effort <= 2 ? '✅ EASY' : 'OK'}]
   Q2 Energy/recovery (1–5): ${survey.energy}  [${survey.energy <= 2 ? '⚠️ LOW' : survey.energy >= 4 ? '✅ GOOD' : 'OK'}]
   Q3 Injury/pain: ${survey.injury ?? 'none'}
   Q4 Focus area this month: ${survey.focus}
-  Q5 OK to push goal higher: ${survey.okToPush ? 'YES' : 'NO'}
+  Q5 Goal adjustment preference: ${survey.goalDirection?.toUpperCase() ?? 'SAME'}
 
 ${surveyHint}
 
@@ -131,8 +156,10 @@ function buildSurveyHint(survey) {
   const lines = []
   if (survey.effort >= 4 || survey.energy <= 2) {
     lines.push('⚠️  ALGORITHM HINT: Recovery state is stressed. Do NOT increase any targets this week.')
-  } else if (survey.effort <= 2 && survey.energy >= 4 && survey.okToPush) {
-    lines.push('✅ ALGORITHM HINT: User is feeling strong. Eligible for up to one goal increase.')
+  } else if (survey.goalDirection === 'down') {
+    lines.push('⬇️  ALGORITHM HINT: User wants goals made more attainable. Reduce any targets that have <50% completion rate to a level that feels achievable — momentum matters more than ambition right now.')
+  } else if (survey.effort <= 2 && survey.energy >= 4 && survey.goalDirection === 'up') {
+    lines.push('✅ ALGORITHM HINT: User is feeling strong and wants to push. Eligible for up to one goal increase.')
   } else {
     lines.push('ℹ️  ALGORITHM HINT: Moderate state. Small adjustments OK; err conservative.')
   }

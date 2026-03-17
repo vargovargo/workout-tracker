@@ -47,7 +47,7 @@ export async function runSurvey() {
 
   const q5Raw = await ask(
     rl,
-    `\n${BOLD}5. Are you OK with nudging one category's goal higher this week?${RESET}\n   y / n\n${GREEN}→ ${RESET}`
+    `\n${BOLD}5. How should goals be adjusted this week?${RESET}\n   up = push harder  same = hold steady  down = make more attainable\n${GREEN}→ ${RESET}`
   )
 
   rl.close()
@@ -56,7 +56,8 @@ export async function runSurvey() {
   const energy = Math.min(5, Math.max(1, parseInt(q2Raw) || 3))
   const injury = q3Raw.toLowerCase() === 'n' ? null : q3Raw
   const focus = q4Raw.toLowerCase().trim()
-  const okToPush = q5Raw.toLowerCase().startsWith('y')
+  const q5 = q5Raw.toLowerCase().trim()
+  const goalDirection = q5.startsWith('u') ? 'up' : q5.startsWith('d') ? 'down' : 'same'
 
-  return { effort, energy, injury, focus, okToPush }
+  return { effort, energy, injury, focus, goalDirection }
 }

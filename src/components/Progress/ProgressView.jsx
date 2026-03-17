@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { useApp } from '../../App.jsx'
-import { WORKOUT_CONFIG, SECONDARY_ATTRIBUTES, sumSecondaryScores } from '../../config.js'
+import { FITNESS_CONFIG, SECONDARY_ATTRIBUTES, sumSecondaryScores } from '../../config.js'
 import { getCategoryProgress } from '../../utils/progressUtils.js'
 import { getWeekKey, weekKeyToMonday } from '../../utils/weekUtils.js'
 import RadarChart from './RadarChart.jsx'
@@ -35,7 +35,7 @@ function lastNWeekKeys(n) {
 
 // Compute primary category normalised scores for radar (indexed to personal max)
 function buildPrimaryDatasets(sessions, settings, weekKeys) {
-  const categories = Object.keys(WORKOUT_CONFIG)
+  const categories = Object.keys(FITNESS_CONFIG)
 
   function weekValues(keys) {
     return categories.map((cat) => {
@@ -57,34 +57,35 @@ function buildPrimaryDatasets(sessions, settings, weekKeys) {
   const recent4 = weekValues(weekKeys.slice(0, 4))
   const allAvg = weekValues(weekKeys)
 
-  // Normalise to personal max across all three datasets
-  const allValues = [...currentVals, ...recent4, ...allAvg]
-  const maxVal = Math.max(...allValues, 1)
+  // Normalise each axis to its goal target so all spokes are on the same scale:
+  // 1.0 = hitting your goal, >1.0 = exceeding it (capped at 1.5 to keep chart readable)
+  const goalPerCat = categories.map((cat) => Math.max(settings[cat]?.target ?? 1, 1))
+  const norm = (vals) => vals.map((v, i) => Math.min(v / goalPerCat[i], 1.5))
 
   return {
     axes: categories.map((cat) => ({
-      label: WORKOUT_CONFIG[cat].label,
-      icon: WORKOUT_CONFIG[cat].icon,
-      color: WORKOUT_CONFIG[cat].arcColor,
+      label: FITNESS_CONFIG[cat].label,
+      icon: FITNESS_CONFIG[cat].icon,
+      color: FITNESS_CONFIG[cat].arcColor,
     })),
     datasets: [
       {
         label: 'All-time avg',
-        values: allAvg.map((v) => v / maxVal),
+        values: norm(allAvg),
         color: '#94a3b8',
         opacity: 0.1,
         dashed: true,
       },
       {
         label: '4-week avg',
-        values: recent4.map((v) => v / maxVal),
+        values: norm(recent4),
         color: '#60a5fa',
         opacity: 0.15,
         dashed: false,
       },
       {
         label: 'This week',
-        values: currentVals.map((v) => v / maxVal),
+        values: norm(currentVals),
         color: '#34d399',
         opacity: 0.25,
         dashed: false,
@@ -174,7 +175,7 @@ function computeACWR(sessions) {
 }
 
 export default function ProgressView() {
-  const { sessions, settings } = useApp()
+  const { sessions, settings, report, openAdvisor } = useApp()
   const [range, setRange] = useState('12w')
 
   const rangeConfig = RANGES.find((r) => r.id === range)
@@ -213,9 +214,20 @@ export default function ProgressView() {
   return (
     <div className="pb-6 slide-up">
       {/* Header */}
-      <div className="px-4 pt-4 pb-2">
-        <h1 className="text-lg font-bold text-white">Progress</h1>
-        <p className="text-xs text-slate-400">Historical trends & fitness balance</p>
+      <div className="px-4 pt-4 pb-2 flex items-start justify-between">
+        <div>
+          <h1 className="text-lg font-bold text-white">Progress</h1>
+          <p className="text-xs text-slate-400">Historical trends & fitness balance</p>
+        </div>
+        {report && (
+          <button
+            onClick={openAdvisor}
+            className="mt-0.5 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 active:opacity-70"
+          >
+            <span className="text-sm">🤖</span>
+            <span className="text-xs font-medium text-slate-300">AI Rec</span>
+          </button>
+        )}
       </div>
 
       {/* Time range selector */}
@@ -247,20 +259,19 @@ export default function ProgressView() {
         </div>
       )}
 
-      {/* Trend pills */}
-      <div className="px-4 mb-4">
-        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Category Momentum</p>
-        <TrendSummary sessions={sessions} settings={settings} weekKeys={weekKeys} />
-      </div>
-
       {/* Radar charts */}
-      <div className="grid grid-cols-2 gap-4 px-4 mb-4">
+      <div className="grid grid-cols-2 gap-4 px-4 mb-3">
         <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
           <RadarChart
             title="Primary"
             axes={primaryData.axes}
             datasets={primaryData.datasets}
           />
+          <div className="flex flex-wrap justify-center gap-x-2 gap-y-0.5 mt-1">
+            {primaryData.axes.map((a) => (
+              <span key={a.label} className="text-slate-500" style={{ fontSize: 9 }}>{a.icon} {a.label}</span>
+            ))}
+          </div>
         </div>
         <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
           <RadarChart
@@ -268,6 +279,11 @@ export default function ProgressView() {
             axes={secondaryData.axes}
             datasets={secondaryData.datasets}
           />
+          <div className="flex flex-wrap justify-center gap-x-2 gap-y-0.5 mt-1">
+            {secondaryData.axes.map((a) => (
+              <span key={a.label} className="text-slate-500" style={{ fontSize: 9 }}>{a.icon} {a.label}</span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -297,10 +313,16 @@ export default function ProgressView() {
         <ACWRGauge acwr={acwr} />
       </div>
 
+      {/* Goal hit rate — trend pills */}
+      <div className="px-4 mb-4">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Goal Hit Rate</p>
+        <TrendSummary sessions={sessions} settings={settings} weekKeys={weekKeys} />
+      </div>
+
       {/* Calendar heatmap */}
-      <div className="mx-4 mb-2">
+      <div className="mx-4 mb-2 overflow-hidden">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Activity Calendar</p>
-        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
+        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700 overflow-hidden">
           <CalendarHeatmap sessions={sessions} />
         </div>
       </div>

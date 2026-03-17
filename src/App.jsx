@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext, useCallback } from 'react'
 import { useWorkouts } from './hooks/useWorkouts.js'
 import { useStreak } from './hooks/useStreak.js'
 import { useSettings } from './hooks/useSettings.js'
-import { WORKOUT_CONFIG } from './config.js'
+import { FITNESS_CONFIG } from './config.js'
 import { getWeekKey } from './utils/weekUtils.js'
 import { getCategoryProgress } from './utils/progressUtils.js'
 import { fetchCelebrationGif, fireBigConfetti, fireSmallConfetti } from './utils/celebrationUtils.js'
@@ -14,6 +14,8 @@ import HistoryView from './components/History/HistoryView.jsx'
 import ProgressView from './components/Progress/ProgressView.jsx'
 import CelebrationModal from './components/shared/CelebrationModal.jsx'
 import SettingsModal from './components/shared/SettingsModal.jsx'
+import GoalAdvisorModal from './components/shared/GoalAdvisorModal.jsx'
+import { useGoalAdvisor } from './hooks/useGoalAdvisor.js'
 
 export const AppContext = createContext(null)
 
@@ -25,7 +27,9 @@ export default function App() {
   const [tab, setTab] = useState('dashboard')
   const [currentUser, setCurrentUser] = useState(loadLastUser)
   const [showSettings, setShowSettings] = useState(false)
+  const [showAdvisor, setShowAdvisor] = useState(false)
   const workouts = useWorkouts(currentUser)
+  const report = useGoalAdvisor(currentUser)
   const { settings, updateSetting } = useSettings(currentUser)
   const streak = useStreak(workouts.sessions, currentUser, settings)
   const [celebration, setCelebration] = useState(null)
@@ -44,7 +48,7 @@ export default function App() {
       const weekSessions = workouts.getSessionsForWeek(newSession.weekKey)
       const all = [...weekSessions.filter((s) => s.id !== newSession.id), newSession]
 
-      const weekComplete = Object.keys(WORKOUT_CONFIG).every((key) => {
+      const weekComplete = Object.keys(FITNESS_CONFIG).every((key) => {
         const { value, target } = getCategoryProgress(all, key, settings)
         return value >= target
       })
@@ -84,6 +88,8 @@ export default function App() {
     setTab,
     onSessionSaved: handleSessionSaved,
     openSettings: () => setShowSettings(true),
+    report,
+    openAdvisor: () => setShowAdvisor(true),
   }
 
   return (
@@ -117,6 +123,10 @@ export default function App() {
 
       {showSettings && (
         <SettingsModal onClose={() => setShowSettings(false)} />
+      )}
+
+      {showAdvisor && report && (
+        <GoalAdvisorModal report={report} onClose={() => setShowAdvisor(false)} />
       )}
     </AppContext.Provider>
   )

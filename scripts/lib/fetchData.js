@@ -36,3 +36,24 @@ export async function writeUserSettings(userId, settings) {
   const db = admin.firestore()
   await db.collection('users').doc(userId).collection('meta').doc('settings').set(settings, { merge: true })
 }
+
+export async function fetchGoalAdvisorReport(userId) {
+  initAdmin()
+  const db = admin.firestore()
+  const doc = await db.collection('users').doc(userId).collection('meta').doc('goalAdvisor').get()
+  return doc.exists ? doc.data() : null
+}
+
+export async function writeGoalAdvisorReport(userId, result, analysis) {
+  initAdmin()
+  const db = admin.firestore()
+  await db.collection('users').doc(userId).collection('meta').doc('goalAdvisor').set({
+    ...result,
+    analysis: {
+      categoryStats: analysis.categoryStats,
+      secondaryAvg: analysis.secondaryAvg,
+      acwr: analysis.acwr,
+    },
+    generatedAt: new Date().toISOString(),
+  })
+}

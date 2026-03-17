@@ -1,4 +1,4 @@
-const CACHE_NAME = 'workout-tracker-v4';
+const CACHE_NAME = 'fitness-tracker-v1';
 const GIPHY_ORIGIN = 'https://api.giphy.com';
 
 self.addEventListener('install', () => {

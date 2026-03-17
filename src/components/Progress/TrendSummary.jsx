@@ -1,5 +1,5 @@
 import React from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 import { getCategoryProgress } from '../../utils/progressUtils.js'
 
 // Returns trend direction for a category across two time windows
@@ -27,14 +27,14 @@ function TrendArrow({ direction }) {
 }
 
 export default function TrendSummary({ sessions, settings, weekKeys }) {
-  const categories = Object.keys(WORKOUT_CONFIG)
+  const categories = Object.keys(FITNESS_CONFIG)
   const recentWeeks = weekKeys.slice(0, 4)
   const priorWeeks = weekKeys.slice(4, 8)
 
   return (
     <div className="grid grid-cols-2 gap-2">
       {categories.map((cat) => {
-        const cfg = WORKOUT_CONFIG[cat]
+        const cfg = FITNESS_CONFIG[cat]
         const trend = computeTrend(sessions, cat, settings, recentWeeks, priorWeeks)
 
         // Achievement rate over all tracked weeks

@@ -88,35 +88,22 @@ export default function RadarChart({ axes, datasets, title }) {
           />
         ))}
 
-        {/* Axis labels */}
+        {/* Axis icons only — labels shown in legend below to avoid clipping */}
         {axes.map((axis, i) => {
           const labelR = RADIUS + 14
           const { x, y } = axisPoint(i, n, labelR)
           return (
-            <g key={i}>
-              <text
-                x={x}
-                y={y + 1}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontSize={10}
-                fill="#94a3b8"
-                fontFamily="system-ui, sans-serif"
-              >
-                {axis.icon}
-              </text>
-              <text
-                x={x}
-                y={y + 11}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontSize={7}
-                fill="#64748b"
-                fontFamily="system-ui, sans-serif"
-              >
-                {axis.label}
-              </text>
-            </g>
+            <text
+              key={i}
+              x={x}
+              y={y}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize={12}
+              fontFamily="system-ui, sans-serif"
+            >
+              {axis.icon}
+            </text>
           )
         })}
 

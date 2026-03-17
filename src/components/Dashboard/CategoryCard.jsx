@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 import { useApp } from '../../App.jsx'
 
 const ARC_RADIUS = 36
@@ -9,7 +9,7 @@ const ARC_SPAN = (270 / 360) * ARC_CIRCUMFERENCE
 const ARC_GAP = ARC_CIRCUMFERENCE - ARC_SPAN
 
 export default function CategoryCard({ categoryKey, value, target, unit }) {
-  const cfg = WORKOUT_CONFIG[categoryKey]
+  const cfg = FITNESS_CONFIG[categoryKey]
   const { setTab } = useApp()
   const arcRef = useRef(null)
 

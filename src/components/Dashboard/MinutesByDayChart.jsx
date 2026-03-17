@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 import { toDateString } from '../../utils/weekUtils.js'
 
-const CATEGORY_KEYS = Object.keys(WORKOUT_CONFIG)
+const CATEGORY_KEYS = Object.keys(FITNESS_CONFIG)
 
 // SVG layout constants
 const W = 300
@@ -62,9 +62,9 @@ export default function MinutesByDayChart({ sessions, onEdit }) {
           <span key={key} className="flex items-center gap-1 text-xs text-slate-400">
             <span
               className="inline-block w-2 h-2 rounded-full"
-              style={{ backgroundColor: WORKOUT_CONFIG[key].arcColor }}
+              style={{ backgroundColor: FITNESS_CONFIG[key].arcColor }}
             />
-            {WORKOUT_CONFIG[key].label}
+            {FITNESS_CONFIG[key].label}
           </span>
         ))}
       </div>
@@ -125,7 +125,7 @@ export default function MinutesByDayChart({ sessions, onEdit }) {
                 if (m === 0) continue
                 const segH = (m / maxTotal) * BAR_H
                 const segY = yAcc - segH
-                segments.push({ key, bx, segY, segH, color: WORKOUT_CONFIG[key].arcColor })
+                segments.push({ key, bx, segY, segH, color: FITNESS_CONFIG[key].arcColor })
                 yAcc = segY
               }
 
@@ -214,7 +214,7 @@ export default function MinutesByDayChart({ sessions, onEdit }) {
             </p>
             <div className="space-y-2">
               {selDay.sessions.map((s) => {
-                const cfg = WORKOUT_CONFIG[s.category]
+                const cfg = FITNESS_CONFIG[s.category]
                 const icon = (s.subtype && cfg.subtypeIcons?.[s.subtype]) ?? cfg.icon
                 return (
                   <div

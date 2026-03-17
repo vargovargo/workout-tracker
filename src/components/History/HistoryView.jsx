@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useApp } from '../../App.jsx'
 import { getWeekKey, toDateString } from '../../utils/weekUtils.js'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 import WeekNavigator from './WeekNavigator.jsx'
 import SessionCard from './SessionCard.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
@@ -34,7 +34,7 @@ export default function HistoryView() {
         return [
           toDateString(dt),
           dt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
-          WORKOUT_CONFIG[s.category]?.label || s.category,
+          FITNESS_CONFIG[s.category]?.label || s.category,
           s.subtype || '',
           s.durationMinutes || '',
           (s.notes || '').replace(/"/g, '""'),
@@ -46,13 +46,13 @@ export default function HistoryView() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `workouts-${currentUser}-${toDateString(new Date())}.csv`
+    a.download = `fitness-${currentUser}-${toDateString(new Date())}.csv`
     a.click()
     URL.revokeObjectURL(url)
   }
 
   function handleDelete(id) {
-    if (window.confirm('Delete this workout?')) {
+    if (window.confirm('Delete this activity?')) {
       deleteSession(id)
     }
   }
@@ -81,7 +81,7 @@ export default function HistoryView() {
         {sorted.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-4xl mb-3">🏋️</p>
-            <p className="text-slate-400 text-sm">No workouts logged this week.</p>
+            <p className="text-slate-400 text-sm">No activity logged this week.</p>
           </div>
         ) : (
           groups.map(({ date, items }) => (

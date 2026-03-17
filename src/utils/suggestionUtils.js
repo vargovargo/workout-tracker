@@ -1,4 +1,4 @@
-import { WORKOUT_CONFIG, ACTIVITY_SECONDARY_SCORES, sumSecondaryScores } from '../config.js'
+import { FITNESS_CONFIG, ACTIVITY_SECONDARY_SCORES, sumSecondaryScores } from '../config.js'
 import { toDateString } from './weekUtils.js'
 import { getCategoryProgress } from './progressUtils.js'
 
@@ -77,7 +77,7 @@ export function getSuggestions(weekSessions, settings, recentSessions) {
   const yesterdaySecondary = sumSecondaryScores(yesterdaySessions)
   const recoveryNeeded = yesterdaySecondary.peakOutput >= 2
 
-  const candidates = Object.entries(WORKOUT_CONFIG).map(([key, cfg]) => {
+  const candidates = Object.entries(FITNESS_CONFIG).map(([key, cfg]) => {
     const { value, target, unit } = getCategoryProgress(weekSessions, key, settings)
     const remaining = Math.max(0, target - value)
     const ratio = target > 0 ? remaining / target : 0

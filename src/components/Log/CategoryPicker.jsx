@@ -1,13 +1,13 @@
 import React from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 
 export default function CategoryPicker({ onSelect }) {
   return (
     <div className="px-4 pt-6 pb-4">
-      <h2 className="text-xl font-bold text-white mb-1">Log Workout</h2>
+      <h2 className="text-xl font-bold text-white mb-1">Log Activity</h2>
       <p className="text-sm text-slate-400 mb-5">What did you do?</p>
       <div className="grid grid-cols-2 gap-3">
-        {Object.entries(WORKOUT_CONFIG).map(([key, cfg]) => (
+        {Object.entries(FITNESS_CONFIG).map(([key, cfg]) => (
           <button
             key={key}
             onClick={() => onSelect(key)}

@@ -85,8 +85,8 @@ export function sumSecondaryScores(sessions) {
   return totals
 }
 
-// ─── Primary workout categories ───────────────────────────────────────────────
-export const WORKOUT_CONFIG = {
+// ─── Primary fitness categories ───────────────────────────────────────────────
+export const FITNESS_CONFIG = {
   strength: {
     label: 'Strength',
     icon: '💪',

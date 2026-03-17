@@ -1,8 +1,8 @@
 import React from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 
 export default function SessionCard({ session, onEdit, onDelete }) {
-  const cfg = WORKOUT_CONFIG[session.category]
+  const cfg = FITNESS_CONFIG[session.category]
   const icon = (session.subtype && cfg.subtypeIcons?.[session.subtype]) ?? cfg.icon
 
   // Prefer occurredAt (when workout happened) for primary display

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * goal-advisor.js — AI-powered weekly goal advisor for the workout tracker.
+ * goal-advisor.js — AI-powered weekly goal advisor for the fitness tracker.
  *
  * Usage:
  *   node scripts/goal-advisor.js [--user Jason]
@@ -17,7 +17,7 @@ import { config } from 'dotenv'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import Anthropic from '@anthropic-ai/sdk'
-import { fetchUserSessions, fetchUserSettings, writeUserSettings } from './lib/fetchData.js'
+import { fetchUserSessions, fetchUserSettings, writeUserSettings, writeGoalAdvisorReport, fetchGoalAdvisorReport } from './lib/fetchData.js'
 import { analyzeHistory } from './lib/analyzeHistory.js'
 import { runSurvey } from './lib/survey.js'
 import { buildSystemPrompt, buildUserPrompt } from './lib/buildPrompt.js'
@@ -73,32 +73,46 @@ async function askYesNo(question) {
   })
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
-async function main() {
-  // Parse --user arg or env
-  const userArg = process.argv.find((a) => a.startsWith('--user='))
-  const userId = userArg ? userArg.split('=')[1] : (process.env.GOAL_USER || 'Jason')
+const ALL_USERS = ['Jason', 'Lauren', 'Benton', 'Leo']
 
-  console.clear()
-  header(`Workout Goal Advisor — ${userId}`)
+// Calculate actual weeks of data (capped at 8)
+function getDataWindow(sessions) {
+  if (!sessions.length) return 1
+  const oldest = Math.min(...sessions.map((s) => new Date(s.occurredAt || s.loggedAt).getTime()))
+  const weeks = Math.floor((Date.now() - oldest) / (7 * 24 * 60 * 60 * 1000))
+  return Math.min(Math.max(weeks, 1), 8)
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+async function runForUser(userId) {
+  header(`Fitness Goal Advisor — ${userId}`)
 
   // 1. Fetch data
   console.log(`\n${DIM}Connecting to Firestore...${R}`)
-  let sessions, settings
+  let sessions, settings, prevReport
   try {
-    ;[sessions, settings] = await Promise.all([
+    ;[sessions, settings, prevReport] = await Promise.all([
       fetchUserSessions(userId),
       fetchUserSettings(userId),
+      fetchGoalAdvisorReport(userId),
     ])
   } catch (err) {
     console.error(`\n${RED}${BOLD}Error connecting to Firestore:${R} ${err.message}`)
     console.error(`${DIM}Ensure GOOGLE_APPLICATION_CREDENTIALS points to a valid service account JSON.${R}`)
-    process.exit(1)
+    throw err
   }
   console.log(`${GREEN}✓ Loaded ${sessions.length} sessions for ${userId}${R}`)
+  if (prevReport?.generatedAt) {
+    const prevDate = new Date(prevReport.generatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    console.log(`${DIM}  Previous recommendation: ${prevDate}${R}`)
+  }
 
-  // 2. Analyze history
-  const analysis = analyzeHistory(sessions, settings, 8)
+  // 2. Analyze history — use actual data window, not a fixed 8 weeks
+  const dataWindow = getDataWindow(sessions)
+  if (dataWindow < 8) {
+    console.log(`${YELLOW}  Note: Only ${dataWindow} week(s) of data — analysis window adjusted.${R}`)
+  }
+  const analysis = analyzeHistory(sessions, settings, dataWindow)
 
   // Print summary
   header('8-Week Training Summary')
@@ -135,9 +149,9 @@ async function main() {
 
     const msg = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 1024,
+      max_tokens: 2048,
       system: buildSystemPrompt(userId),
-      messages: [{ role: 'user', content: buildUserPrompt(userId, analysis, survey) }],
+      messages: [{ role: 'user', content: buildUserPrompt(userId, analysis, survey, prevReport) }],
     })
 
     clearInterval(interval)
@@ -180,7 +194,15 @@ async function main() {
     console.log(`    ${result.trajectoryNote}`)
   }
 
-  // 6. Offer to apply
+  // 6. Save report to Firestore
+  try {
+    await writeGoalAdvisorReport(userId, result, analysis)
+    console.log(`\n${DIM}✓ Report saved to app.${R}`)
+  } catch (err) {
+    console.error(`\n${YELLOW}Could not save report to Firestore:${R} ${err.message}`)
+  }
+
+  // 7. Offer to apply
   const anyChanged = Object.values(result.suggestedGoals).some((g) => g.changed)
   if (anyChanged) {
     console.log('')
@@ -202,6 +224,35 @@ async function main() {
     }
   } else {
     console.log(`\n${DIM}No goal changes recommended. Keep going!${R}\n`)
+  }
+}
+
+async function main() {
+  console.clear()
+  const runAll = process.argv.includes('--all')
+  const userArg = process.argv.find((a) => a.startsWith('--user='))
+
+  if (runAll) {
+    header('Fitness Goal Advisor — All Users')
+    console.log(`\n${BOLD}Running for: ${ALL_USERS.join(', ')}${R}\n`)
+    for (const userId of ALL_USERS) {
+      try {
+        await runForUser(userId)
+      } catch (err) {
+        console.error(`\n${RED}Failed for ${userId}:${R} ${err.message}`)
+      }
+      if (userId !== ALL_USERS[ALL_USERS.length - 1]) {
+        console.log(`\n${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${R}`)
+        const cont = await askYesNo(`${BOLD}Continue to next user?${R}`)
+        if (!cont) {
+          console.log(`\n${DIM}Stopped. Re-run with --all to continue.${R}\n`)
+          break
+        }
+      }
+    }
+  } else {
+    const userId = userArg ? userArg.split('=')[1] : (process.env.GOAL_USER || 'Jason')
+    await runForUser(userId)
   }
 }
 
