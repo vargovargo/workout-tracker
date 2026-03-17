@@ -1,5 +1,5 @@
 import React from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 import { useApp } from '../../App.jsx'
 
 export default function SettingsModal({ onClose }) {
@@ -31,7 +31,7 @@ export default function SettingsModal({ onClose }) {
           </div>
 
           <div className="flex flex-col gap-4">
-            {Object.entries(WORKOUT_CONFIG).map(([key, cfg]) => {
+            {Object.entries(FITNESS_CONFIG).map(([key, cfg]) => {
               const s = settings[key] ?? { target: cfg.weeklyTarget, unit: 'sessions' }
               return (
                 <div key={key} className="flex flex-col gap-2">
@@ -94,5 +94,6 @@ export default function SettingsModal({ onClose }) {
         </div>
       </div>
     </div>
+
   )
 }

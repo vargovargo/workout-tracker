@@ -1,8 +1,8 @@
 import React from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 
 // Build a flat list of all selectable activities grouped by category
-const GROUPS = Object.entries(WORKOUT_CONFIG).map(([catKey, cfg]) => ({
+const GROUPS = Object.entries(FITNESS_CONFIG).map(([catKey, cfg]) => ({
   catKey,
   cfg,
   items: cfg.subtypes.length > 0
@@ -13,7 +13,7 @@ const GROUPS = Object.entries(WORKOUT_CONFIG).map(([catKey, cfg]) => ({
 export default function FlatActivityPicker({ onSelect }) {
   return (
     <div className="px-4 pt-5 pb-4">
-      <h2 className="text-xl font-bold text-white mb-0.5">Log Workout</h2>
+      <h2 className="text-xl font-bold text-white mb-0.5">Log Activity</h2>
       <p className="text-sm text-slate-400 mb-5">What did you do?</p>
 
       <div className="flex flex-col gap-5">

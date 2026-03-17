@@ -1,11 +1,11 @@
-import { WORKOUT_CONFIG } from '../config.js'
+import { FITNESS_CONFIG } from '../config.js'
 
 /**
  * Returns { value, target, unit } for a category given this week's sessions
  * and the user's settings. Falls back to config defaults if no settings saved.
  */
 export function getCategoryProgress(weekSessions, categoryKey, settings) {
-  const cfg = WORKOUT_CONFIG[categoryKey]
+  const cfg = FITNESS_CONFIG[categoryKey]
   if (!cfg) return { value: 0, target: 0, unit: 'sessions' }
 
   const catSettings = settings?.[categoryKey] ?? { target: cfg.weeklyTarget, unit: 'sessions' }
@@ -22,7 +22,7 @@ export function getCategoryProgress(weekSessions, categoryKey, settings) {
  * Returns true if all categories have met their targets for the week.
  */
 export function isWeekComplete(weekSessions, settings) {
-  return Object.keys(WORKOUT_CONFIG).every((key) => {
+  return Object.keys(FITNESS_CONFIG).every((key) => {
     const { value, target } = getCategoryProgress(weekSessions, key, settings)
     return value >= target
   })

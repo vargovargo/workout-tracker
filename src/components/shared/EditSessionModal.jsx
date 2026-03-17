@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 
 function extractUrls(text) {
   return (text.match(/https?:\/\/[^\s]+/g) || [])
 }
 
 export default function EditSessionModal({ session, onSave, onClose }) {
-  const cfg = WORKOUT_CONFIG[session.category]
+  const cfg = FITNESS_CONFIG[session.category]
   const [duration, setDuration] = useState(String(session.durationMinutes))
   const [notes, setNotes] = useState(session.notes || '')
 

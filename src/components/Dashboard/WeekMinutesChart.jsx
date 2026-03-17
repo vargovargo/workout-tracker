@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 
-const CATEGORY_KEYS = Object.keys(WORKOUT_CONFIG)
+const CATEGORY_KEYS = Object.keys(FITNESS_CONFIG)
 
 export default function WeekMinutesChart({ weekSessions, onEdit }) {
   const [expandedKey, setExpandedKey] = useState(null)
@@ -35,7 +35,7 @@ export default function WeekMinutesChart({ weekSessions, onEdit }) {
 
       <div className="flex flex-col gap-3">
         {CATEGORY_KEYS.map((key) => {
-          const cfg = WORKOUT_CONFIG[key]
+          const cfg = FITNESS_CONFIG[key]
           const mins = totals[key]
           const pct = (mins / maxMins) * 100
           const isExpanded = expandedKey === key

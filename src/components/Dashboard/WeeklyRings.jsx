@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 import { getCategoryProgress } from '../../utils/progressUtils.js'
 import { useApp } from '../../App.jsx'
 
@@ -11,7 +11,7 @@ const SPAN = (270 / 360) * CIRC
 const GAP = CIRC - SPAN
 
 function Ring({ categoryKey, value, target, unit }) {
-  const cfg = WORKOUT_CONFIG[categoryKey]
+  const cfg = FITNESS_CONFIG[categoryKey]
   const { setTab } = useApp()
   const arcRef = useRef(null)
 
@@ -84,7 +84,7 @@ export default function WeeklyRings({ weekSessions }) {
         This week
       </p>
       <div className="flex justify-between items-start">
-        {Object.keys(WORKOUT_CONFIG).map((key) => {
+        {Object.keys(FITNESS_CONFIG).map((key) => {
           const { value, target, unit } = getCategoryProgress(weekSessions, key, settings)
           return <Ring key={key} categoryKey={key} value={value} target={target} unit={unit} />
         })}

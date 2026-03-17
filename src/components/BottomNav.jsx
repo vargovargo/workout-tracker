@@ -1,7 +1,8 @@
 import React from 'react'
 
 const TABS = [
-  { id: 'dashboard', label: 'Dashboard', icon: DashboardIcon },
+  { id: 'dashboard', label: 'This Week', icon: DashboardIcon },
+  { id: 'progress',  label: 'Progress',  icon: ProgressIcon },
   { id: 'log',       label: 'Log',       icon: PlusIcon },
   { id: 'history',   label: 'History',   icon: HistoryIcon },
 ]
@@ -32,6 +33,15 @@ function HistoryIcon({ active }) {
     <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
       <circle cx="12" cy="12" r="9" />
       <polyline points="12 7 12 12 15 15" />
+    </svg>
+  )
+}
+
+function ProgressIcon({ active }) {
+  return (
+    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
+      <polygon points="12 3 20 9 20 15 12 21 4 15 4 9" />
+      <polygon points="12 7 16.5 10.5 16.5 13.5 12 17 7.5 13.5 7.5 10.5" />
     </svg>
   )
 }
