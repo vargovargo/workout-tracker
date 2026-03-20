@@ -223,7 +223,6 @@ export default function MinutesByDayChart({ sessions, onEdit }) {
                     onClick={() => onEdit && onEdit(s)}
                   >
                     <span className={`text-xs font-medium ${cfg.accentClass}`}>
-                      {(s.subtype && cfg.subtypeIcons?.[s.subtype]) || cfg.icon} {s.subtype || cfg.label}
                       {icon} {s.subtype || cfg.label}
                     </span>
                     <span className="text-xs text-slate-400 tabular-nums">

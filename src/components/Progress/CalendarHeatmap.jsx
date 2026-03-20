@@ -142,13 +142,17 @@ export default function CalendarHeatmap({ sessions }) {
                   <p className="font-semibold text-white">{tooltip.ds}</p>
                   <p className="text-slate-400">{tooltip.minutes} min total</p>
                 </div>
-                {tooltip.sessions.map((s, i) => (
-                  <div key={i} className="flex items-center gap-2 text-slate-300 mb-0.5">
-                    <span>{FITNESS_CONFIG[s.category]?.icon}</span>
-                    <span className="capitalize">{s.subtype || s.category}</span>
-                    <span className="text-slate-500 ml-auto">{s.durationMinutes}m</span>
-                  </div>
-                ))}
+                {tooltip.sessions.map((s, i) => {
+                  const cfg = FITNESS_CONFIG[s.category]
+                  const icon = (s.subtype && cfg?.subtypeIcons?.[s.subtype]) ?? cfg?.icon
+                  return (
+                    <div key={i} className="flex items-center gap-2 text-slate-300 mb-0.5">
+                      <span>{icon}</span>
+                      <span className="capitalize">{s.subtype || s.category}</span>
+                      <span className="text-slate-500 ml-auto">{s.durationMinutes}m</span>
+                    </div>
+                  )
+                })}
               </div>
             )}
           </React.Fragment>
