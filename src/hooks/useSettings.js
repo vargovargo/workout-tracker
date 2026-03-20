@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { doc, setDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase.js'
-import { WORKOUT_CONFIG } from '../config.js'
+import { FITNESS_CONFIG } from '../config.js'
 
 function getDefaults() {
   return Object.fromEntries(
-    Object.entries(WORKOUT_CONFIG).map(([key, cfg]) => [
+    Object.entries(FITNESS_CONFIG).map(([key, cfg]) => [
       key,
       { target: cfg.weeklyTarget, unit: 'sessions' },
     ])

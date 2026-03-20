@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { WORKOUT_CONFIG } from '../../config.js'
+import { FITNESS_CONFIG } from '../../config.js'
 import { useApp } from '../../App.jsx'
 
 function toLocalDatetimeInput(date = new Date()) {
@@ -9,7 +9,7 @@ function toLocalDatetimeInput(date = new Date()) {
 }
 
 export default function SessionForm({ categoryKey, subtype, onBack, onSaved }) {
-  const cfg = WORKOUT_CONFIG[categoryKey]
+  const cfg = FITNESS_CONFIG[categoryKey]
   const { logRetroactive } = useApp()
 
   const [duration, setDuration] = useState('')
@@ -35,12 +35,12 @@ export default function SessionForm({ categoryKey, subtype, onBack, onSaved }) {
         <span>‹</span> Back
       </button>
       <h2 className="text-xl font-bold text-white mb-1">{title}</h2>
-      <p className="text-sm text-slate-400 mb-6">Enter workout details</p>
+      <p className="text-sm text-slate-400 mb-6">Enter activity details</p>
 
       {/* When did it happen */}
       <label className="block mb-4">
         <span className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2 block">
-          When did you work out?
+          When did this happen?
         </span>
         <input
           type="datetime-local"
@@ -90,7 +90,7 @@ export default function SessionForm({ categoryKey, subtype, onBack, onSaved }) {
             : 'bg-slate-800 text-slate-600 border border-slate-700 cursor-not-allowed'
         }`}
       >
-        {saving ? 'Saving…' : 'Save Workout'}
+        {saving ? 'Saving…' : 'Save Activity'}
       </button>
     </div>
   )

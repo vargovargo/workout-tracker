@@ -1,0 +1,6221 @@
+{
+  "source": "Sierra Peak Section (SPS) Peaks List with Scrambler Ratings",
+  "source_url": "https://www.sierraclub.org/sites/default/files/2025-12/sps-25-12-scrambler-ratings-spspkslist.pdf",
+  "legend": {
+    "peak_flags": {
+      "emblem_peak": "** \u2014 one of the most significant SPS peaks",
+      "mountaineering_peak": "* \u2014 requires technical climbing skills",
+      "vagmarten_list": "# \u2014 appears on the Vagmarten Peak List",
+      "tahoe_ogul_list": "@ \u2014 appears on the Tahoe-Ogul Peak List"
+    },
+    "elevation": {
+      "+": "Minimum elevation; true summit may be higher or exact elevation unconfirmed",
+      "*": "Elevation is uncertain or contested"
+    },
+    "yds_rating": {
+      "description": "Yosemite Decimal System class rating for the approach",
+      "s_notation": "'2s3' spans class 2 to 3 depending on conditions/variation",
+      "range_notation": "'2-3' is between class 2 and 3"
+    },
+    "scrambling_rating": {
+      "description": "SPS Scrambler Rating (S-1.0 through S-4.2+)",
+      "sr_notation": "'S-2.1/srS-3.0' \u2014 approach is S-2.1, summit rocks are S-3.0",
+      "yds_notation": "'S-3.2/srYDS-5.6' \u2014 approach is S-3.2, summit rocks require YDS 5.6 roped climbing"
+    },
+    "status": {
+      "active": "Peak is on the current SPS list",
+      "suspended": "Peak temporarily removed from the SPS list"
+    }
+  },
+  "regions": [
+    {
+      "number": 1,
+      "name": "Southern Sierra",
+      "peaks": [
+        {
+          "id": "1.1",
+          "name": "Pilot Knob (S)",
+          "elevation": "6200+",
+          "status": "suspended",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Onyx",
+          "routes": [
+            {
+              "description": "East & South Slopes from Dirt Road",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "name": "Owens Peak",
+          "elevation": "8453",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Owens Peak",
+          "routes": [
+            {
+              "description": "East Side Trail & Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "West Slope from PCT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "name": "Spanish Needle",
+          "elevation": "7841",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Lamont Peak",
+          "routes": [
+            {
+              "description": "Northeast Slope & Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "name": "Lamont Peak",
+          "elevation": "7429",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Lamont Peak",
+          "routes": [
+            {
+              "description": "Trail from Canebrake Rd & South Slope",
+              "yds_rating": "1s2",
+              "scrambling_rating": "S-1.2/srS-2.0"
+            },
+            {
+              "description": "East Ridge & South Slope from PCT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "1.5",
+          "name": "Sawtooth Peak (S)",
+          "elevation": "8000+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Ninemile Canyon",
+          "routes": [
+            {
+              "description": "Southwest Slope & Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        },
+        {
+          "id": "1.6",
+          "name": "Rockhouse Peak",
+          "elevation": "8360+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Rockhouse Basin",
+          "routes": [
+            {
+              "description": "East Face",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "1.7",
+          "name": "Taylor Dome",
+          "elevation": "8802",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Cannell Peak",
+          "routes": [
+            {
+              "description": "North Slope & Face",
+              "yds_rating": "2s3",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "1.8",
+          "name": "Sirretta Peak",
+          "elevation": "9977",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Sirretta Peak",
+          "routes": [
+            {
+              "description": "Trail & North Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1/srS-2.0"
+            }
+          ]
+        },
+        {
+          "id": "1.9",
+          "name": "Crag Peak",
+          "elevation": "9480+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Crag Peak",
+          "routes": [
+            {
+              "description": "East Slope",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "1.10",
+          "name": "Smith Mountain",
+          "elevation": "9533",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Monache Mountain",
+          "routes": [
+            {
+              "description": "North Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Mineral King & Kern River",
+      "peaks": [
+        {
+          "id": "2.1",
+          "name": "Kern Peak",
+          "elevation": "11510",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Kern Peak",
+          "routes": [
+            {
+              "description": "Trail & South Side",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1/srS-2.0"
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "name": "Angora Mountain",
+          "elevation": "10198",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Kern Lake",
+          "routes": [
+            {
+              "description": "Deep Creek to West Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "name": "Coyote Peaks",
+          "elevation": "10892",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Kern Lake",
+          "routes": [
+            {
+              "description": "South Ridge from Angora Mt.",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "2.4",
+          "name": "North Maggie Mountain",
+          "elevation": "10234",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Moses Mountain",
+          "routes": [
+            {
+              "description": "NW Slope to North Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "2.5",
+          "name": "Moses Mountain",
+          "elevation": "9331",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Moses Mountain",
+          "routes": [
+            {
+              "description": "East Face from Moses Gully",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "2.6",
+          "name": "Homers Nose",
+          "elevation": "9023",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Silver City",
+          "routes": [
+            {
+              "description": "Cahoon Trail & Salt Creek Ridge",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "2.7",
+          "name": "Vandever Mountain",
+          "elevation": "11947",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mineral King",
+          "routes": [
+            {
+              "description": "Trail & East Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "2.8",
+          "name": "Florence Peak",
+          "elevation": "12432",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mineral King",
+          "routes": [
+            {
+              "description": "Northeast Ridge from Franklin Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Southwest Slope from Bullfrog Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "East Slope",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "2.9",
+          "name": "Sawtooth Peak (2)",
+          "elevation": "12343",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mineral King",
+          "routes": [
+            {
+              "description": "Northwest Ridge from Sawtooth Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            },
+            {
+              "description": "South Ridge from Upper Monarch Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "2.10",
+          "name": "Needham Mountain",
+          "elevation": "12520",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mineral King",
+          "routes": [
+            {
+              "description": "South Slope from Soda Creek",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Traverse from Sawtooth via W. Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Olancha to Langley and West",
+      "peaks": [
+        {
+          "id": "3.1",
+          "name": "Olancha Peak",
+          "elevation": "12123",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Olancha",
+          "routes": [
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "South Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "name": "Cartago Peak",
+          "elevation": "10480+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Olancha",
+          "routes": [
+            {
+              "description": "East Slope from West of Aqueduct",
+              "yds_rating": "2s3",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "name": "Muah Mountain",
+          "elevation": "11016",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Bartlett",
+          "routes": [
+            {
+              "description": "Northwest Slope from PCT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0/srS-2.1"
+            }
+          ]
+        },
+        {
+          "id": "3.4",
+          "name": "Cirque Peak",
+          "elevation": "12900",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Cirque Peak",
+          "routes": [
+            {
+              "description": "North Ridge from New Army Pass",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            },
+            {
+              "description": "North Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "South Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        },
+        {
+          "id": "3.5",
+          "name": "Mount Langley",
+          "elevation": "14026",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Langley",
+          "routes": [
+            {
+              "description": "South Slope via New Army Pass",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            },
+            {
+              "description": "South Slope via Old Army Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        },
+        {
+          "id": "3.6",
+          "name": "Mount Guyot",
+          "elevation": "12300",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "East Ridge from PCT",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1/srS-2.0"
+            }
+          ]
+        },
+        {
+          "id": "3.7",
+          "name": "Joe Devel Peak",
+          "elevation": "13327",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "Northeast Ridge from Pickering",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "3.8",
+          "name": "Mount Pickering",
+          "elevation": "13474",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "East Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Southwest Ridge from Joe Devel",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "3.9",
+          "name": "Mount Chamberlin",
+          "elevation": "13169",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "SW Slope from Perrin Creek",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "East Ridge from Mt. Newcomb",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "3.10",
+          "name": "Mount Newcomb",
+          "elevation": "13422",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "SW Slope from Perrin Creek",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "NE Ridge from Crabtree Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "3.11",
+          "name": "Mount Hitchcock",
+          "elevation": "13186",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "Southwest or West Slopes",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "Via Whitney Trail and Discovery Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "From Miter Basin via Crabtree Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Corcoran To Whitney",
+      "peaks": [
+        {
+          "id": "4.1",
+          "name": "Mount Corcoran",
+          "elevation": "13714+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Langley",
+          "routes": [
+            {
+              "description": "West Chute via North Notch",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "W. Side Traverse from LeConte",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "name": "Mount LeConte",
+          "elevation": "13930",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "Northwest Chute/Waterfall Route",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            },
+            {
+              "description": "Northeast Face to East Arete",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "name": "Mount Mallory",
+          "elevation": "13845",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "East Chute from Meysan Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Traverse via East Ridge from Irvine",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "4.4",
+          "name": "Mount Irvine",
+          "elevation": "13780+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "Traverse via East Ridge from Mallory",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "East Chute",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "From Miter Basin via Richins Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Northeast Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "4.5",
+          "name": "Mount McAdie",
+          "elevation": "13799",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "Arc Pass via E Chute of Middle Peak",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            },
+            {
+              "description": "Via Mid/North Peak Saddle & Arc Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "W Side via Chute from Crabtree Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "4.6",
+          "name": "Mount Muir",
+          "elevation": "14012",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "West Face from JMT",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "4.7",
+          "name": "Mount Whitney",
+          "elevation": "14505",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "Trail from East or West Side",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.0"
+            },
+            {
+              "description": "Mountaineering Route",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "4.8",
+          "name": "Thor Peak",
+          "elevation": "12306",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "North Face from Upper Boy Scout Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "Southwest Slope from Mirror Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "NE Slope from Lower Boy Scout Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "East Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "4.9",
+          "name": "Lone Pine Peak",
+          "elevation": "12943",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Langley",
+          "routes": [
+            {
+              "description": "Northwest Chute from Grass Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "SE Slope from Tuttle Creek TH",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Whitney To Williamson",
+      "peaks": [
+        {
+          "id": "5.1",
+          "name": "Mount Young",
+          "elevation": "13176",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "Traverse from Mount Hale",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "5.2",
+          "name": "Mount Hale",
+          "elevation": "13494",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "Traverse from Mount Young",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "5.3",
+          "name": "Mount Russell",
+          "elevation": "14088",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "East Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "S Face Chute & Chimney to E Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "East Ridge from North",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "5.4",
+          "name": "Mount Carillon",
+          "elevation": "13517",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "West Slope from Russell-Carillon Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "W Slope from North via R-C Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "5.5",
+          "name": "Tunnabora Peak",
+          "elevation": "13563",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Whitney",
+          "routes": [
+            {
+              "description": "S. Slope via Russel-Carillon Col",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "S. Slope via Wallace Creek Drainage",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "5.6",
+          "name": "Mount Barnard",
+          "elevation": "13990",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "Southwest Slope & Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "East Side from George Creek",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Traverse from Trojan Peak",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "5.7",
+          "name": "Trojan Peak",
+          "elevation": "13947",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "NW Face via Williamson-Trojan Saddle",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Traverse from Mt. Barnard",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "East Side from George Creek",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Southwest Face from Wright Creek",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "5.8",
+          "name": "Mount Tyndall",
+          "elevation": "14019",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "North Rib",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "Northwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "5.9",
+          "name": "Mount Williamson",
+          "elevation": "14370+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "West Face via Chute and Chimney",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "Southeast Ridge from George Creek",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "SW Chute & Ledges",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Kaweahs and West",
+      "peaks": [
+        {
+          "id": "6.1",
+          "name": "Alta Peak",
+          "elevation": "11204",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Lodgepole",
+          "routes": [
+            {
+              "description": "Trail",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.0/srS-2.0"
+            },
+            {
+              "description": "Northeast Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "6.2",
+          "name": "Mount Silliman",
+          "elevation": "11188",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Silliman",
+          "routes": [
+            {
+              "description": "Southwest Slope & Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "East Ridge via Silliman Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "6.3",
+          "name": "Mount Eisen",
+          "elevation": "12160+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mineral King",
+          "routes": [
+            {
+              "description": "SW Slope/Ridge from Black Rock Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "6.4",
+          "name": "Lippincott Mountain",
+          "elevation": "12262",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Triple Divide Peak",
+          "routes": [
+            {
+              "description": "SE Slope from Black Rock Pass Trail",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "6.5",
+          "name": "Eagle Scout Peak",
+          "elevation": "12000+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Triple Divide Peak",
+          "routes": [
+            {
+              "description": "East Slope to South Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "6.6",
+          "name": "Mount Stewart",
+          "elevation": "12200+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Triple Divide Peak",
+          "routes": [
+            {
+              "description": "Southeast Gully to East Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "6.7",
+          "name": "Lion Rock",
+          "elevation": "12360+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Triple Divide Peak",
+          "routes": [
+            {
+              "description": "South/SW Slope from Tamarack Lake",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "South Ridge from Nine Lake Basin",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            },
+            {
+              "description": "Northeast Chute",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "6.8",
+          "name": "Mount Kaweah",
+          "elevation": "13802",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Kaweah",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "East Ridge from Kaweah Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "6.9",
+          "name": "Red Kaweah",
+          "elevation": "13720+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Triple Divide Peak",
+          "routes": [
+            {
+              "description": "West Face",
+              "yds_rating": "2s3",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "6.10",
+          "name": "Black Kaweah",
+          "elevation": "13720*",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Triple Divide Peak",
+          "routes": [
+            {
+              "description": "West Ridge to Southwest Face",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "6.11",
+          "name": "Picket Guard Peak",
+          "elevation": "12303",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Kaweah",
+          "routes": [
+            {
+              "description": "East Ridge from Colby Pass Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "West Ridge",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "6.12",
+          "name": "Kern Point",
+          "elevation": "12730+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Kaweah",
+          "routes": [
+            {
+              "description": "Southwest Slope from Colby Pass Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Great Western Divide",
+      "peaks": [
+        {
+          "id": "7.1",
+          "name": "Triple Divide Peak",
+          "elevation": "12634",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Lodgepole",
+          "routes": [
+            {
+              "description": "S Side of E Ridge from Triple Divide Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "7.2",
+          "name": "Glacier Ridge",
+          "elevation": "12360+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Lodgepole",
+          "routes": [
+            {
+              "description": "South Side from Cloud Canyon",
+              "yds_rating": "2s4",
+              "scrambling_rating": "S-2.2/srS-4.0"
+            }
+          ]
+        },
+        {
+          "id": "7.3",
+          "name": "Whaleback",
+          "elevation": "11717",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Sphinx Lakes",
+          "routes": [
+            {
+              "description": "Jonah's Joy",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "E. Face, Left Side from Colby Pass Tr",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "SW Face via Broad Chute to S. Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "7.4",
+          "name": "Milestone Mountain",
+          "elevation": "13638",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "SW Ridge via South Face",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "7.5",
+          "name": "Midway Mountain",
+          "elevation": "13665",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "West Slope from Lake 11,523",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "N Side of East Ridge from Milestone Cr",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "7.6",
+          "name": "Table Mountain",
+          "elevation": "13622",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "Southeast Side",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "S. Side of West Ridge from SW Cirque",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "7.7",
+          "name": "Thunder Mountain",
+          "elevation": "13517+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "East Ridge",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.1/srS-4.0"
+            }
+          ]
+        },
+        {
+          "id": "7.8",
+          "name": "South Guard",
+          "elevation": "13232",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "Northwest Slope & North Ridge",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "South Slope via Longley Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "7.9",
+          "name": "Mount Brewer",
+          "elevation": "13570",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "East Ridge from East Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            },
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            },
+            {
+              "description": "Northwest Slope via Sphinx Col",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "7.10",
+          "name": "North Guard",
+          "elevation": "13327",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "Mid. Chute of S. Face to W. Ridge",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.1/srS-4.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Kings Kern Divide",
+      "peaks": [
+        {
+          "id": "8.1",
+          "name": "Mount Jordan",
+          "elevation": "13320+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "East Slope",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.2/srS-4.0"
+            }
+          ]
+        },
+        {
+          "id": "8.2",
+          "name": "Mount Geneva",
+          "elevation": "13054",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "East Ridge via Milly's Foot Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "8.3",
+          "name": "Mount Ericsson",
+          "elevation": "13583+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "West Ridge via Lucy's Foot Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Northeast Ridge from Harrison Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "8.4",
+          "name": "Mount Stanford (S)",
+          "elevation": "13973",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "South Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "North Ridge from Deerhorn Saddle",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "East Face Chute, South of East Arete",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "8.5",
+          "name": "Deerhorn Mountain",
+          "elevation": "13281",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "Northeast Buttress",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "8.6",
+          "name": "East Vidette",
+          "elevation": "12356",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "Southeast Chute",
+              "yds_rating": "2s3",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            },
+            {
+              "description": "East Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "8.7",
+          "name": "West Vidette",
+          "elevation": "12533+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "Northeast Chute via Saddle & N. Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "East Slopes and South Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "South Ridge from West Spur",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "8.8",
+          "name": "Junction Peak",
+          "elevation": "13845+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "West Face from Forester Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "South Ridge from Diamond Mesa",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "8.9",
+          "name": "Mount Keith",
+          "elevation": "13976",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "Southwest Ridge from Junction Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "Northwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "South Face from Shepherd Pass Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "8.10",
+          "name": "Mount Bradley",
+          "elevation": "13264",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "South Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "West Chutes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "North Slope from Pinyon Creek",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "8.11",
+          "name": "Center Peak",
+          "elevation": "12730+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "East Ridge",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.0/srS-4.0"
+            },
+            {
+              "description": "East Chute",
+              "yds_rating": "2s4",
+              "scrambling_rating": "S-2.0/srS-4.0"
+            }
+          ]
+        },
+        {
+          "id": "8.12",
+          "name": "Caltech Peak",
+          "elevation": "13832",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Brewer",
+          "routes": [
+            {
+              "description": "Southeast Slope from JMT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "West Face Chute",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "name": "Kearsarge Pass Vicinity",
+      "peaks": [
+        {
+          "id": "9.1",
+          "name": "University Peak",
+          "elevation": "13589",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Williamson",
+          "routes": [
+            {
+              "description": "Northwest Side",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "South Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "SW Ridge via University Pass from N.",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "9.2",
+          "name": "Independence Peak",
+          "elevation": "11742",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Kearsarge Peak",
+          "routes": [
+            {
+              "description": "South Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "West Face from Robinson Lake Trail",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "NW Face from Robinson Lake Trail",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "9.3",
+          "name": "Kearsarge Peak",
+          "elevation": "12618",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Kearsarge Peak",
+          "routes": [
+            {
+              "description": "Use Trails on Southeast Side",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            },
+            {
+              "description": "West ridge via Lilley Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "9.4",
+          "name": "Mount Gould",
+          "elevation": "13005",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "South Ridge from Kearsarge Pass",
+              "yds_rating": "1s3",
+              "scrambling_rating": "S-1.2/srS-3.0"
+            },
+            {
+              "description": "Southeast Ridge from Trail",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2/srS-3.0"
+            },
+            {
+              "description": "North Ridge from Golden Trout Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            },
+            {
+              "description": "West Ridge from Mt. Rixford",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "Traverse of Ridge from Dragon Peak",
+              "yds_rating": "3-4",
+              "scrambling_rating": "S-4.0"
+            }
+          ]
+        },
+        {
+          "id": "9.5",
+          "name": "Mount Rixford",
+          "elevation": "12887",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "East Ridge from Mt. Gould",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "West Ridge from Glen Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "9.6",
+          "name": "Mount Bago",
+          "elevation": "11870",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "East Slope from Charlotte Lake",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "9.7",
+          "name": "Mount Gardiner",
+          "elevation": "12907",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "South Slope and Ridge",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            }
+          ]
+        },
+        {
+          "id": "9.8",
+          "name": "Mount Cotter",
+          "elevation": "12713",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "South Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "Southeast Slope",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "9.9",
+          "name": "Mount Clarence King",
+          "elevation": "12907",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "S Face & Ridge from Sixty Lake Basin",
+              "yds_rating": "4s5",
+              "scrambling_rating": "S-4.1/sr5.4"
+            }
+          ]
+        },
+        {
+          "id": "9.10",
+          "name": "Dragon Peak",
+          "elevation": "12927+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Kearsarge Peak",
+          "routes": [
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.1/srS-4.0"
+            },
+            {
+              "description": "Traverse of Ridge from Mount Gould",
+              "yds_rating": "3-4",
+              "scrambling_rating": "S-4.0"
+            }
+          ]
+        },
+        {
+          "id": "9.11",
+          "name": "Black Mountain",
+          "elevation": "13291",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "North Slope from Baxter Pass Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "South Slope from Dragon Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Black-Diamond Traverse",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "9.12",
+          "name": "Diamond Peak",
+          "elevation": "13127",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mt. Clarence King",
+          "routes": [
+            {
+              "description": "Southeast Slope via Baxter Pass Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "West Slope from JMT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Black-Diamond Traverse",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Baxter Pass To Taboose Pass",
+      "peaks": [
+        {
+          "id": "10.1",
+          "name": "Mount Baxter",
+          "elevation": "13136",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Kearsarge Peak",
+          "routes": [
+            {
+              "description": "Southeast Slope from Baxter Pass Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northeast Side from Woods Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "North Chute & Ridge from Woods Lake",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "10.2",
+          "name": "Colosseum Mountain",
+          "elevation": "12451",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Aberdeen",
+          "routes": [
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "SW Ridge via Saddle w/ Cedric Wright",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        },
+        {
+          "id": "10.3",
+          "name": "Mount Perkins",
+          "elevation": "12566",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "West Slope from JMT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "South Ridge from Armstrong Col",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "North Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "10.4",
+          "name": "Mount Wynne",
+          "elevation": "13179",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "East Ridge from Pinchot Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "North Ridge from Mount Pinchot",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "10.5",
+          "name": "Mount Pinchot",
+          "elevation": "13494",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "South Ridge from Mount Wynne",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "East Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Southeast Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "NNW Slope & West Ridge",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "10.6",
+          "name": "Pyramid Peak (S)",
+          "elevation": "12779",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "West Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "10.7",
+          "name": "Arrow Peak",
+          "elevation": "12959",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "Southeast Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northeast Spur from Bench Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "10.8",
+          "name": "Striped Mountain",
+          "elevation": "13179",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "Northeast Slope from Taboose Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "10.9",
+          "name": "Goodale Mountain",
+          "elevation": "12772",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "West Slope from Taboose Pass",
+              "yds_rating": "2s3",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "10.10",
+          "name": "Cardinal Mountain",
+          "elevation": "13396",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "County Line",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "South Chute",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "East Ridge from Stecker Bench",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "name": "Western Mid-Sierra",
+      "peaks": [
+        {
+          "id": "11.1",
+          "name": "Mount Ruskin",
+          "elevation": "12920",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Pinchot",
+          "routes": [
+            {
+              "description": "Southwest Ridge from Cartridge Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "South Ridge from the West",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "South Ridge from the East",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "11.2",
+          "name": "Marion Peak",
+          "elevation": "12719",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Marion Peak",
+          "routes": [
+            {
+              "description": "NE Ridge from near Cartridge Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "From State Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "11.3",
+          "name": "State Peak",
+          "elevation": "12620",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Marion Peak",
+          "routes": [
+            {
+              "description": "Northwest Chute from State Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "11.4",
+          "name": "Goat Mountain",
+          "elevation": "12207",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "The Sphinx",
+          "routes": [
+            {
+              "description": "Northwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "South Ridge from Grouse Lake",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "11.5",
+          "name": "Kennedy Mountain",
+          "elevation": "11433",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Slide Bluffs",
+          "routes": [
+            {
+              "description": "West Ridge from Kennedy Pass",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "11.6",
+          "name": "Mount Harrington",
+          "elevation": "11009",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Cedar Grove",
+          "routes": [
+            {
+              "description": "North Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "11.7",
+          "name": "Tehipite Dome",
+          "elevation": "7708",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Tehipite Dome",
+          "routes": [
+            {
+              "description": "North Ridge",
+              "yds_rating": "2s3",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "11.8",
+          "name": "Spanish Mountain",
+          "elevation": "10051",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Rough Spur",
+          "routes": [
+            {
+              "description": "Use Trails from Geraldine Lakes",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2/srS-2.0"
+            },
+            {
+              "description": "Southeast Ridge from Geraldine Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "11.9",
+          "name": "Three Sisters",
+          "elevation": "10612",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Dogtooth",
+          "routes": [
+            {
+              "description": "Northeast Slope from Island Lake",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "East Slope from Cliff Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "name": "South Palisades",
+      "peaks": [
+        {
+          "id": "12.1",
+          "name": "Split Mountain",
+          "elevation": "14042+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "North Slope from East",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "North Slope from West",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        },
+        {
+          "id": "12.2",
+          "name": "Mount Tinemaha",
+          "elevation": "12520",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "South Slope from Red Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "12.3",
+          "name": "Mount Prater",
+          "elevation": "13471",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "South Slope from West",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "South Slope from East",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "12.4",
+          "name": "Mount Bolton Brown",
+          "elevation": "13491",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "North Slope to Northwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "12.5",
+          "name": "Birch Mountain",
+          "elevation": "13602",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "Southwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northwest Gullies",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "12.6",
+          "name": "The Thumb",
+          "elevation": "13356",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "Southeast Slope",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "12.7",
+          "name": "Disappointment Peak",
+          "elevation": "13917",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "Doug's Chute",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            }
+          ]
+        },
+        {
+          "id": "12.8",
+          "name": "Middle Palisade",
+          "elevation": "14012",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "Northeast Face",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "12.9",
+          "name": "Norman Clyde Peak",
+          "elevation": "13855",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "North-Northeast Ridge",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            }
+          ]
+        },
+        {
+          "id": "12.10",
+          "name": "Palisade Crest",
+          "elevation": "13553",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "Northwest Ridge from Scimitar Pass",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "name": "Mount Goddard Vicinity",
+      "peaks": [
+        {
+          "id": "13.1",
+          "name": "Observation Peak",
+          "elevation": "12362",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "NE Ridge from W. Branch/Cataract Cr.",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "NE Ridge from Kings Upper Basin",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "SE Slope from Dumbell Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "13.2",
+          "name": "Giraud Peak",
+          "elevation": "12608",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "SE Slope via N. Ridge of Peak 12265",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "SE Slope via W. side of Peak 12265",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "13.3",
+          "name": "Devil's Crag #1",
+          "elevation": "12400+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "Diagonal Chute",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            }
+          ]
+        },
+        {
+          "id": "13.4",
+          "name": "Wheel Mountain",
+          "elevation": "12774",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "SE Ridge from Rambaud Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "13.5",
+          "name": "Mount McDuffie",
+          "elevation": "13282",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "Southeast Ridge from Ladder Lake",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "13.6",
+          "name": "Black Giant",
+          "elevation": "13330",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "West Slope from JMT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "South Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "13.7",
+          "name": "Charybdis",
+          "elevation": "13096",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "Northeast Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "13.8",
+          "name": "Scylla",
+          "elevation": "12956",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "Northwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "SW Slope via Col from Mt. Hansen",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "13.9",
+          "name": "Mount Goddard",
+          "elevation": "13568",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "Southwest Ridge",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-2.2/srS-3.0"
+            },
+            {
+              "description": "East Slope from Wanda Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "13.10",
+          "name": "Mount Reinstein",
+          "elevation": "12586",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "South Slope from Blackcap Basin",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northeast Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "13.11",
+          "name": "Finger Peak",
+          "elevation": "12404",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Goddard",
+          "routes": [
+            {
+              "description": "Southeast Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northwest Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "13.12",
+          "name": "Tunemah Peak",
+          "elevation": "11894",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Tehipite Dome",
+          "routes": [
+            {
+              "description": "SW Slope from Blue Canyon",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "name": "North Palisades",
+      "peaks": [
+        {
+          "id": "14.1",
+          "name": "Temple Crag",
+          "elevation": "12976",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "SE Face via chute S. of Contact Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "14.2",
+          "name": "Mount Gayley",
+          "elevation": "13510",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Split Mountain",
+          "routes": [
+            {
+              "description": "SW Ridge via Glacier Notch",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "14.3",
+          "name": "Mount Sill",
+          "elevation": "14153",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "West Ridge from Southwest Slope",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Central Chute, Southwest Slope",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "East Couloir",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "W Ridge Traverse from Polemonium Pk",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "14.4",
+          "name": "North Palisade",
+          "elevation": "14242",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "LeConte Route",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            },
+            {
+              "description": "LeConte Rte via Alt Ledge & SW Face",
+              "yds_rating": "4s5",
+              "scrambling_rating": "S-4.2"
+            },
+            {
+              "description": "SW Chute to South Ridge via U-Notch",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            }
+          ]
+        },
+        {
+          "id": "14.5",
+          "name": "Thunderbolt Peak",
+          "elevation": "14003",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "Southwest Chute #1",
+              "yds_rating": "4s5",
+              "scrambling_rating": "S-4.1/sr5.9"
+            }
+          ]
+        },
+        {
+          "id": "14.6",
+          "name": "Mount Winchell",
+          "elevation": "13775",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "East Arete",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "14.7",
+          "name": "Mount Agassiz",
+          "elevation": "13893",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "West Slope from Bishop Pass Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "14.8",
+          "name": "Mount Goode",
+          "elevation": "13085",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "North Palisade",
+          "routes": [
+            {
+              "description": "Southeast Slope from Bishop Pass Tr",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Traverse from Mt. \"No Goode\"",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "14.9",
+          "name": "Cloudripper",
+          "elevation": "13525",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Thompson",
+          "routes": [
+            {
+              "description": "West Chute from Chocolate Lakes",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "NE Ridge via Vagabond Pk & Green Lk",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "14.10",
+          "name": "Mount Johnson",
+          "elevation": "12871",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Thompson",
+          "routes": [
+            {
+              "description": "Southeast Slope from Treasure Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "North ridge via Treasure Col",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "14.11",
+          "name": "Mount Gilbert",
+          "elevation": "13106",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Thompson",
+          "routes": [
+            {
+              "description": "Southeast Slope via Treasure Col",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "name": "Evolution Area",
+      "peaks": [
+        {
+          "id": "15.1",
+          "name": "Mount Thompson",
+          "elevation": "13494",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Thompson",
+          "routes": [
+            {
+              "description": "SW Face via Powell-Thompson Col",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "SW Face from South",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Thompson Ridge from Treasure Lakes",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "15.2",
+          "name": "Point Powell",
+          "elevation": "13360+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Thompson",
+          "routes": [
+            {
+              "description": "SE Chute via Powell-Thompson Col",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "SE Chute from the South",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northeast Chute",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "15.3",
+          "name": "Mount Wallace",
+          "elevation": "13377",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "Southeast Slope",
+              "yds_rating": "2s4",
+              "scrambling_rating": "S-2.2/srS-4.0"
+            },
+            {
+              "description": "Northeast Slope",
+              "yds_rating": "2s4",
+              "scrambling_rating": "S-2.2/srS-4.0"
+            },
+            {
+              "description": "North Ridge from Mt. Haeckel",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.2/srS-4.0"
+            }
+          ]
+        },
+        {
+          "id": "15.4",
+          "name": "Mount Haeckel",
+          "elevation": "13418",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "South Ridge from Northeast",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "South Ridge via Southeast Slope",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "South Ridge from Mount Wallace",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "15.5",
+          "name": "Mount Fiske",
+          "elevation": "13503",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "Southwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "15.6",
+          "name": "Mount Huxley",
+          "elevation": "13086",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "West Shoulder & NW Ridge from JMT",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "15.7",
+          "name": "Mount Darwin",
+          "elevation": "13831",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "Darwin Glacier and West Ridge",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.2/srS-4.0"
+            },
+            {
+              "description": "West Face to West Ridge",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.2/srS-4.0"
+            }
+          ]
+        },
+        {
+          "id": "15.8",
+          "name": "Mount Mendel",
+          "elevation": "13710",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "East Face",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "Southwest Face",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "15.9",
+          "name": "Mount Lamarck",
+          "elevation": "13417",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "Southeast Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "Ridge from Lamarck Col",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "15.10",
+          "name": "The Hermit",
+          "elevation": "12328",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "East Slope From Evolution Lake",
+              "yds_rating": "3s5",
+              "scrambling_rating": "S-3.2/srYDS-5.6"
+            }
+          ]
+        },
+        {
+          "id": "15.11",
+          "name": "Mount McGee",
+          "elevation": "12944",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "South Chute",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "15.12",
+          "name": "Emerald Peak",
+          "elevation": "12546",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Henry",
+          "routes": [
+            {
+              "description": "Northwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "15.13",
+          "name": "Mount Henry",
+          "elevation": "12196",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Henry",
+          "routes": [
+            {
+              "description": "John's Chute",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "West Ridge to Southwest Slope",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "name": "Humphreys Basin and West",
+      "peaks": [
+        {
+          "id": "16.1",
+          "name": "Mount Goethe",
+          "elevation": "13264",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "SW Slope from Lower Darwin Bench",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "SE Slope from Upper Darwin Bench",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "NE Ridge via Alpine Col from North",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "16.2",
+          "name": "Mount Emerson",
+          "elevation": "13204",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Darwin",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "South Ridge",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "16.3",
+          "name": "Mount Humphreys",
+          "elevation": "13986",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Tom",
+          "routes": [
+            {
+              "description": "Southwest Slope & Northwest Face",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "16.4",
+          "name": "Basin Mountain",
+          "elevation": "13181",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Tom",
+          "routes": [
+            {
+              "description": "North Slope from Horton Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "East Chute to North Ridge",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "16.5",
+          "name": "Four Gables",
+          "elevation": "12720",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Tom",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "Northwest Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "16.6",
+          "name": "Mount Tom",
+          "elevation": "13652",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Tom",
+          "routes": [
+            {
+              "description": "West Chute from Hanging Valley",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Southwest Ridge from Hanging Valley",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "North Ridge from Pine Creek Road",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "16.7",
+          "name": "Pilot Knob",
+          "elevation": "12245",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "East Ridge from Saddle",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "16.8",
+          "name": "Gemini",
+          "elevation": "12880+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "North Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "South Side of West Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "16.9",
+          "name": "Seven Gables",
+          "elevation": "13080",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "West Ridge from Sandpiper Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "West Slope from Sandpiper Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1/srS-3.0"
+            },
+            {
+              "description": "Southwest Slope and Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "16.10",
+          "name": "Mount Senger",
+          "elevation": "12286",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "Northwest Ridge from Selden Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Northeast Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "16.11",
+          "name": "Mount Hooper",
+          "elevation": "12349",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Florence Lake",
+          "routes": [
+            {
+              "description": "East Slope from Selden Pass",
+              "yds_rating": "2s4",
+              "scrambling_rating": "S-2.1/srS-4.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "name": "Bear Creek Spire Area",
+      "peaks": [
+        {
+          "id": "17.1",
+          "name": "Merriam Peak",
+          "elevation": "13103",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "SW Slope from Royce-Merriam Saddle",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northeast Chute",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            }
+          ]
+        },
+        {
+          "id": "17.2",
+          "name": "Royce Peak",
+          "elevation": "13280+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "SE Ridge from Royce-Merriam Saddle",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "SW Ridge from Merriam Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "17.3",
+          "name": "Mount Julius Caesar",
+          "elevation": "13200+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "South Slope from Lake Italy Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        },
+        {
+          "id": "17.4",
+          "name": "Mount Hilgard",
+          "elevation": "13361",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "SE Face from Lake Italy Outlet",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "17.5",
+          "name": "Recess Peak",
+          "elevation": "12813",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Abbot",
+          "routes": [
+            {
+              "description": "SW Arete, Southwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "17.6",
+          "name": "Mount Gabb",
+          "elevation": "13680+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Abbot",
+          "routes": [
+            {
+              "description": "South Slope and Southwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "17.7",
+          "name": "Bear Creek Spire",
+          "elevation": "13720+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Hilgard",
+          "routes": [
+            {
+              "description": "Ulrichs Route",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            },
+            {
+              "description": "Northeast Buttress",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            }
+          ]
+        },
+        {
+          "id": "17.8",
+          "name": "Mount Dade",
+          "elevation": "13600+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Abbot",
+          "routes": [
+            {
+              "description": "Hourglass Route from Treasure Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Traverse E Ridge from North Col",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "Traverse from NE Side of Pip-Squeak",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "17.9",
+          "name": "Mount Abbot",
+          "elevation": "13704",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Abbot",
+          "routes": [
+            {
+              "description": "North Couloir",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "Northeast Buttress",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            },
+            {
+              "description": "Southwest Chute from Gabbot Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "17.10",
+          "name": "Mount Mills",
+          "elevation": "13451",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Abbot",
+          "routes": [
+            {
+              "description": "East Couloir",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "17.11",
+          "name": "Mount Morgan (S)",
+          "elevation": "13748",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Morgan",
+          "routes": [
+            {
+              "description": "NW Ridge from Francis Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "West Slope from Little Lakes Valley",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Southwest Ridge from Morgan Pass",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "name": "Mono Creek to Mammoth",
+      "peaks": [
+        {
+          "id": "18.1",
+          "name": "Silver Peak",
+          "elevation": "11878",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Sharktooth Peak",
+          "routes": [
+            {
+              "description": "SE Ridge from Devil's Bathtub Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "West Slope from Rainbow Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "NE Ridge from Duck Lake Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "18.2",
+          "name": "Mount Izaak Walton",
+          "elevation": "12077",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Graveyard Peak",
+          "routes": [
+            {
+              "description": "East Face and Southeast Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "Southwest slope from JMT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "NE Ridge from McGee Pass Trail",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "18.3",
+          "name": "Red and White Mountain",
+          "elevation": "12816",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Abbot",
+          "routes": [
+            {
+              "description": "SW Chute from Little Grinnell Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Southeast Face",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "Northeast Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "18.4",
+          "name": "Red Slate Peak",
+          "elevation": "13123+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Convict Lake",
+          "routes": [
+            {
+              "description": "South Slope from McGee Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "NW Ridge & Slope via Gemini Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "18.5",
+          "name": "Mount Stanford (N)",
+          "elevation": "12838",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Abbot",
+          "routes": [
+            {
+              "description": "East Slope from Upper Hilton Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Southwest Slope from Pioneer Basin",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Traverse from Mt. Morgan (N)",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "18.6",
+          "name": "Mount Morgan (N)",
+          "elevation": "13002",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Convict Lake",
+          "routes": [
+            {
+              "description": "SE Slope from Davis Lake & Trail",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Traverse from Mt. Stanford (N)",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "Nevahbe Ridge",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "18.7",
+          "name": "Mount Baldwin",
+          "elevation": "12615",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Convict Lake",
+          "routes": [
+            {
+              "description": "Northwest Slope from Bright Dot Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "E Face & S Ridge from McGee Pass Tr",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "18.8",
+          "name": "Mount Morrison",
+          "elevation": "12277",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Convict Lake",
+          "routes": [
+            {
+              "description": "East Slope from Hanging Valley",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Northeast Ridge from Convict Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "East Slope from Morrison Col",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "18.9",
+          "name": "Bloody Mountain",
+          "elevation": "12552",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Bloody Mountain",
+          "routes": [
+            {
+              "description": "Northeast Ridge from East Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "NE Ridge via Saddle w/ Laurel Mtn.",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "name": "Ritter Range and Vicinity",
+      "peaks": [
+        {
+          "id": "19.1",
+          "name": "Iron Mountain",
+          "elevation": "11148",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Cattle Mountain",
+          "routes": [
+            {
+              "description": "S. Slope from South of Iron Lake",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "Southeast Ridge from Fern Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "19.2",
+          "name": "Clyde Minaret",
+          "elevation": "12264",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Ritter",
+          "routes": [
+            {
+              "description": "Northeast Face \"Rock\" Route",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "19.3",
+          "name": "Mount Ritter",
+          "elevation": "13143",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Ritter",
+          "routes": [
+            {
+              "description": "Southeast Glacier",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "North Face via Ritter-Banner Saddle",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "West Slope from Ritter Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "19.4",
+          "name": "Banner Peak",
+          "elevation": "12936",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Ritter",
+          "routes": [
+            {
+              "description": "SW Slope via Saddle from East Side",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "SW Slope via Saddle from North",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "19.5",
+          "name": "Mount Davis",
+          "elevation": "12303",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Ritter",
+          "routes": [
+            {
+              "description": "Southeast Slope from Lake Catherine",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "19.6",
+          "name": "Rodgers Peak",
+          "elevation": "12978",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Lyell",
+          "routes": [
+            {
+              "description": "North Face from Marie Lakes",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "19.7",
+          "name": "Electra Peak",
+          "elevation": "12442",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Lyell",
+          "routes": [
+            {
+              "description": "North Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "19.8",
+          "name": "Foerster Peak",
+          "elevation": "12057",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Lyell",
+          "routes": [
+            {
+              "description": "East Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Southwest Chute",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "19.9",
+          "name": "San Joaquin Mountain",
+          "elevation": "11598",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mammoth Mountain",
+          "routes": [
+            {
+              "description": "South Ridge from Minaret Overlook",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            },
+            {
+              "description": "Northwest Ridge and Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "name": "Clark Range and Vicinity",
+      "peaks": [
+        {
+          "id": "20.1",
+          "name": "Merced Peak",
+          "elevation": "11726",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Merced Peak",
+          "routes": [
+            {
+              "description": "Northeast Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "West Arete from Lower Ottoway Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            }
+          ]
+        },
+        {
+          "id": "20.2",
+          "name": "Red Peak",
+          "elevation": "11699",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Merced Peak",
+          "routes": [
+            {
+              "description": "South Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "West Slope",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "20.3",
+          "name": "Gray Peak",
+          "elevation": "11573",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Merced Peak",
+          "routes": [
+            {
+              "description": "West Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "North Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "SW Slope to South Side of W. Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "20.4",
+          "name": "Mount Clark",
+          "elevation": "11522",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Merced Peak",
+          "routes": [
+            {
+              "description": "Southeast Arete",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            },
+            {
+              "description": "Northwest Arete",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "20.5",
+          "name": "Mount Starr King",
+          "elevation": "9092",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Half Dome",
+          "routes": [
+            {
+              "description": "Southeast Saddle",
+              "yds_rating": "5.0",
+              "scrambling_rating": "n.a."
+            },
+            {
+              "description": "Northeast Side",
+              "yds_rating": "5.2",
+              "scrambling_rating": "n.a."
+            }
+          ]
+        },
+        {
+          "id": "20.6",
+          "name": "Half Dome",
+          "elevation": "8840+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Half Dome",
+          "routes": [
+            {
+              "description": "Cables",
+              "yds_rating": "2",
+              "scrambling_rating": "S-1.0/srS-3.0"
+            }
+          ]
+        },
+        {
+          "id": "20.7",
+          "name": "Clouds Rest",
+          "elevation": "9926",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Half Dome",
+          "routes": [
+            {
+              "description": "Trail from Tenaya Lake",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.0/srS-1.1"
+            },
+            {
+              "description": "Trail from Happy Isles",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.0/srS-1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "name": "Mount Lyell and North",
+      "peaks": [
+        {
+          "id": "21.1",
+          "name": "Cathedral Peak",
+          "elevation": "10911",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Tenaya Lake",
+          "routes": [
+            {
+              "description": "West Face via North Slope from JMT",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.0/srS-4.0"
+            },
+            {
+              "description": "West Face via SE Slope from Budd Cr",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.0/srS-4.0"
+            }
+          ]
+        },
+        {
+          "id": "21.2",
+          "name": "Vogelsang Peak",
+          "elevation": "11493",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Vogelsang Peak",
+          "routes": [
+            {
+              "description": "Northeast Slope from Vogelsang Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "NW Ridge from Vogelsang Lk Outlet",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "21.3",
+          "name": "Mount Florence",
+          "elevation": "12561",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Lyell",
+          "routes": [
+            {
+              "description": "West Ridge from Florence Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "21.4",
+          "name": "Mount Maclure",
+          "elevation": "12880+",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Lyell",
+          "routes": [
+            {
+              "description": "Southeast Ridge via Lyell Glacier",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "21.5",
+          "name": "Mount Lyell",
+          "elevation": "13114",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Lyell",
+          "routes": [
+            {
+              "description": "Northwest Ridge via Lyell Glacier",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "East Arete via Lyell Glacier",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "Lyell-Maclure Col from SW Slope",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            }
+          ]
+        },
+        {
+          "id": "21.6",
+          "name": "Koip Peak",
+          "elevation": "12962",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Koip Peak",
+          "routes": [
+            {
+              "description": "East Slope from Koip Peak Pass Trail",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "21.7",
+          "name": "Mount Gibbs",
+          "elevation": "12773",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Dana",
+          "routes": [
+            {
+              "description": "South Slope from Mono Pass Trail",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            },
+            {
+              "description": "Traverse from Mount Dana",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "West Slope from Mono Pass Trail",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "21.8",
+          "name": "Mount Dana",
+          "elevation": "13057",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Dana",
+          "routes": [
+            {
+              "description": "Use Trail from Tioga Pass",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            },
+            {
+              "description": "Traverse from Mount Gibbs",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "Northeast Face to Northwest Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "name": "Tioga Pass to Bond Pass",
+      "peaks": [
+        {
+          "id": "22.1",
+          "name": "Mount Warren",
+          "elevation": "12327",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Mount Dana",
+          "routes": [
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "Northeast Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "22.2",
+          "name": "Mount Conness",
+          "elevation": "12590",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Tioga Pass",
+          "routes": [
+            {
+              "description": "SE Slope from Young Lakes & S. Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "E. Slope from Saddlebag L. & S. Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "West Face",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            }
+          ]
+        },
+        {
+          "id": "22.3",
+          "name": "North Peak",
+          "elevation": "12242",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Tioga Pass",
+          "routes": [
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "East Ridge via Chockstones",
+              "yds_rating": "3s4",
+              "scrambling_rating": "S-3.1/srS-4.1"
+            }
+          ]
+        },
+        {
+          "id": "22.4",
+          "name": "Excelsior Mountain",
+          "elevation": "12446",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Dunderberg Peak",
+          "routes": [
+            {
+              "description": "Use Trails and North Ridge",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "22.5",
+          "name": "Dunderberg Peak",
+          "elevation": "12374",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Dunderberg Peak",
+          "routes": [
+            {
+              "description": "Southeast Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "SSW \"Indie Rock\" Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "22.6",
+          "name": "Virginia Peak",
+          "elevation": "12001",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Dunderberg Peak",
+          "routes": [
+            {
+              "description": "North Ridge from Twin Peaks Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "South Ridge from Stanton Pass",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.2"
+            },
+            {
+              "description": "West Face from Spiller Canyon",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "East Face from Return Lake",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "22.7",
+          "name": "Twin Peaks",
+          "elevation": "12323",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Dunderberg Peak",
+          "routes": [
+            {
+              "description": "South Ridge from Twin Peaks Pass",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "Southeast Gully",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "South-Central Chute",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "22.8",
+          "name": "Whorl Mountain",
+          "elevation": "12033",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Dunderberg Peak",
+          "routes": [
+            {
+              "description": "Southeast Chute",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            }
+          ]
+        },
+        {
+          "id": "22.9",
+          "name": "Matterhorn Peak",
+          "elevation": "12279",
+          "status": "active",
+          "flags": {
+            "emblem_peak": true,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Matterhorn Peak",
+          "routes": [
+            {
+              "description": "East Couloir",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.2"
+            },
+            {
+              "description": "Southwest Side",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Southeast Side from Horse Creek Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Northwest Slope",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.1"
+            },
+            {
+              "description": "West Ridge from Burro Pass",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.1"
+            }
+          ]
+        },
+        {
+          "id": "22.10",
+          "name": "Pettit Peak",
+          "elevation": "10788",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Falls Ridge",
+          "routes": [
+            {
+              "description": "Northwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Traverse from Volunteer Peak",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "22.11",
+          "name": "Volunteer Peak",
+          "elevation": "10481",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Matterhorn Peak",
+          "routes": [
+            {
+              "description": "Southwest Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Traverse from Pettit Peak",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            }
+          ]
+        },
+        {
+          "id": "22.12",
+          "name": "Piute Mountain",
+          "elevation": "10541",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Piute Mountain",
+          "routes": [
+            {
+              "description": "Northeast Ridge from Seavy Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.2"
+            },
+            {
+              "description": "Southeast Slope & Ridge from PCT",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "22.13",
+          "name": "Tower Peak",
+          "elevation": "11755",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": true,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Pickel Meadow",
+          "routes": [
+            {
+              "description": "North Ridge to Northwest Chute",
+              "yds_rating": "2-3",
+              "scrambling_rating": "S-2.2/S-3.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "name": "Bond Pass To Lake Tahoe",
+      "peaks": [
+        {
+          "id": "23.1",
+          "name": "Black Hawk Mountain",
+          "elevation": "10348",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Emigrant Lake",
+          "routes": [
+            {
+              "description": "Northeast Slope from Mosquito Pass",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "23.2",
+          "name": "Leavitt Peak",
+          "elevation": "11569",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": true,
+            "tahoe_ogul_list": false
+          },
+          "map": "Sonora Pass",
+          "routes": [
+            {
+              "description": "East Slope from PCT",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "23.3",
+          "name": "Stanislaus Peak",
+          "elevation": "11233",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Disaster Peak",
+          "routes": [
+            {
+              "description": "South Slope from St. Mary's Pass",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2/srS-2.0"
+            }
+          ]
+        },
+        {
+          "id": "23.4",
+          "name": "Disaster Peak",
+          "elevation": "10047",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": false
+          },
+          "map": "Disaster Peak",
+          "routes": [
+            {
+              "description": "West Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-1.2/srS-2.1"
+            },
+            {
+              "description": "North Slope from Paradise Valley Trail",
+              "yds_rating": "1s2",
+              "scrambling_rating": "S-1.2/srS-2.1"
+            }
+          ]
+        },
+        {
+          "id": "23.5",
+          "name": "Highland Peak",
+          "elevation": "10935",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Ebbetts Pass",
+          "routes": [
+            {
+              "description": "Southwest Slope from PCT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "23.6",
+          "name": "Mokelumne Peak",
+          "elevation": "9334",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Mokelumne Peak",
+          "routes": [
+            {
+              "description": "Trail and Northwest Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        },
+        {
+          "id": "23.7",
+          "name": "Round Top",
+          "elevation": "10381",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Carson Pass",
+          "routes": [
+            {
+              "description": "West Ridge",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "23.8",
+          "name": "Freel Peak",
+          "elevation": "10881",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Freel Peak",
+          "routes": [
+            {
+              "description": "Trail Up N. Slope from Tahoe Rim Tr.",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            },
+            {
+              "description": "South Slope from Horse Meadows",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "23.9",
+          "name": "Pyramid Peak",
+          "elevation": "9983",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Pyramid Peak",
+          "routes": [
+            {
+              "description": "Use Trail and South Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "23.10",
+          "name": "Dicks Peak",
+          "elevation": "9974",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Rockbound Valley",
+          "routes": [
+            {
+              "description": "East Slope from PCT",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            },
+            {
+              "description": "Traverse from Jacks Peak",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            }
+          ]
+        },
+        {
+          "id": "23.11",
+          "name": "Mount Tallac",
+          "elevation": "9735",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Emerald Bay",
+          "routes": [
+            {
+              "description": "Trail from Fallen Leaf Lake",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "name": "Northern Sierra",
+      "peaks": [
+        {
+          "id": "24.1",
+          "name": "Granite Chief",
+          "elevation": "9006",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Granite Chief",
+          "routes": [
+            {
+              "description": "Trails",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            },
+            {
+              "description": "Northeast Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "24.2",
+          "name": "Tinker Knob",
+          "elevation": "8949",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Granite Chief",
+          "routes": [
+            {
+              "description": "PCT and Use Trail",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1"
+            }
+          ]
+        },
+        {
+          "id": "24.3",
+          "name": "Castle Peak",
+          "elevation": "9103",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Norden",
+          "routes": [
+            {
+              "description": "West Ridge to East Face",
+              "yds_rating": "3",
+              "scrambling_rating": "S-3.0"
+            },
+            {
+              "description": "West Ridge to West Face",
+              "yds_rating": "4",
+              "scrambling_rating": "S-4.0"
+            }
+          ]
+        },
+        {
+          "id": "24.4",
+          "name": "Mount Rose",
+          "elevation": "10776",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Mount Rose (Nev)",
+          "routes": [
+            {
+              "description": "Trail",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.0"
+            }
+          ]
+        },
+        {
+          "id": "24.5",
+          "name": "Mount Lola",
+          "elevation": "9148",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Independence Lake",
+          "routes": [
+            {
+              "description": "Trail and Northeast Slope",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.2"
+            }
+          ]
+        },
+        {
+          "id": "24.6",
+          "name": "English Mountain",
+          "elevation": "8373",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "English Mountain",
+          "routes": [
+            {
+              "description": "Northwest Slope from Catfish Lake",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.1"
+            }
+          ]
+        },
+        {
+          "id": "24.7",
+          "name": "Sierra Buttes",
+          "elevation": "8591",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Sierra City",
+          "routes": [
+            {
+              "description": "Road and Trails from South",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.0"
+            },
+            {
+              "description": "Trails from North via Packer Saddle",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.0"
+            }
+          ]
+        },
+        {
+          "id": "24.8",
+          "name": "Mount Elwell",
+          "elevation": "7818",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Gold Lake",
+          "routes": [
+            {
+              "description": "Trails from Gray Eagle or Elwell Lodges",
+              "yds_rating": "1",
+              "scrambling_rating": "S-1.1/srS-2.0"
+            }
+          ]
+        },
+        {
+          "id": "24.9",
+          "name": "Adams Peak",
+          "elevation": "8197",
+          "status": "active",
+          "flags": {
+            "emblem_peak": false,
+            "mountaineering_peak": false,
+            "vagmarten_list": false,
+            "tahoe_ogul_list": true
+          },
+          "map": "Constantia",
+          "routes": [
+            {
+              "description": "West Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "West Slope to North Ridge",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            },
+            {
+              "description": "East Slope",
+              "yds_rating": "2",
+              "scrambling_rating": "S-2.0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

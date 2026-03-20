@@ -138,9 +138,83 @@ async function generatePNG(size) {
   ])
 }
 
-for (const size of [192, 512]) {
+for (const size of [180, 192, 512]) {
   const buf = await generatePNG(size)
   const outPath = join(outDir, `icon-${size}.png`)
   writeFileSync(outPath, buf)
   console.log(`✓ Generated ${outPath} (${buf.length} bytes)`)
 }
+
+// OG preview image: 1200×630 for iMessage / social link cards
+async function generateOGPreview() {
+  const W = 1200, H = 630
+  const pixels = Buffer.alloc(W * H * 4)
+
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      const idx = (y * W + x) * 4
+      // Background gradient: #0f172a → #1e293b
+      const t = x / W
+      const r = Math.round(0x0f + t * (0x1e - 0x0f))
+      const g = Math.round(0x17 + t * (0x29 - 0x17))
+      const b = Math.round(0x2a + t * (0x3b - 0x2a))
+      pixels[idx] = r; pixels[idx+1] = g; pixels[idx+2] = b; pixels[idx+3] = 255
+    }
+  }
+
+  // Draw the app icon centered-left (at 315,315, radius ~160)
+  const iconX = 315, iconY = 315, iconR = 155
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W / 2; x++) {
+      const idx = (y * W + x) * 4
+      const dx = x - iconX, dy = y - iconY
+      const dist = Math.sqrt(dx*dx + dy*dy)
+      if (dist > iconR) continue
+
+      const innerR = iconR * 0.36
+      const outerR = iconR * 0.43
+      const inRing = dist >= innerR && dist <= outerR
+
+      if (inRing) {
+        const angle = Math.atan2(dy, dx) * 180 / Math.PI + 90
+        const norm = ((angle % 360) + 360) % 360
+        if (norm < 270) {
+          pixels[idx] = 0x60; pixels[idx+1] = 0xa5; pixels[idx+2] = 0xfa
+        } else {
+          pixels[idx] = 0x33; pixels[idx+1] = 0x41; pixels[idx+2] = 0x55
+        }
+      } else if (dist < innerR) {
+        const boltW = iconR * 0.08, boltH = iconR * 0.28
+        if (dy < 0 && dy > -boltH && Math.abs(dx - (-dy * 0.15)) < boltW * 0.8) {
+          pixels[idx] = 0xe2; pixels[idx+1] = 0xe8; pixels[idx+2] = 0xf0
+        } else if (dy >= 0 && dy < boltH && Math.abs(dx - (dy * 0.15)) < boltW * 0.8) {
+          pixels[idx] = 0xe2; pixels[idx+1] = 0xe8; pixels[idx+2] = 0xf0
+        }
+      }
+    }
+  }
+
+  const scanlines = []
+  for (let y = 0; y < H; y++) {
+    scanlines.push(Buffer.from([0]))
+    scanlines.push(pixels.subarray(y * W * 4, (y+1) * W * 4))
+  }
+  const rawData = Buffer.concat(scanlines)
+  const compressed = await new Promise((resolve, reject) => {
+    const chunks = []
+    const deflate = createDeflateRaw({ level: 6 })
+    deflate.on('data', c => chunks.push(c))
+    deflate.on('end', () => resolve(Buffer.concat(chunks)))
+    deflate.on('error', reject)
+    deflate.end(rawData)
+  })
+
+  const sig = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])
+  const ihdr = Buffer.concat([uint32BE(W), uint32BE(H), Buffer.from([8, 6, 0, 0, 0])])
+  return Buffer.concat([sig, chunk('IHDR', ihdr), chunk('IDAT', compressed), chunk('IEND', Buffer.alloc(0))])
+}
+
+const ogBuf = await generateOGPreview()
+const ogPath = join(outDir, 'og-preview.png')
+writeFileSync(ogPath, ogBuf)
+console.log(`✓ Generated ${ogPath} (${ogBuf.length} bytes)`)

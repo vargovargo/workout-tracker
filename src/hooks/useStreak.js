@@ -1,5 +1,5 @@
 import { useMemo, useEffect } from 'react'
-import { WORKOUT_CONFIG } from '../config.js'
+import { FITNESS_CONFIG } from '../config.js'
 import { getWeekKey, prevWeekKey, toDateString } from '../utils/weekUtils.js'
 import { isWeekComplete } from '../utils/progressUtils.js'
 
@@ -72,7 +72,7 @@ export function useStreak(sessions, user, settings) {
     const daysElapsed = dayOfWeek + 1 // 1..7
     const weekFraction = daysElapsed / 7
 
-    return Object.entries(WORKOUT_CONFIG).every(([key, cfg]) => {
+    return Object.entries(FITNESS_CONFIG).every(([key, cfg]) => {
       const done = weekSessions.filter((s) => s.category === key).length
       const expectedSoFar = Math.floor(cfg.weeklyTarget * weekFraction)
       return done >= expectedSoFar - 1
