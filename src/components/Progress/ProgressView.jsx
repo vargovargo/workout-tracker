@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { useApp } from '../../App.jsx'
 import { FITNESS_CONFIG, SECONDARY_ATTRIBUTES, sumSecondaryScores } from '../../config.js'
 import { getCategoryProgress } from '../../utils/progressUtils.js'
-import { getWeekKey, weekKeyToMonday } from '../../utils/weekUtils.js'
+import { getWeekKey } from '../../utils/weekUtils.js'
 import RadarChart from './RadarChart.jsx'
 import ACWRGauge from './ACWRGauge.jsx'
 import CalendarHeatmap from './CalendarHeatmap.jsx'
@@ -33,6 +33,15 @@ function lastNWeekKeys(n) {
   return keys
 }
 
+// Filter sessions within a rolling N-day window
+function sessionsInLastNDays(sessions, n) {
+  const cutoff = Date.now() - n * 24 * 60 * 60 * 1000
+  return sessions.filter((s) => {
+    const t = new Date(s.occurredAt || s.loggedAt).getTime()
+    return t >= cutoff
+  })
+}
+
 // Compute primary category normalised scores for radar (indexed to personal max)
 function buildPrimaryDatasets(sessions, settings, weekKeys) {
   const categories = Object.keys(FITNESS_CONFIG)
@@ -48,13 +57,12 @@ function buildPrimaryDatasets(sessions, settings, weekKeys) {
     })
   }
 
-  const currentWk = getWeekKey(new Date())
-  const currentVals = categories.map((cat) => {
-    const { value } = getCategoryProgress(sessions.filter((s) => s.weekKey === currentWk), cat, settings)
-    return value
-  })
+  const sessions7 = sessionsInLastNDays(sessions, 7)
+  const sessions28 = sessionsInLastNDays(sessions, 28)
 
-  const recent4 = weekValues(weekKeys.slice(0, 4))
+  const vals7 = categories.map((cat) => getCategoryProgress(sessions7, cat, settings).value)
+  const vals28 = categories.map((cat) => getCategoryProgress(sessions28, cat, settings).value / 4)
+
   const allAvg = weekValues(weekKeys)
 
   // Normalise each axis to its goal target so all spokes are on the same scale:
@@ -77,15 +85,15 @@ function buildPrimaryDatasets(sessions, settings, weekKeys) {
         dashed: true,
       },
       {
-        label: '4-week avg',
-        values: norm(recent4),
+        label: '28-day avg',
+        values: norm(vals28),
         color: '#60a5fa',
         opacity: 0.15,
         dashed: false,
       },
       {
-        label: 'This week',
-        values: norm(currentVals),
+        label: '7-day',
+        values: norm(vals7),
         color: '#34d399',
         opacity: 0.25,
         dashed: false,
@@ -108,15 +116,18 @@ function buildSecondaryDatasets(sessions, weekKeys) {
     return total.map((v) => v / keys.length)
   }
 
-  const currentWk = getWeekKey(new Date())
-  const currentSessions = sessions.filter((s) => s.weekKey === currentWk)
-  const currentScores = sumSecondaryScores(currentSessions)
-  const currentVals = attrs.map((a) => currentScores[a])
+  const sessions7 = sessionsInLastNDays(sessions, 7)
+  const sessions28 = sessionsInLastNDays(sessions, 28)
 
-  const recent4Vals = weekSecondaryAvg(weekKeys.slice(0, 4))
+  const scores7 = sumSecondaryScores(sessions7)
+  const vals7 = attrs.map((a) => scores7[a])
+
+  const scores28 = sumSecondaryScores(sessions28)
+  const vals28 = attrs.map((a) => scores28[a] / 4)
+
   const allAvgVals = weekSecondaryAvg(weekKeys)
 
-  const maxVal = Math.max(...currentVals, ...recent4Vals, ...allAvgVals, 1)
+  const maxVal = Math.max(...vals7, ...vals28, ...allAvgVals, 1)
 
   return {
     axes: attrs.map((attr) => ({
@@ -133,15 +144,15 @@ function buildSecondaryDatasets(sessions, weekKeys) {
         dashed: true,
       },
       {
-        label: '4-week avg',
-        values: recent4Vals.map((v) => v / maxVal),
+        label: '28-day avg',
+        values: vals28.map((v) => v / maxVal),
         color: '#f59e0b',
         opacity: 0.15,
         dashed: false,
       },
       {
-        label: 'This week',
-        values: currentVals.map((v) => v / maxVal),
+        label: '7-day',
+        values: vals7.map((v) => v / maxVal),
         color: '#818cf8',
         opacity: 0.25,
         dashed: false,
@@ -290,8 +301,8 @@ export default function ProgressView() {
       {/* Radar legend */}
       <div className="flex gap-4 px-4 mb-4 justify-center">
         {[
-          { color: '#34d399', label: 'This week' },
-          { color: '#60a5fa', label: '4-week avg' },
+          { color: '#34d399', label: '7-day' },
+          { color: '#60a5fa', label: '28-day avg' },
           { color: '#94a3b8', label: 'All-time avg', dashed: true },
         ].map(({ color, label, dashed }) => (
           <div key={label} className="flex items-center gap-1.5">
