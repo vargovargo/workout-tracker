@@ -1,10 +1,10 @@
 import React from 'react'
 
 const TABS = [
-  { id: 'dashboard', label: 'This Week', icon: DashboardIcon },
-  { id: 'progress',  label: 'Progress',  icon: ProgressIcon },
-  { id: 'log',       label: 'Log',       icon: PlusIcon },
-  { id: 'history',   label: 'History',   icon: HistoryIcon },
+  { id: 'dashboard',  label: 'This Week',  icon: DashboardIcon },
+  { id: 'progress',   label: 'Progress',   icon: ProgressIcon },
+  { id: 'activities', label: 'Activities', icon: ActivitiesIcon },
+  { id: 'history',    label: 'History',    icon: HistoryIcon },
 ]
 
 function DashboardIcon({ active }) {
@@ -33,6 +33,17 @@ function HistoryIcon({ active }) {
     <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
       <circle cx="12" cy="12" r="9" />
       <polyline points="12 7 12 12 15 15" />
+    </svg>
+  )
+}
+
+function ActivitiesIcon({ active }) {
+  return (
+    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={active ? 2.5 : 2}>
+      <line x1="5" y1="18" x2="5" y2="12" />
+      <line x1="10" y1="18" x2="10" y2="8" />
+      <line x1="15" y1="18" x2="15" y2="5" />
+      <line x1="20" y1="18" x2="20" y2="10" />
     </svg>
   )
 }
