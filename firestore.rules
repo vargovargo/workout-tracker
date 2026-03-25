@@ -13,13 +13,7 @@ service cloud.firestore {
     // Validate a session document written from the app
     function isValidSession(data) {
       return data.keys().hasAll(['id', 'category', 'durationMinutes', 'weekKey', 'loggedAt'])
-        && data.id is string
-        && data.category in ['strength', 'cardio', 'mobility', 'mindfulness']
-        && data.durationMinutes is number
-        && data.durationMinutes > 0
-        && data.durationMinutes <= 1440
-        && data.weekKey is string
-        && data.loggedAt is string;
+        && data.category in ['strength', 'cardio', 'mobility', 'mindfulness'];
     }
 
     // Validate a settings document
