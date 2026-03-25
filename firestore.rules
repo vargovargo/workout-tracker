@@ -1,0 +1,57 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Known family users — no Firebase Auth in this app, so we restrict by userId string.
+    // This prevents random internet users from reading/writing arbitrary paths while
+    // keeping the app functional for the four known users.
+    function isKnownUser(userId) {
+      return userId in ['Benton', 'Leo', 'Lauren', 'Jason'];
+    }
+
+    // Validate a session document written from the app
+    function isValidSession(data) {
+      return data.keys().hasAll(['id', 'category', 'durationMinutes', 'weekKey', 'loggedAt'])
+        && data.id is string
+        && data.category in ['strength', 'cardio', 'mobility', 'mindfulness']
+        && data.durationMinutes is number
+        && data.durationMinutes > 0
+        && data.durationMinutes <= 1440
+        && data.weekKey is string
+        && data.loggedAt is string;
+    }
+
+    // Validate a settings document
+    function isValidSettings(data) {
+      return data.keys().hasAny(['strength', 'cardio', 'mobility', 'mindfulness']);
+    }
+
+    match /users/{userId} {
+      // Only known users' subtrees are accessible
+      allow read, write: if false;
+
+      match /sessions/{sessionId} {
+        allow read: if isKnownUser(userId);
+        allow create: if isKnownUser(userId) && isValidSession(request.resource.data);
+        allow update: if isKnownUser(userId) && isValidSession(request.resource.data);
+        allow delete: if isKnownUser(userId);
+      }
+
+      match /meta/settings {
+        allow read: if isKnownUser(userId);
+        allow write: if isKnownUser(userId) && isValidSettings(request.resource.data);
+      }
+
+      // Block any other subcollections
+      match /{document=**} {
+        allow read, write: if false;
+      }
+    }
+
+    // Block everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
