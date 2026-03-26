@@ -112,6 +112,7 @@ Scale: 0 = none, 1 = minor, 2 = moderate, 3 = primary contribution
 |----------|----------|-------------|-------------|-----------|-------------|
 | run (easy/moderate) | cardio | 3 | 1 | 0 | 0 |
 | run (intervals/fast) | cardio | 1 | 3 | 0 | 0 |
+| trail run | cardio | 3 | 2 | 2 | 0 |
 | bike (steady) | cardio | 3 | 1 | 0 | 0 |
 | row | cardio | 3 | 2 | 1 | 0 |
 | swimming | cardio | 3 | 2 | 1 | 1 |
