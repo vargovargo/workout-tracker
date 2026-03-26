@@ -7,7 +7,7 @@ import SessionCard from './SessionCard.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
 
 export default function HistoryView() {
-  const { getSessionsForWeek, deleteSession, updateSession, sessions: allSessions, currentUser, setTab } = useApp()
+  const { getSessionsForWeek, deleteSession, updateSession, sessions: allSessions, currentUser, setTab, report, openAdvisor } = useApp()
   const [weekKey, setWeekKey] = useState(getWeekKey())
   const [editingSession, setEditingSession] = useState(null)
 
@@ -62,6 +62,15 @@ export default function HistoryView() {
       <div className="px-4 pt-5 pb-3 flex items-center justify-between">
         <h2 className="text-xl font-bold text-white">History</h2>
         <div className="flex items-center gap-2">
+          {report && (
+            <button
+              onClick={openAdvisor}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 active:opacity-70"
+            >
+              <span className="text-sm">🤖</span>
+              <span className="text-xs font-medium text-slate-300">AI Rec</span>
+            </button>
+          )}
           <button
             onClick={() => setTab('log')}
             className="flex items-center gap-1.5 bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full active:opacity-80 transition-opacity"

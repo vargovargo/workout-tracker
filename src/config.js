@@ -49,6 +49,7 @@ export const ACTIVITY_SECONDARY_SCORES = {
     soccer:         { aerobicBase: 2, peakOutput: 2, structural: 1, restoration: 0 },
     frisbee:        { aerobicBase: 1, peakOutput: 1, structural: 2, restoration: 0 },
     surfing:        { aerobicBase: 1, peakOutput: 2, structural: 3, restoration: 1 },
+    hike:           { aerobicBase: 3, peakOutput: 1, structural: 3, restoration: 1 },
     'Orange Theory': { aerobicBase: 1, peakOutput: 3, structural: 0, restoration: 0 },
   },
   mobility: {
@@ -103,8 +104,8 @@ export const FITNESS_CONFIG = {
     label: 'Cardio',
     icon: '🏃',
     weeklyTarget: 3,
-    subtypes: ['run', 'bike', 'row', 'swimming', 'basketball', 'soccer', 'frisbee', 'surfing', 'Orange Theory'],
-    subtypeIcons: { run: '🏃', bike: '🚴', row: '🚣', swimming: '🏊', basketball: '🏀', soccer: '⚽', frisbee: '🥏', surfing: '🏄', 'Orange Theory': '🔶' },
+    subtypes: ['run', 'bike', 'row', 'swimming', 'basketball', 'soccer', 'frisbee', 'surfing', 'hike', 'Orange Theory'],
+    subtypeIcons: { run: '🏃', bike: '🚴', row: '🚣', swimming: '🏊', basketball: '🏀', soccer: '⚽', frisbee: '🥏', surfing: '🏄', hike: '🥾', 'Orange Theory': '🔶' },
     color: 'cyan',
     accentClass: 'text-cyan-400',
     bgClass: 'bg-cyan-400/10',
