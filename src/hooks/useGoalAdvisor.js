@@ -8,9 +8,11 @@ export function useGoalAdvisor(user) {
   useEffect(() => {
     if (!user) return
     const docRef = doc(db, 'users', user, 'meta', 'goalAdvisor')
-    const unsubscribe = onSnapshot(docRef, (snap) => {
-      setReport(snap.exists() ? snap.data() : null)
-    })
+    const unsubscribe = onSnapshot(
+      docRef,
+      (snap) => { setReport(snap.exists() ? snap.data() : null) },
+      (err) => { console.error('[useGoalAdvisor] Firestore listener error:', err) }
+    )
     return unsubscribe
   }, [user])
 
