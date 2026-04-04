@@ -11,10 +11,10 @@ export function saveLastUser(user) {
   localStorage.setItem(LAST_USER_KEY, user)
 }
 
-export default function UserSelector({ currentUser, onUserChange, onOpenSettings }) {
+export default function UserSelector({ currentUser, onUserChange }) {
   return (
-    <div className="flex items-center border-b border-slate-800">
-      <div className="flex gap-2 px-4 py-2.5 flex-1 overflow-x-auto no-scrollbar">
+    <div className="flex items-center border-b border-slate-800 px-4 py-2.5 overflow-x-auto no-scrollbar">
+      <div className="flex gap-2">
         {USERS.map((user) => (
           <button
             key={user}
@@ -29,17 +29,6 @@ export default function UserSelector({ currentUser, onUserChange, onOpenSettings
           </button>
         ))}
       </div>
-      <button
-        onClick={onOpenSettings}
-        className="flex-shrink-0 px-3 py-2.5 text-slate-500 active:text-slate-300 transition-colors"
-        aria-label="Settings"
-      >
-        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="12" r="10" />
-          <circle cx="12" cy="12" r="6" />
-          <circle cx="12" cy="12" r="2" />
-        </svg>
-      </button>
     </div>
   )
 }

@@ -47,6 +47,10 @@ Your recommendations must:
 - Suggest specific activity subtypes (e.g. "a steady run" not just "cardio")
 - Be honest — if the data shows inconsistency, say so gently
 
+Goal adjustments are driven by data and recovery state — not user preference.
+Increase only when the data shows consistent completion AND energy is high.
+Decrease when completion is low OR energy/recovery is stressed.
+
 Respond ONLY with a valid JSON object — no markdown, no commentary outside the JSON.
 
 ---
@@ -121,12 +125,12 @@ ${secLines}
   28-day avg/week: ${analysis.acwrChronicAvgMinutes.toFixed(0)}
   ACWR ratio: ${acwrStatus(acwr)}
 ${prevSection}
-=== WEEKLY CHECK-IN SURVEY ===
+=== WEEKLY CHECK-IN ===
   Q1 Effort level (1–5): ${survey.effort}  [${survey.effort >= 4 ? '⚠️ HIGH' : survey.effort <= 2 ? '✅ EASY' : 'OK'}]
   Q2 Energy/recovery (1–5): ${survey.energy}  [${survey.energy <= 2 ? '⚠️ LOW' : survey.energy >= 4 ? '✅ GOOD' : 'OK'}]
   Q3 Injury/pain: ${survey.injury ?? 'none'}
-  Q4 Focus area this month: ${survey.focus}
-  Q5 Goal adjustment preference: ${survey.goalDirection?.toUpperCase() ?? 'SAME'}
+  Q4 Reflection on past 1–2 weeks: ${survey.reflection ?? 'not provided'}
+  Q5 Upcoming context: ${survey.context ?? 'nothing noted'}
 
 ${surveyHint}
 
@@ -154,20 +158,26 @@ Return a JSON object with this exact shape:
 
 function buildSurveyHint(survey) {
   const lines = []
+
   if (survey.effort >= 4 || survey.energy <= 2) {
-    lines.push('⚠️  ALGORITHM HINT: Recovery state is stressed. Do NOT increase any targets this week.')
-  } else if (survey.goalDirection === 'down') {
-    lines.push('⬇️  ALGORITHM HINT: User wants goals made more attainable. Reduce any targets that have <50% completion rate to a level that feels achievable — momentum matters more than ambition right now.')
-  } else if (survey.effort <= 2 && survey.energy >= 4 && survey.goalDirection === 'up') {
-    lines.push('✅ ALGORITHM HINT: User is feeling strong and wants to push. Eligible for up to one goal increase.')
+    lines.push('⚠️  ALGORITHM HINT: Recovery state is stressed. Do NOT increase any targets this week. Prioritize restoration.')
+  } else if (survey.effort <= 2 && survey.energy >= 4) {
+    lines.push('✅ ALGORITHM HINT: Training feels easy and energy is high. Eligible for up to one conservative goal increase if data supports it.')
   } else {
     lines.push('ℹ️  ALGORITHM HINT: Moderate state. Small adjustments OK; err conservative.')
   }
+
   if (survey.injury) {
     lines.push(`⚠️  INJURY NOTE: Avoid activities that stress the reported area: "${survey.injury}"`)
   }
-  if (survey.focus) {
-    lines.push(`🎯 FOCUS: User wants to prioritize ${survey.focus} — weight suggestions in that direction.`)
+
+  if (survey.reflection) {
+    lines.push(`📝 REFLECTION: User reported — "${survey.reflection}" — use this as qualitative signal about what's working.`)
   }
+
+  if (survey.context) {
+    lines.push(`📅 UPCOMING: "${survey.context}" — factor this into the recommendation (e.g. travel may reduce availability; an upcoming race should shape training focus).`)
+  }
+
   return lines.join('\n')
 }

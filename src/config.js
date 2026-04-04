@@ -67,6 +67,7 @@ export const ACTIVITY_SECONDARY_SCORES = {
     journaling:  { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
     reading:     { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
     sauna:       { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
+    'brain spa': { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
   },
 }
 
@@ -129,8 +130,8 @@ export const FITNESS_CONFIG = {
     label: 'Mindfulness',
     icon: '🧘',
     weeklyTarget: 3,
-    subtypes: ['meditation', 'breathing', 'journaling', 'reading', 'sauna'],
-    subtypeIcons: { meditation: '🕯️', breathing: '💨', journaling: '📓', reading: '📚', sauna: '🧖' },
+    subtypes: ['meditation', 'breathing', 'journaling', 'reading', 'sauna', 'brain spa'],
+    subtypeIcons: { meditation: '🕯️', breathing: '💨', journaling: '📓', reading: '📚', sauna: '🧖', 'brain spa': '🧠' },
     color: 'purple',
     accentClass: 'text-purple-400',
     bgClass: 'bg-purple-400/10',

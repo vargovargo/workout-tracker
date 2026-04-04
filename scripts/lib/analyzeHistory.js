@@ -91,6 +91,7 @@ const SECONDARY_SCORES = {
     journaling: { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
     reading:    { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
     sauna:      { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
+    'brain spa': { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
   },
 }
 
