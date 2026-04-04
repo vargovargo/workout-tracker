@@ -7,7 +7,7 @@ import SessionCard from './SessionCard.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
 
 export default function HistoryView() {
-  const { getSessionsForWeek, deleteSession, updateSession, sessions: allSessions, currentUser } = useApp()
+  const { getSessionsForWeek, deleteSession, updateSession, sessions: allSessions, currentUser, setTab, report, openAdvisor } = useApp()
   const [weekKey, setWeekKey] = useState(getWeekKey())
   const [editingSession, setEditingSession] = useState(null)
 
@@ -59,20 +59,41 @@ export default function HistoryView() {
 
   return (
     <div className="pb-6 slide-up">
-      <div className="px-4 pt-5 pb-1 flex items-center justify-between">
+      <div className="px-4 pt-5 pb-3 flex items-center justify-between">
         <h2 className="text-xl font-bold text-white">History</h2>
-        <button
-          onClick={exportCSV}
-          className="flex items-center gap-1.5 text-xs text-slate-400 active:text-slate-200 transition-colors"
-          aria-label="Export CSV"
-        >
-          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
-          </svg>
-          Export
-        </button>
+        <div className="flex items-center gap-2">
+          {report && (
+            <button
+              onClick={openAdvisor}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 active:opacity-70"
+            >
+              <span className="text-sm">🤖</span>
+              <span className="text-xs font-medium text-slate-300">AI Rec</span>
+            </button>
+          )}
+          <button
+            onClick={() => setTab('log')}
+            className="flex items-center gap-1.5 bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full active:opacity-80 transition-opacity"
+          >
+            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Log Activity
+          </button>
+          <button
+            onClick={exportCSV}
+            className="flex items-center gap-1.5 text-xs text-slate-400 active:text-slate-200 transition-colors"
+            aria-label="Export CSV"
+          >
+            <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Export
+          </button>
+        </div>
       </div>
 
       <WeekNavigator weekKey={weekKey} onWeekChange={setWeekKey} />

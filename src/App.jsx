@@ -12,6 +12,7 @@ import DashboardView from './components/Dashboard/DashboardView.jsx'
 import LogView from './components/Log/LogView.jsx'
 import HistoryView from './components/History/HistoryView.jsx'
 import ProgressView from './components/Progress/ProgressView.jsx'
+import ActivitiesView from './components/Activities/ActivitiesView.jsx'
 import CelebrationModal from './components/shared/CelebrationModal.jsx'
 import SettingsModal from './components/shared/SettingsModal.jsx'
 import GoalAdvisorModal from './components/shared/GoalAdvisorModal.jsx'
@@ -106,6 +107,7 @@ export default function App() {
         <main className="flex-1 overflow-y-auto overscroll-none">
           {tab === 'dashboard' && <DashboardView />}
           {tab === 'log' && <LogView />}
+          {tab === 'activities' && <ActivitiesView />}
           {tab === 'history' && <HistoryView />}
           {tab === 'progress' && <ProgressView />}
         </main>

@@ -1,0 +1,56 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Known family users — no Firebase Auth in this app, so we restrict by userId string.
+    // This prevents random internet users from reading/writing arbitrary paths while
+    // keeping the app functional for the four known users.
+    function isKnownUser(userId) {
+      return userId in ['Benton', 'Leo', 'Lauren', 'Jason'];
+    }
+
+    // Validate a session document written from the app
+    function isValidSession(data) {
+      return data.keys().hasAll(['id', 'category', 'durationMinutes', 'weekKey', 'loggedAt'])
+        && data.category in ['strength', 'cardio', 'mobility', 'mindfulness'];
+    }
+
+    // Validate a settings document
+    function isValidSettings(data) {
+      return data.keys().hasAny(['strength', 'cardio', 'mobility', 'mindfulness']);
+    }
+
+    match /users/{userId} {
+      // Only known users' subtrees are accessible
+      allow read, write: if false;
+
+      match /sessions/{sessionId} {
+        allow read: if isKnownUser(userId);
+        allow create: if isKnownUser(userId) && isValidSession(request.resource.data);
+        allow update: if isKnownUser(userId) && isValidSession(request.resource.data);
+        allow delete: if isKnownUser(userId);
+      }
+
+      match /meta/settings {
+        allow read: if isKnownUser(userId);
+        allow write: if isKnownUser(userId) && isValidSettings(request.resource.data);
+      }
+
+      match /meta/goalAdvisor {
+        allow read: if isKnownUser(userId);
+        allow write: if false; // written only by the server-side goal-advisor script via Admin SDK
+      }
+
+      // Block any other subcollections
+      match /{document=**} {
+        allow read, write: if false;
+      }
+    }
+
+    // Block everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
