@@ -14,7 +14,6 @@ import HistoryView from './components/History/HistoryView.jsx'
 import ProgressView from './components/Progress/ProgressView.jsx'
 import ActivitiesView from './components/Activities/ActivitiesView.jsx'
 import CelebrationModal from './components/shared/CelebrationModal.jsx'
-import SettingsModal from './components/shared/SettingsModal.jsx'
 import GoalAdvisorModal from './components/shared/GoalAdvisorModal.jsx'
 import { useGoalAdvisor } from './hooks/useGoalAdvisor.js'
 
@@ -27,7 +26,6 @@ export function useApp() {
 export default function App() {
   const [tab, setTab] = useState('dashboard')
   const [currentUser, setCurrentUser] = useState(loadLastUser)
-  const [showSettings, setShowSettings] = useState(false)
   const [showAdvisor, setShowAdvisor] = useState(false)
   const workouts = useWorkouts(currentUser)
   const report = useGoalAdvisor(currentUser)
@@ -41,7 +39,6 @@ export default function App() {
   function handleUserChange(user) {
     setCurrentUser(user)
     saveLastUser(user)
-    setTab('dashboard')
   }
 
   const checkCelebration = useCallback(
@@ -88,7 +85,6 @@ export default function App() {
     currentWeekSessions,
     setTab,
     onSessionSaved: handleSessionSaved,
-    openSettings: () => setShowSettings(true),
     report,
     openAdvisor: () => setShowAdvisor(true),
   }
@@ -101,7 +97,6 @@ export default function App() {
         <UserSelector
           currentUser={currentUser}
           onUserChange={handleUserChange}
-          onOpenSettings={() => setShowSettings(true)}
         />
 
         <main className="flex-1 overflow-y-auto overscroll-none">
@@ -121,10 +116,6 @@ export default function App() {
           big={celebration.big}
           onClose={() => setCelebration(null)}
         />
-      )}
-
-      {showSettings && (
-        <SettingsModal onClose={() => setShowSettings(false)} />
       )}
 
       {showAdvisor && report && (

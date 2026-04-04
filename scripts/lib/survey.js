@@ -42,12 +42,12 @@ export async function runSurvey() {
 
   const q4Raw = await ask(
     rl,
-    `\n${BOLD}4. Which area do you most want to focus on this month?${RESET}\n   strength / cardio / mobility / mindfulness / balance\n${GREEN}→ ${RESET}`
+    `\n${BOLD}4. What worked or didn't in your training the past 1–2 weeks?${RESET}\n   (e.g. "ran twice, felt strong" / "skipped strength again" / "mobility feels neglected")\n${GREEN}→ ${RESET}`
   )
 
   const q5Raw = await ask(
     rl,
-    `\n${BOLD}5. How should goals be adjusted this week?${RESET}\n   up = push harder  same = hold steady  down = make more attainable\n${GREEN}→ ${RESET}`
+    `\n${BOLD}5. Anything coming up that affects training?${RESET}\n   (travel, stress, race, event — or press Enter to skip)\n${GREEN}→ ${RESET}`
   )
 
   rl.close()
@@ -55,9 +55,8 @@ export async function runSurvey() {
   const effort = Math.min(5, Math.max(1, parseInt(q1Raw) || 3))
   const energy = Math.min(5, Math.max(1, parseInt(q2Raw) || 3))
   const injury = q3Raw.toLowerCase() === 'n' ? null : q3Raw
-  const focus = q4Raw.toLowerCase().trim()
-  const q5 = q5Raw.toLowerCase().trim()
-  const goalDirection = q5.startsWith('u') ? 'up' : q5.startsWith('d') ? 'down' : 'same'
+  const reflection = q4Raw || null
+  const context = q5Raw || null
 
-  return { effort, energy, injury, focus, goalDirection }
+  return { effort, energy, injury, reflection, context }
 }

@@ -3,6 +3,7 @@ import { useApp } from '../../App.jsx'
 import { toDateString } from '../../utils/weekUtils.js'
 import WeekHeader from './WeekHeader.jsx'
 import StreakDisplay from './StreakDisplay.jsx'
+import AdvisorBanner from './AdvisorBanner.jsx'
 import SuggestionBanner from './SuggestionBanner.jsx'
 import WeeklyRings from './WeeklyRings.jsx'
 import MinutesByDayChart from './MinutesByDayChart.jsx'
@@ -10,7 +11,7 @@ import WeekMinutesChart from './WeekMinutesChart.jsx'
 import EditSessionModal from '../shared/EditSessionModal.jsx'
 
 export default function DashboardView() {
-  const { currentWeekKey, currentWeekSessions, streak, sessions, updateSession, report, openAdvisor } = useApp()
+  const { currentWeekKey, currentWeekSessions, streak, sessions, updateSession } = useApp()
   const [editingSession, setEditingSession] = useState(null)
 
   const sevenDaysAgoStr = toDateString(new Date(Date.now() - 6 * 864e5))
@@ -22,11 +23,12 @@ export default function DashboardView() {
 
   return (
     <div className="pb-6 slide-up">
-      <WeekHeader weekKey={currentWeekKey} hasReport={!!report} onShowAdvisor={openAdvisor} />
+      <WeekHeader weekKey={currentWeekKey} />
       <StreakDisplay
         weeklyStreak={streak.weeklyStreak}
         activeDayStreak={streak.activeDayStreak}
       />
+      <AdvisorBanner />
       <WeekMinutesChart weekSessions={lastSevenDaysSessions} onEdit={setEditingSession} />
       <SuggestionBanner weekSessions={currentWeekSessions} />
       <WeeklyRings weekSessions={currentWeekSessions} />
