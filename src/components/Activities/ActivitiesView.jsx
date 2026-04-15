@@ -33,8 +33,16 @@ function computePrimaryBreakdown(sessions, days) {
     const t = new Date(s.occurredAt || s.loggedAt).getTime()
     if (t < cutoff) continue
     const key = getSubtypeKey(s.category, s.subtype)
-    if (!buckets[key]) buckets[key] = { category: s.category, subtype: s.subtype || null, count: 0 }
+    if (!buckets[key]) buckets[key] = { category: s.category, subtype: s.subtype || null, count: 0, sessions: [] }
     buckets[key].count++
+    buckets[key].sessions.push(s)
+  }
+
+  // Sort each bucket's sessions newest-first
+  for (const bucket of Object.values(buckets)) {
+    bucket.sessions.sort(
+      (a, b) => new Date(b.occurredAt || b.loggedAt) - new Date(a.occurredAt || a.loggedAt)
+    )
   }
 
   const grouped = {}
@@ -59,8 +67,16 @@ function computeSecondaryBreakdown(sessions, days) {
     const t = new Date(s.occurredAt || s.loggedAt).getTime()
     if (t < cutoff) continue
     const key = getSubtypeKey(s.category, s.subtype)
-    if (!seen[key]) seen[key] = { category: s.category, subtype: s.subtype || null, count: 0 }
+    if (!seen[key]) seen[key] = { category: s.category, subtype: s.subtype || null, count: 0, sessions: [] }
     seen[key].count++
+    seen[key].sessions.push(s)
+  }
+
+  // Sort each bucket's sessions newest-first
+  for (const entry of Object.values(seen)) {
+    entry.sessions.sort(
+      (a, b) => new Date(b.occurredAt || b.loggedAt) - new Date(a.occurredAt || a.loggedAt)
+    )
   }
 
   return Object.entries(SECONDARY_ATTRIBUTES).map(([attrKey, attr]) => {
@@ -74,6 +90,29 @@ function computeSecondaryBreakdown(sessions, days) {
 
     return { attrKey, attr, activities }
   })
+}
+
+// ─── Shared session accordion ─────────────────────────────────────────────────
+
+function SessionAccordion({ sessions, arcColor }) {
+  return (
+    <div className="mt-2 ml-8 flex flex-col gap-1.5 pb-1">
+      {sessions.map((s) => {
+        const date = new Date(s.occurredAt || s.loggedAt)
+        const dateStr = date.toLocaleDateString('en-US', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+        })
+        return (
+          <div key={s.id} className="flex items-center justify-between text-xs text-slate-400">
+            <span>{dateStr}</span>
+            <span style={{ color: arcColor }}>{s.durationMinutes}m</span>
+          </div>
+        )
+      })}
+    </div>
+  )
 }
 
 // ─── Score modal ──────────────────────────────────────────────────────────────
@@ -136,41 +175,57 @@ function ActivityScoreModal({ category, subtype, onClose }) {
 
 // ─── Primary view ─────────────────────────────────────────────────────────────
 
-function SubtypeRow({ category, subtype, count, maxCount, onInfo }) {
+function SubtypeRow({ category, subtype, count, sessions, maxCount, onInfo, isExpanded, onToggle }) {
   const { cfg, icon, displayName } = getActivityMeta(category, subtype)
   const barPct = maxCount > 0 ? (count / maxCount) * 100 : 0
+  const key = getSubtypeKey(category, subtype)
 
   return (
-    <div className="flex items-center gap-3 py-1.5">
-      <span className="text-base w-6 text-center shrink-0">{icon}</span>
-      <div className="flex-1 min-w-0">
-        <p className="text-xs text-slate-300 mb-1.5 capitalize">{displayName}</p>
-        <div className="relative h-2 rounded-full bg-slate-700/60 overflow-hidden">
-          <div
-            className="absolute inset-y-0 left-0 rounded-full transition-all duration-500"
-            style={{ width: `${barPct}%`, backgroundColor: cfg?.arcColor }}
-          />
-        </div>
-      </div>
-      <span className="text-sm font-semibold text-slate-200 w-7 text-right shrink-0">
-        {count}×
-      </span>
-      <button
-        onClick={() => onInfo(category, subtype)}
-        className="w-6 h-6 flex items-center justify-center rounded-full text-slate-500 active:text-slate-300 transition-colors shrink-0"
-        aria-label={`Scores for ${displayName}`}
+    <div>
+      <div
+        className="flex items-center gap-3 py-1.5 cursor-pointer"
+        onClick={() => onToggle(key)}
       >
-        <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="12" r="9" />
-          <line x1="12" y1="8" x2="12" y2="8.5" strokeWidth="2.5" strokeLinecap="round" />
-          <line x1="12" y1="11" x2="12" y2="16" />
-        </svg>
-      </button>
+        <span className="text-base w-6 text-center shrink-0">{icon}</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs text-slate-300 mb-1.5 capitalize">{displayName}</p>
+          <div className="relative h-2 rounded-full bg-slate-700/60 overflow-hidden">
+            <div
+              className="absolute inset-y-0 left-0 rounded-full transition-all duration-500"
+              style={{ width: `${barPct}%`, backgroundColor: cfg?.arcColor }}
+            />
+          </div>
+        </div>
+        <span className="text-sm font-semibold text-slate-200 w-7 text-right shrink-0">
+          {count}×
+        </span>
+        <button
+          onClick={(e) => { e.stopPropagation(); onInfo(category, subtype) }}
+          className="w-6 h-6 flex items-center justify-center rounded-full text-slate-500 active:text-slate-300 transition-colors shrink-0"
+          aria-label={`Scores for ${displayName}`}
+        >
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="9" />
+            <line x1="12" y1="8" x2="12" y2="8.5" strokeWidth="2.5" strokeLinecap="round" />
+            <line x1="12" y1="11" x2="12" y2="16" />
+          </svg>
+        </button>
+      </div>
+
+      {isExpanded && (
+        <SessionAccordion sessions={sessions} arcColor={cfg?.arcColor} />
+      )}
     </div>
   )
 }
 
 function PrimaryView({ breakdown, onInfo }) {
+  const [expandedKey, setExpandedKey] = useState(null)
+
+  function toggle(key) {
+    setExpandedKey((prev) => (prev === key ? null : key))
+  }
+
   return (
     <>
       {breakdown.map(({ category, subtypes }) => {
@@ -186,14 +241,17 @@ function PrimaryView({ breakdown, onInfo }) {
               <span className="text-xs text-slate-500">{total} session{total !== 1 ? 's' : ''}</span>
             </div>
             <div className="bg-slate-800/50 rounded-xl border border-slate-700 px-4 py-1">
-              {subtypes.map(({ subtype, count }) => (
+              {subtypes.map(({ subtype, count, sessions }) => (
                 <SubtypeRow
                   key={subtype ?? '_unknown'}
                   category={category}
                   subtype={subtype}
                   count={count}
+                  sessions={sessions}
                   maxCount={maxCount}
                   onInfo={onInfo}
+                  isExpanded={expandedKey === getSubtypeKey(category, subtype)}
+                  onToggle={toggle}
                 />
               ))}
             </div>
@@ -206,52 +264,67 @@ function PrimaryView({ breakdown, onInfo }) {
 
 // ─── Secondary view ───────────────────────────────────────────────────────────
 
-function SecondaryActivityRow({ category, subtype, score, count, onInfo }) {
+function SecondaryActivityRow({ category, subtype, score, count, sessions, onInfo, isExpanded, onToggle }) {
   const { icon, displayName } = getActivityMeta(category, subtype)
   const barPct = (score / 3) * 100
+  const key = getSubtypeKey(category, subtype)
 
   return (
-    <div className="flex items-center gap-3 py-1.5">
-      <span className="text-base w-6 text-center shrink-0">{icon}</span>
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center justify-between mb-1.5">
-          <p className="text-xs text-slate-300 capitalize">{displayName}</p>
-          <span className="text-xs text-slate-500">{count}×</span>
-        </div>
-        <div className="relative h-2 rounded-full bg-slate-700/60 overflow-hidden">
-          <div
-            className="absolute inset-y-0 left-0 rounded-full transition-all duration-500"
-            style={{ width: `${barPct}%`, backgroundColor: FITNESS_CONFIG[category]?.arcColor }}
-          />
-        </div>
-      </div>
-      {/* Score pips */}
-      <div className="flex gap-0.5 shrink-0">
-        {[1, 2, 3].map((pip) => (
-          <div
-            key={pip}
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: pip <= score ? FITNESS_CONFIG[category]?.arcColor : '#334155' }}
-          />
-        ))}
-      </div>
-      <button
-        onClick={() => onInfo(category, subtype)}
-        className="w-6 h-6 flex items-center justify-center rounded-full text-slate-500 active:text-slate-300 transition-colors shrink-0"
-        aria-label={`Scores for ${displayName}`}
+    <div>
+      <div
+        className="flex items-center gap-3 py-1.5 cursor-pointer"
+        onClick={() => onToggle(key)}
       >
-        <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="12" r="9" />
-          <line x1="12" y1="8" x2="12" y2="8.5" strokeWidth="2.5" strokeLinecap="round" />
-          <line x1="12" y1="11" x2="12" y2="16" />
-        </svg>
-      </button>
+        <span className="text-base w-6 text-center shrink-0">{icon}</span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between mb-1.5">
+            <p className="text-xs text-slate-300 capitalize">{displayName}</p>
+            <span className="text-xs text-slate-500">{count}×</span>
+          </div>
+          <div className="relative h-2 rounded-full bg-slate-700/60 overflow-hidden">
+            <div
+              className="absolute inset-y-0 left-0 rounded-full transition-all duration-500"
+              style={{ width: `${barPct}%`, backgroundColor: FITNESS_CONFIG[category]?.arcColor }}
+            />
+          </div>
+        </div>
+        {/* Score pips */}
+        <div className="flex gap-0.5 shrink-0">
+          {[1, 2, 3].map((pip) => (
+            <div
+              key={pip}
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: pip <= score ? FITNESS_CONFIG[category]?.arcColor : '#334155' }}
+            />
+          ))}
+        </div>
+        <button
+          onClick={(e) => { e.stopPropagation(); onInfo(category, subtype) }}
+          className="w-6 h-6 flex items-center justify-center rounded-full text-slate-500 active:text-slate-300 transition-colors shrink-0"
+          aria-label={`Scores for ${displayName}`}
+        >
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="9" />
+            <line x1="12" y1="8" x2="12" y2="8.5" strokeWidth="2.5" strokeLinecap="round" />
+            <line x1="12" y1="11" x2="12" y2="16" />
+          </svg>
+        </button>
+      </div>
+
+      {isExpanded && (
+        <SessionAccordion sessions={sessions} arcColor={FITNESS_CONFIG[category]?.arcColor} />
+      )}
     </div>
   )
 }
 
 function SecondaryView({ breakdown, onInfo }) {
+  const [expandedKey, setExpandedKey] = useState(null)
   const hasAny = breakdown.some((b) => b.activities.length > 0)
+
+  function toggle(key) {
+    setExpandedKey((prev) => (prev === key ? null : key))
+  }
 
   if (!hasAny) return null
 
@@ -267,14 +340,17 @@ function SecondaryView({ breakdown, onInfo }) {
               </span>
             </div>
             <div className="bg-slate-800/50 rounded-xl border border-slate-700 px-4 py-1">
-              {activities.map(({ category, subtype, score, count }) => (
+              {activities.map(({ category, subtype, score, count, sessions }) => (
                 <SecondaryActivityRow
                   key={getSubtypeKey(category, subtype)}
                   category={category}
                   subtype={subtype}
                   score={score}
                   count={count}
+                  sessions={sessions}
                   onInfo={onInfo}
+                  isExpanded={expandedKey === getSubtypeKey(category, subtype)}
+                  onToggle={toggle}
                 />
               ))}
             </div>

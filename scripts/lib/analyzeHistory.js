@@ -98,7 +98,22 @@ const SECONDARY_SCORES = {
 function getSecondaryScores(session) {
   const cat = SECONDARY_SCORES[session.category]
   if (!cat) return { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 0 }
-  return cat[session.subtype] || cat._default
+  const base = cat[session.subtype] || cat._default
+
+  // When Coros training effect data is present, use it for aerobicBase and peakOutput
+  // (structural and restoration aren't captured by HR zones, so keep the lookup values)
+  if (session.corosMetrics?.aerobicTrainingEffect != null) {
+    const ate = session.corosMetrics.aerobicTrainingEffect   // 0–5 Coros scale
+    const ante = session.corosMetrics.anaerobicTrainingEffect ?? 0
+    return {
+      aerobicBase: Math.min(3, Math.round((ate / 5) * 3)),
+      peakOutput:  Math.min(3, Math.round((ante / 5) * 3)),
+      structural:  base.structural,
+      restoration: base.restoration,
+    }
+  }
+
+  return base
 }
 
 function sumSecondary(sessions) {
