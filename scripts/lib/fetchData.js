@@ -44,6 +44,12 @@ export async function fetchGoalAdvisorReport(userId) {
   return doc.exists ? doc.data() : null
 }
 
+export async function writeSession(userId, session) {
+  initAdmin()
+  const db = admin.firestore()
+  await db.collection('users').doc(userId).collection('sessions').doc(session.id).set(session)
+}
+
 export async function writeGoalAdvisorReport(userId, result, analysis) {
   initAdmin()
   const db = admin.firestore()
