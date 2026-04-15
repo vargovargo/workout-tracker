@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "generate-icons": "node scripts/generate-icons.js",
-    "goal-advisor": "node scripts/goal-advisor.js"
+    "goal-advisor": "node scripts/goal-advisor.js",
+    "coros-import": "node scripts/coros-import.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

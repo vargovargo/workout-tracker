@@ -69,6 +69,7 @@ const SECONDARY_SCORES = {
     _default:        { aerobicBase: 2, peakOutput: 2, structural: 0, restoration: 0 },
     run:             { aerobicBase: 3, peakOutput: 1, structural: 0, restoration: 0 },
     bike:            { aerobicBase: 3, peakOutput: 1, structural: 0, restoration: 0 },
+    commute:         { aerobicBase: 1, peakOutput: 0, structural: 0, restoration: 1 },
     row:             { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 0 },
     swimming:        { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 1 },
     basketball:      { aerobicBase: 2, peakOutput: 2, structural: 1, restoration: 0 },
@@ -194,6 +195,14 @@ export function analyzeHistory(sessions, settings, weeksBack = 8) {
     }
   }
 
+  // Coros aggregate intensity — only computed when sessions have HR training effect data
+  const corosSessions = sessions.filter((s) => s.corosMetrics?.aerobicTrainingEffect != null)
+  const corosAggregate = corosSessions.length > 0 ? {
+    sessionCount: corosSessions.length,
+    avgATE:  corosSessions.reduce((sum, s) => sum + s.corosMetrics.aerobicTrainingEffect, 0) / corosSessions.length,
+    avgANTE: corosSessions.reduce((sum, s) => sum + (s.corosMetrics.anaerobicTrainingEffect ?? 0), 0) / corosSessions.length,
+  } : null
+
   return {
     weeksAnalyzed: weeksBack,
     weekKeys,
@@ -204,5 +213,6 @@ export function analyzeHistory(sessions, settings, weeksBack = 8) {
     acwrChronicAvgMinutes: chronicAvg,
     currentWeekProgress,
     totalSessions: sessions.length,
+    corosAggregate,
   }
 }

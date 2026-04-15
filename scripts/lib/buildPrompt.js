@@ -59,7 +59,7 @@ ${physioContent}`
 }
 
 export function buildUserPrompt(userId, analysis, survey, prevReport = null) {
-  const { categoryStats, secondaryAvg, acwr, currentWeekProgress, weeksAnalyzed } = analysis
+  const { categoryStats, secondaryAvg, acwr, currentWeekProgress, weeksAnalyzed, corosAggregate } = analysis
   const window = weeksAnalyzed
 
   // Build category summary
@@ -106,6 +106,22 @@ NOTE: Consider whether the previous recommendations were followed and factor tha
 `
   }
 
+  // Coros aggregate section (only present when sessions have HR training effect data)
+  let corosSection = ''
+  if (corosAggregate) {
+    const { sessionCount, avgATE, avgANTE } = corosAggregate
+    const ateLabel = avgATE >= 3 ? 'solid aerobic base stimulus' : avgATE >= 2 ? 'moderate aerobic' : 'light aerobic'
+    const anteLabel = avgANTE >= 2 ? 'meaningful high-intensity work' : avgANTE >= 1 ? 'some high-intensity' : 'minimal high-intensity'
+    corosSection = `
+=== COROS INTENSITY DATA (${sessionCount} sessions with HR data) ===
+  Avg Aerobic Training Effect: ${avgATE.toFixed(1)}/5.0  [${ateLabel}]
+  Avg Anaerobic Training Effect: ${avgANTE.toFixed(1)}/5.0  [${anteLabel}]
+  NOTE: These are measured training effects from the Coros watch, not estimated from activity type.
+  Use to validate secondary attribute balance — e.g. low avgATE despite high cardio session count
+  means the cardio is too intense (not enough Zone 2 base work).
+`
+  }
+
   return `User: ${userId}
 NOTE: This analysis covers ${window} week${window !== 1 ? 's' : ''} of data${window < 8 ? ` (app is new — do not penalize for short history; treat this as an early baseline)` : ''}.
 
@@ -124,7 +140,7 @@ ${secLines}
   7-day minutes: ${analysis.acwrAcuteMinutes}
   28-day avg/week: ${analysis.acwrChronicAvgMinutes.toFixed(0)}
   ACWR ratio: ${acwrStatus(acwr)}
-${prevSection}
+${corosSection}${prevSection}
 === WEEKLY CHECK-IN ===
   Q1 Effort level (1–5): ${survey.effort}  [${survey.effort >= 4 ? '⚠️ HIGH' : survey.effort <= 2 ? '✅ EASY' : 'OK'}]
   Q2 Energy/recovery (1–5): ${survey.energy}  [${survey.energy <= 2 ? '⚠️ LOW' : survey.energy >= 4 ? '✅ GOOD' : 'OK'}]
