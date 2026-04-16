@@ -58,7 +58,7 @@ Respond ONLY with a valid JSON object — no markdown, no commentary outside the
 ${physioContent}`
 }
 
-export function buildUserPrompt(userId, analysis, survey, prevReport = null) {
+export function buildUserPrompt(userId, analysis, survey, prevReport = null, heartRateAnalysis = null) {
   const { categoryStats, secondaryAvg, acwr, currentWeekProgress, weeksAnalyzed, corosAggregate } = analysis
   const window = weeksAnalyzed
 
@@ -122,6 +122,8 @@ NOTE: Consider whether the previous recommendations were followed and factor tha
 `
   }
 
+  const hrSection = buildHeartRateSection(heartRateAnalysis)
+
   return `User: ${userId}
 NOTE: This analysis covers ${window} week${window !== 1 ? 's' : ''} of data${window < 8 ? ` (app is new — do not penalize for short history; treat this as an early baseline)` : ''}.
 
@@ -140,7 +142,7 @@ ${secLines}
   7-day minutes: ${analysis.acwrAcuteMinutes}
   28-day avg/week: ${analysis.acwrChronicAvgMinutes.toFixed(0)}
   ACWR ratio: ${acwrStatus(acwr)}
-${corosSection}${prevSection}
+${corosSection}${hrSection}${prevSection}
 === WEEKLY CHECK-IN ===
   Q1 Effort level (1–5): ${survey.effort}  [${survey.effort >= 4 ? '⚠️ HIGH' : survey.effort <= 2 ? '✅ EASY' : 'OK'}]
   Q2 Energy/recovery (1–5): ${survey.energy}  [${survey.energy <= 2 ? '⚠️ LOW' : survey.energy >= 4 ? '✅ GOOD' : 'OK'}]
@@ -170,6 +172,57 @@ Return a JSON object with this exact shape:
   "trajectoryNote": "<where current trajectory puts this user in ~3 months>",
   "overallTone": "push"|"maintain"|"recover"
 }`
+}
+
+function buildHeartRateSection(hr) {
+  if (!hr) return ''
+
+  const lines = ['\n=== APPLE WATCH HEART RATE DATA (last 7 days) ===']
+
+  lines.push(`  Max HR estimate: ${hr.maxHR} bpm (age-based Tanaka formula)`)
+  lines.push(`  Zone 2 (${hr.zones.z2[0]}–${hr.zones.z2[1]} bpm) time: ~${hr.zone2MinLast7d} min  → aerobic base work (4-wk avg: ${hr.zone2MinAvg4wk} min/wk)`)
+  lines.push(`  Zone 5 (${hr.zones.z5[0]}+ bpm) time: ~${hr.zone5MinLast7d} min     → peak output / VO2 stimulus (4-wk avg: ${hr.zone5MinAvg4wk} min/wk)`)
+
+  if (Object.keys(hr.workoutsByCategory).length) {
+    lines.push('')
+    for (const [cat, wkts] of Object.entries(hr.workoutsByCategory)) {
+      const desc = wkts
+        .map(w => [w.subtype, w.durationMin ? `${w.durationMin} min` : null, w.avgHR ? `avg ${w.avgHR} bpm (${w.zone})` : null]
+          .filter(Boolean).join(' '))
+        .join('; ')
+      lines.push(`  ${cat} workouts: ${desc}`)
+    }
+  }
+
+  lines.push('')
+  if (hr.restingHR7d !== null) {
+    const trend = hr.restingHRTrend === 'declining' ? '→ declining ✅ fitness improving'
+                : hr.restingHRTrend === 'elevated'  ? '→ elevated ⚠️ fatigue or illness signal'
+                : '→ stable'
+    lines.push(`  Resting HR: ${hr.restingHR7d} bpm (7-day) vs ${hr.restingHR28d} bpm (28-day) ${trend}`)
+  } else {
+    lines.push('  Resting HR: no data in last 7 days')
+  }
+
+  if (hr.hrv7d !== null) {
+    const trend = hr.hrvTrend === 'improving'  ? '→ improving ✅'
+                : hr.hrvTrend === 'declining'  ? '→ declining ⚠️'
+                : '→ stable'
+    lines.push(`  HRV (SDNN): ${hr.hrv7d} ms (7-day) vs ${hr.hrv28d} ms (28-day) ${trend}`)
+  } else {
+    lines.push('  HRV (SDNN): no data in last 7 days')
+  }
+
+  if (hr.sampleCount > 0) {
+    lines.push(`  (${hr.sampleCount} total HR samples parsed in last 30 days)`)
+  }
+
+  lines.push('')
+  lines.push('NOTE: Resting HR and HRV are objective recovery signals. Elevated resting HR (+5% above')
+  lines.push('baseline) or declining HRV overrides subjective survey comfort — flag conservative.')
+  lines.push('Zone 2 time directly reflects aerobicBase stimulus; Zone 5 reflects peakOutput load.')
+
+  return lines.join('\n') + '\n'
 }
 
 function buildSurveyHint(survey) {

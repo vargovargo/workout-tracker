@@ -21,6 +21,8 @@ import { fetchUserSessions, fetchUserSettings, writeUserSettings, writeGoalAdvis
 import { analyzeHistory } from './lib/analyzeHistory.js'
 import { runSurvey } from './lib/survey.js'
 import { buildSystemPrompt, buildUserPrompt } from './lib/buildPrompt.js'
+import { parseAppleHealth } from './lib/parseAppleHealth.js'
+import { analyzeHeartRate } from './lib/analyzeHeartRate.js'
 import readline from 'readline'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -84,7 +86,7 @@ function getDataWindow(sessions) {
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-async function runForUser(userId) {
+async function runForUser(userId, appleHealthPath = null) {
   header(`Fitness Goal Advisor — ${userId}`)
 
   // 1. Fetch data
@@ -107,14 +109,27 @@ async function runForUser(userId) {
     console.log(`${DIM}  Previous recommendation: ${prevDate}${R}`)
   }
 
-  // 2. Analyze history — use actual data window, not a fixed 8 weeks
+  // 2. Parse Apple Health (optional)
+  let heartRateAnalysis = null
+  if (appleHealthPath) {
+    try {
+      process.stdout.write(`${DIM}Parsing Apple Health export...${R}`)
+      const healthData = await parseAppleHealth(appleHealthPath)
+      heartRateAnalysis = analyzeHeartRate(healthData, userId)
+      console.log(`${GREEN} ✓ ${healthData.heartRateSamples.length} HR samples loaded${R}`)
+    } catch (err) {
+      console.log(`${YELLOW} ⚠ Apple Health parse failed: ${err.message}${R}`)
+    }
+  }
+
+  // 3. Analyze history — use actual data window, not a fixed 8 weeks
   const dataWindow = getDataWindow(sessions)
   if (dataWindow < 8) {
     console.log(`${YELLOW}  Note: Only ${dataWindow} week(s) of data — analysis window adjusted.${R}`)
   }
   const analysis = analyzeHistory(sessions, settings, dataWindow)
 
-  // Print summary
+  // Print summaries
   header('8-Week Training Summary')
   for (const [cat, s] of Object.entries(analysis.categoryStats)) {
     const pct = Math.round(s.completionRate * 100)
@@ -131,10 +146,30 @@ async function runForUser(userId) {
 
   console.log(`\n${BOLD}  Training load (ACWR):${R} ${acwrLabel(analysis.acwr)}`)
 
-  // 3. Survey
+  if (heartRateAnalysis) {
+    const hr = heartRateAnalysis
+    console.log(`\n${BOLD}${MAGENTA}  Apple Watch Heart Rate (last 7 days):${R}`)
+    console.log(`    Max HR estimate: ${hr.maxHR} bpm`)
+    console.log(`    Zone 2 (${hr.zones.z2[0]}–${hr.zones.z2[1]} bpm): ~${hr.zone2MinLast7d} min  ${DIM}(4-wk avg: ${hr.zone2MinAvg4wk} min/wk)${R}`)
+    console.log(`    Zone 5 (${hr.zones.z5[0]}+ bpm):    ~${hr.zone5MinLast7d} min  ${DIM}(4-wk avg: ${hr.zone5MinAvg4wk} min/wk)${R}`)
+    if (hr.restingHR7d !== null) {
+      const rhrTrendStr = hr.restingHRTrend === 'declining' ? `${GREEN}↓ declining (fitness improving)${R}`
+                        : hr.restingHRTrend === 'elevated'  ? `${RED}↑ elevated ⚠️${R}`
+                        : `${YELLOW}→ stable${R}`
+      console.log(`    Resting HR: ${hr.restingHR7d} bpm (7d) vs ${hr.restingHR28d} bpm (28d) — ${rhrTrendStr}`)
+    }
+    if (hr.hrv7d !== null) {
+      const hrvTrendStr = hr.hrvTrend === 'improving' ? `${GREEN}↑ improving${R}`
+                        : hr.hrvTrend === 'declining' ? `${RED}↓ declining ⚠️${R}`
+                        : `${YELLOW}→ stable${R}`
+      console.log(`    HRV (SDNN): ${hr.hrv7d} ms (7d) vs ${hr.hrv28d} ms (28d) — ${hrvTrendStr}`)
+    }
+  }
+
+  // 4. Survey
   const survey = await runSurvey()
 
-  // 4. Call Claude
+  // 5. Call Claude
   header('Generating Recommendations...')
   if (!process.env.ANTHROPIC_API_KEY) {
     console.error(`\n${RED}ANTHROPIC_API_KEY not set. Add it to your .env file.${R}`)
@@ -151,7 +186,7 @@ async function runForUser(userId) {
       model: 'claude-sonnet-4-6',
       max_tokens: 2048,
       system: buildSystemPrompt(userId),
-      messages: [{ role: 'user', content: buildUserPrompt(userId, analysis, survey, prevReport) }],
+      messages: [{ role: 'user', content: buildUserPrompt(userId, analysis, survey, prevReport, heartRateAnalysis) }],
     })
 
     clearInterval(interval)
@@ -162,7 +197,7 @@ async function runForUser(userId) {
     process.exit(1)
   }
 
-  // 5. Display results
+  // 6. Display results
   header('Recommended Goals')
 
   const toneCol = toneColor(result.overallTone)
@@ -194,7 +229,7 @@ async function runForUser(userId) {
     console.log(`    ${result.trajectoryNote}`)
   }
 
-  // 6. Save report to Firestore
+  // 7. Save report to Firestore
   try {
     await writeGoalAdvisorReport(userId, result, analysis)
     console.log(`\n${DIM}✓ Report saved to app.${R}`)
@@ -202,7 +237,7 @@ async function runForUser(userId) {
     console.error(`\n${YELLOW}Could not save report to Firestore:${R} ${err.message}`)
   }
 
-  // 7. Offer to apply
+  // 8. Offer to apply
   const anyChanged = Object.values(result.suggestedGoals).some((g) => g.changed)
   if (anyChanged) {
     console.log('')
@@ -231,13 +266,18 @@ async function main() {
   console.clear()
   const runAll = process.argv.includes('--all')
   const userArg = process.argv.find((a) => a.startsWith('--user='))
+  const appleHealthArg = process.argv.find((a) => a.startsWith('--apple-health='))
+  const appleHealthPath = appleHealthArg ? appleHealthArg.split('=').slice(1).join('=') : null
 
   if (runAll) {
     header('Fitness Goal Advisor — All Users')
     console.log(`\n${BOLD}Running for: ${ALL_USERS.join(', ')}${R}\n`)
+    if (appleHealthPath) {
+      console.log(`${DIM}Apple Health export: ${appleHealthPath}${R}\n`)
+    }
     for (const userId of ALL_USERS) {
       try {
-        await runForUser(userId)
+        await runForUser(userId, appleHealthPath)
       } catch (err) {
         console.error(`\n${RED}Failed for ${userId}:${R} ${err.message}`)
       }
@@ -252,7 +292,7 @@ async function main() {
     }
   } else {
     const userId = userArg ? userArg.split('=')[1] : (process.env.GOAL_USER || 'Jason')
-    await runForUser(userId)
+    await runForUser(userId, appleHealthPath)
   }
 }
 
