@@ -114,7 +114,7 @@ Scale: 0 = none, 1 = minor, 2 = moderate, 3 = primary contribution
 | run (intervals/fast) | cardio | 1 | 3 | 0 | 0 |
 | trail run | cardio | 3 | 2 | 2 | 0 |
 | bike (steady) | cardio | 3 | 1 | 0 | 0 |
-| commute (bike) | cardio | 1 | 0 | 0 | 1 |
+| commute (bike) | cardio | 2 | 1 | 0 | 0 |
 | row | cardio | 3 | 2 | 1 | 0 |
 | swimming | cardio | 3 | 2 | 1 | 1 |
 | basketball | cardio | 2 | 2 | 1 | 0 |

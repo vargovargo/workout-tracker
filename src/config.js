@@ -44,7 +44,7 @@ export const ACTIVITY_SECONDARY_SCORES = {
     run:            { aerobicBase: 3, peakOutput: 1, structural: 0, restoration: 0 },
     'trail run':    { aerobicBase: 3, peakOutput: 2, structural: 2, restoration: 0 },
     bike:           { aerobicBase: 3, peakOutput: 1, structural: 0, restoration: 0 },
-    commute:        { aerobicBase: 1, peakOutput: 0, structural: 0, restoration: 1 },
+    commute:        { aerobicBase: 2, peakOutput: 1, structural: 0, restoration: 0 },
     row:            { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 0 },
     swimming:       { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 1 },
     basketball:     { aerobicBase: 2, peakOutput: 2, structural: 1, restoration: 0 },
