@@ -37,6 +37,7 @@ export const ACTIVITY_SECONDARY_SCORES = {
     climbing:  { aerobicBase: 1, peakOutput: 3, structural: 2, restoration: 0 },
     weights:   { aerobicBase: 0, peakOutput: 3, structural: 1, restoration: 1 },
     HIIT:      { aerobicBase: 1, peakOutput: 3, structural: 1, restoration: 0 },
+    circuit:   { aerobicBase: 1, peakOutput: 1, structural: 3, restoration: 1 },
     core:      { aerobicBase: 0, peakOutput: 2, structural: 3, restoration: 1 },
   },
   cardio: {
@@ -95,8 +96,8 @@ export const FITNESS_CONFIG = {
     label: 'Strength',
     icon: '💪',
     weeklyTarget: 3,
-    subtypes: ['climbing', 'weights', 'HIIT', 'core'],
-    subtypeIcons: { climbing: '🧗', weights: '🏋️', HIIT: '💥', core: '🎯' },
+    subtypes: ['climbing', 'weights', 'HIIT', 'circuit', 'core'],
+    subtypeIcons: { climbing: '🧗', weights: '🏋️', HIIT: '💥', circuit: '🔄', core: '🎯' },
     color: 'blue',
     accentClass: 'text-blue-400',
     bgClass: 'bg-blue-400/10',
