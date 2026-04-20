@@ -34,7 +34,7 @@ export const SECONDARY_ATTRIBUTES = {
 export const ACTIVITY_SECONDARY_SCORES = {
   strength: {
     _default: { aerobicBase: 0, peakOutput: 2, structural: 1, restoration: 1 },
-    climbing:  { aerobicBase: 1, peakOutput: 3, structural: 2, restoration: 0 },
+    climbing:  { aerobicBase: 1, peakOutput: 2, structural: 3, restoration: 0 },
     weights:   { aerobicBase: 0, peakOutput: 3, structural: 1, restoration: 1 },
     HIIT:        { aerobicBase: 1, peakOutput: 3, structural: 1, restoration: 0 },
     plyometrics: { aerobicBase: 1, peakOutput: 3, structural: 2, restoration: 0 },
@@ -47,7 +47,7 @@ export const ACTIVITY_SECONDARY_SCORES = {
     'trail run':    { aerobicBase: 3, peakOutput: 2, structural: 2, restoration: 0 },
     bike:           { aerobicBase: 3, peakOutput: 1, structural: 0, restoration: 0 },
     commute:        { aerobicBase: 2, peakOutput: 1, structural: 0, restoration: 0 },
-    row:            { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 0 },
+    row:            { aerobicBase: 3, peakOutput: 3, structural: 1, restoration: 0 },
     swimming:       { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 1 },
     basketball:     { aerobicBase: 2, peakOutput: 2, structural: 1, restoration: 0 },
     soccer:         { aerobicBase: 2, peakOutput: 2, structural: 1, restoration: 0 },
