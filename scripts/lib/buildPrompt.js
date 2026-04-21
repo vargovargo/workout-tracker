@@ -27,7 +27,7 @@ function acwrStatus(acwr) {
   return `${acwr.toFixed(2)} ✅ sweet spot (0.8–1.3)`
 }
 
-export function buildSystemPrompt(userId) {
+export function buildSystemPrompt() {
   let physioContent = ''
   try {
     physioContent = readFileSync(PHYSIO_PATH, 'utf8')
@@ -35,23 +35,24 @@ export function buildSystemPrompt(userId) {
     physioContent = 'physio.md not found — use general best-practice fitness guidelines.'
   }
 
-  return `You are a knowledgeable, evidence-based fitness advisor. Your role is to suggest
-attainable, progressive weekly workout goals for a specific user based on their actual
-activity data, a weekly check-in survey, and the physiological research below.
+  return `You are a knowledgeable, evidence-based fitness advisor. Your role is to assess a user's
+physiological balance across four secondary attributes (aerobicBase, peakOutput, structural,
+restoration) and recommend specific activities to address gaps — not to set weekly goal targets.
 
 Your recommendations must:
-- Be grounded in the physio.md research and user profile
-- Apply progressive overload conservatively (ACSM: ≤10% increase per metric per week)
-- Prioritize recovery if survey signals fatigue or overreaching
-- Never contradict the age-specific safety constraints in physio.md
-- Suggest specific activity subtypes (e.g. "a steady run" not just "cardio")
-- Be honest — if the data shows inconsistency, say so gently
+- Be grounded in the physio.md research and the user's actual activity history
+- Identify the most meaningful gap in secondary attribute balance
+- Suggest 3 specific activities (with subtype, duration, intensity guidance) to address that gap
+- Apply progressive overload conservatively (ACSM: ≤10% per week)
+- Prioritize recovery when sleep or body-feel signals stress
+- Never reference goal targets — the user does not track against weekly targets
+- Be honest — if the data shows avoidance of a category or subtype, name it directly
 
-Goal adjustments are driven by data and recovery state — not user preference.
-Increase only when the data shows consistent completion AND energy is high.
-Decrease when completion is low OR energy/recovery is stressed.
+For optimalWeeklySecondary: derive targets from the user's actual training load, history, and
+physio.md principles. Do not use profile labels. Estimate what a balanced week at their current
+volume should produce in secondary attribute points, then set targets accordingly.
 
-Respond ONLY with a valid JSON object — no markdown, no commentary outside the JSON.
+Respond ONLY with a valid JSON object. No markdown code fences, no prose before or after — raw JSON only.
 
 ---
 
@@ -59,19 +60,23 @@ ${physioContent}`
 }
 
 export function buildUserPrompt(userId, analysis, survey, prevReport = null) {
-  const { categoryStats, secondaryAvg, acwr, currentWeekProgress, weeksAnalyzed, corosAggregate } = analysis
+  const { categoryStats, secondaryAvg, subtypeBreakdown, acwr, currentWeekProgress, weeksAnalyzed, corosAggregate } = analysis
   const window = weeksAnalyzed
 
-  // Build category summary
+  // Category + subtype breakdown
   const catLines = Object.entries(categoryStats)
     .map(([cat, s]) => {
-      const current = currentWeekProgress[cat]
+      const subtypes = subtypeBreakdown[cat] || {}
+      const subtypeStr = Object.keys(subtypes).length > 0
+        ? Object.entries(subtypes)
+            .sort((a, b) => b[1] - a[1])
+            .map(([sub, n]) => `${sub}×${n}`)
+            .join(', ')
+        : 'none'
       return `  ${cat}:
-    Current goal: ${s.target} ${s.unit}/week
-    This week so far: ${current.value}/${current.target} ${current.unit}
-    ${window}-week completion rate: ${percent(s.completionRate)} (${s.completions}/${window} weeks)
-    Trend: ${trendArrow(s.trend)}
-    Consecutive weeks hitting goal: ${s.streak}`
+    ${window}-week sessions: ${Object.values(subtypes).reduce((a, b) => a + b, 0)} total  [${subtypeStr}]
+    Completion vs target: ${percent(s.completionRate)} (${s.completions}/${window} weeks hitting goal)
+    Trend: ${trendArrow(s.trend)}  |  streak: ${s.streak} weeks`
     })
     .join('\n\n')
 
@@ -80,119 +85,128 @@ export function buildUserPrompt(userId, analysis, survey, prevReport = null) {
     .map(([k, v]) => `  ${k}: ${v.toFixed(1)} pts/week avg`)
     .join('\n')
 
-  // Survey interpretation hint
-  const surveyHint = buildSurveyHint(survey)
-
   // Previous recommendation context
   let prevSection = ''
   if (prevReport) {
     const prevDate = prevReport.generatedAt
       ? new Date(prevReport.generatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
       : 'last session'
-    const prevGoals = Object.entries(prevReport.suggestedGoals || {})
-      .map(([cat, g]) => `  ${cat}: ${g.target} ${g.unit}/week${g.changed ? ' (was changed)' : ''}`)
-      .join('\n')
     const prevFocus = (prevReport.focusThisWeek || []).map((f) => `  • ${f}`).join('\n')
+    const prevGap = prevReport.primaryGap ? `\nPrimary gap identified: ${prevReport.primaryGap}` : ''
     prevSection = `
 === LAST RECOMMENDATION (${prevDate}) ===
-Overall tone: ${prevReport.overallTone ?? 'maintain'}
-Goals suggested:
-${prevGoals}
-Focus activities:
+Overall tone: ${prevReport.overallTone ?? 'maintain'}${prevGap}
+Focus activities suggested:
 ${prevFocus}
 Trajectory note: ${prevReport.trajectoryNote ?? 'none'}
 
-NOTE: Consider whether the previous recommendations were followed and factor that into this week's suggestions.
+NOTE: Consider whether the previous focus was acted on. If the same gap persists, name it directly.
 `
   }
 
-  // Coros aggregate section (only present when sessions have HR training effect data)
+  // Coros section (additive — most sessions are logged manually without HR data)
   let corosSection = ''
   if (corosAggregate) {
     const { sessionCount, avgATE, avgANTE } = corosAggregate
-    const ateLabel = avgATE >= 3 ? 'solid aerobic base stimulus' : avgATE >= 2 ? 'moderate aerobic' : 'light aerobic'
-    const anteLabel = avgANTE >= 2 ? 'meaningful high-intensity work' : avgANTE >= 1 ? 'some high-intensity' : 'minimal high-intensity'
+    const ateLabel  = avgATE  >= 3 ? 'solid aerobic stimulus'   : avgATE  >= 2 ? 'moderate aerobic' : 'light aerobic'
+    const anteLabel = avgANTE >= 2 ? 'meaningful high-intensity' : avgANTE >= 1 ? 'some high-intensity' : 'minimal high-intensity'
     corosSection = `
 === COROS INTENSITY DATA (${sessionCount} sessions with HR data) ===
-  Avg Aerobic Training Effect: ${avgATE.toFixed(1)}/5.0  [${ateLabel}]
+  Avg Aerobic Training Effect:   ${avgATE.toFixed(1)}/5.0  [${ateLabel}]
   Avg Anaerobic Training Effect: ${avgANTE.toFixed(1)}/5.0  [${anteLabel}]
-  NOTE: These are measured training effects from the Coros watch, not estimated from activity type.
-  Use to validate secondary attribute balance — e.g. low avgATE despite high cardio session count
-  means the cardio is too intense (not enough Zone 2 base work).
+  NOTE: Measured from watch HR — use to validate secondary balance.
+  Low avgATE despite high cardio session count → cardio may be too intense (not enough Zone 2).
+  Low avgANTE despite strength sessions → strength work is not driving cardiovascular peak output.
 `
   }
 
-  return `User: ${userId}
-NOTE: This analysis covers ${window} week${window !== 1 ? 's' : ''} of data${window < 8 ? ` (app is new — do not penalize for short history; treat this as an early baseline)` : ''}.
+  // Survey interpretation
+  const surveyHint = buildSurveyHint(survey)
 
-=== CURRENT WEEK PROGRESS (partial) ===
+  return `User: ${userId}
+NOTE: Analysis covers ${window} week${window !== 1 ? 's' : ''}${window < 8 ? ` (short history — treat as early baseline, do not penalize)` : ''}.
+
+=== THIS WEEK SO FAR ===
 ${Object.entries(currentWeekProgress)
   .map(([c, p]) => `  ${c}: ${p.value}/${p.target} ${p.unit}`)
   .join('\n')}
 
-=== ${window}-WEEK CATEGORY ANALYSIS ===
+=== ${window}-WEEK ACTIVITY BREAKDOWN ===
 ${catLines}
 
-=== SECONDARY ATTRIBUTE AVERAGES (last ${window} weeks) ===
+=== SECONDARY ATTRIBUTE BALANCE (${window}-week avg pts/week) ===
 ${secLines}
 
 === TRAINING LOAD (ACWR) ===
   7-day minutes: ${analysis.acwrAcuteMinutes}
   28-day avg/week: ${analysis.acwrChronicAvgMinutes.toFixed(0)}
-  ACWR ratio: ${acwrStatus(acwr)}
+  ACWR: ${acwrStatus(acwr)}
 ${corosSection}${prevSection}
 === WEEKLY CHECK-IN ===
-  Q1 Effort level (1–5): ${survey.effort}  [${survey.effort >= 4 ? '⚠️ HIGH' : survey.effort <= 2 ? '✅ EASY' : 'OK'}]
-  Q2 Energy/recovery (1–5): ${survey.energy}  [${survey.energy <= 2 ? '⚠️ LOW' : survey.energy >= 4 ? '✅ GOOD' : 'OK'}]
-  Q3 Injury/pain: ${survey.injury ?? 'none'}
-  Q4 Reflection on past 1–2 weeks: ${survey.reflection ?? 'not provided'}
-  Q5 Upcoming context: ${survey.context ?? 'nothing noted'}
+  Sleep this week (1=poor → 5=great): ${survey.sleep}${survey.sleepNote ? `  — "${survey.sleepNote}"` : ''}
+  Body / recovery (1=wrecked → 5=great): ${survey.recovery}${survey.injury ? `  — "${survey.injury}"` : ''}
+  Training last week (1=much less → 5=crushed it): ${survey.training}${survey.reflection ? `  — "${survey.reflection}"` : ''}
+  Upcoming context: ${survey.context ?? 'nothing noted'}
 
 ${surveyHint}
 
 === REQUESTED OUTPUT FORMAT ===
 Return a JSON object with this exact shape:
 {
-  "suggestedGoals": {
-    "strength": { "target": <number>, "unit": "sessions"|"minutes", "changed": true|false },
-    "cardio":   { "target": <number>, "unit": "sessions"|"minutes", "changed": true|false },
-    "mobility": { "target": <number>, "unit": "sessions"|"minutes", "changed": true|false },
-    "mindfulness": { "target": <number>, "unit": "sessions"|"minutes", "changed": true|false }
+  "balanceAssessment": {
+    "aerobicBase":  { "status": "low|building|good|strong", "weeklyAvg": <number>, "gap": "<one sentence or null>" },
+    "peakOutput":   { "status": "low|building|good|strong", "weeklyAvg": <number>, "gap": "<one sentence or null>" },
+    "structural":   { "status": "low|building|good|strong", "weeklyAvg": <number>, "gap": "<one sentence or null>" },
+    "restoration":  { "status": "low|building|good|strong", "weeklyAvg": <number>, "gap": "<one sentence or null>" }
   },
-  "reasoning": {
-    "strength": "<1–2 sentences>",
-    "cardio": "<1–2 sentences>",
-    "mobility": "<1–2 sentences>",
-    "mindfulness": "<1–2 sentences>"
-  },
-  "focusThisWeek": ["<specific activity 1>", "<specific activity 2>", "<specific activity 3>"],
-  "secondaryAlerts": ["<alert if any secondary attribute needs attention>"],
-  "trajectoryNote": "<where current trajectory puts this user in ~3 months>",
-  "overallTone": "push"|"maintain"|"recover"
+  "primaryGap": "<the single most important physiological gap right now — be specific about subtype>",
+  "focusThisWeek": [
+    "<activity 1 — subtype, duration, intensity guidance>",
+    "<activity 2>",
+    "<activity 3>"
+  ],
+  "reasoning": "<2–3 sentences connecting the data to the recommendations>",
+  "secondaryAlerts": ["<alert if any attribute is critically low or imbalanced>"],
+  "trajectoryNote": "<where current pattern puts this user in ~3 months>",
+  "overallTone": "push|maintain|recover",
+  "optimalWeeklySecondary": {
+    "aerobicBase": <number>,
+    "peakOutput":  <number>,
+    "structural":  <number>,
+    "restoration": <number>
+  }
 }`
 }
 
 function buildSurveyHint(survey) {
   const lines = []
 
-  if (survey.effort >= 4 || survey.energy <= 2) {
-    lines.push('⚠️  ALGORITHM HINT: Recovery state is stressed. Do NOT increase any targets this week. Prioritize restoration.')
-  } else if (survey.effort <= 2 && survey.energy >= 4) {
-    lines.push('✅ ALGORITHM HINT: Training feels easy and energy is high. Eligible for up to one conservative goal increase if data supports it.')
+  // Recovery state from sleep + body feel
+  const recoveryScore = (survey.sleep + survey.recovery) / 2
+  if (recoveryScore <= 2) {
+    lines.push('⚠️  RECOVERY HINT: Sleep and/or body-feel signals are stressed. Do not recommend increased intensity or volume. Prioritize restoration.')
+  } else if (recoveryScore >= 4) {
+    lines.push('✅ RECOVERY HINT: Sleep and body-feel are good. Eligible for intensity or volume increase if secondary balance supports it.')
   } else {
-    lines.push('ℹ️  ALGORITHM HINT: Moderate state. Small adjustments OK; err conservative.')
+    lines.push('ℹ️  RECOVERY HINT: Recovery is moderate. Conservative adjustments OK.')
   }
 
   if (survey.injury) {
-    lines.push(`⚠️  INJURY NOTE: Avoid activities that stress the reported area: "${survey.injury}"`)
+    lines.push(`⚠️  INJURY: Avoid loading the reported area — "${survey.injury}"`)
+  }
+
+  if (survey.training <= 2) {
+    lines.push('📉 TRAINING: User logged significantly less than intended last week. Factor in whether this is fatigue, life circumstances, or avoidance of a specific category.')
+  } else if (survey.training >= 4) {
+    lines.push('📈 TRAINING: User is training above plan. Watch for accumulated load — ACWR may lag.')
   }
 
   if (survey.reflection) {
-    lines.push(`📝 REFLECTION: User reported — "${survey.reflection}" — use this as qualitative signal about what's working.`)
+    lines.push(`📝 REFLECTION: "${survey.reflection}"`)
   }
 
   if (survey.context) {
-    lines.push(`📅 UPCOMING: "${survey.context}" — factor this into the recommendation (e.g. travel may reduce availability; an upcoming race should shape training focus).`)
+    lines.push(`📅 UPCOMING: "${survey.context}" — factor into recommendations (e.g. travel reduces availability; an event shapes focus).`)
   }
 
   return lines.join('\n')

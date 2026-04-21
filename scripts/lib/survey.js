@@ -1,62 +1,72 @@
 /**
- * survey.js — interactive 5-question CLI survey using readline
- * Returns structured survey responses.
+ * survey.js — structured weekly check-in survey
+ * Each question is a Likert scale with an optional free-text follow-up.
  */
 import readline from 'readline'
 
-function ask(rl, question) {
-  return new Promise((resolve) => {
-    rl.question(question, (answer) => resolve(answer.trim()))
-  })
-}
-
-const RESET = '\x1b[0m'
+const R    = '\x1b[0m'
 const BOLD = '\x1b[1m'
 const CYAN = '\x1b[36m'
+const DIM  = '\x1b[2m'
 const YELLOW = '\x1b[33m'
-const GREEN = '\x1b[32m'
+const GREEN  = '\x1b[32m'
+
+function ask(rl, question) {
+  return new Promise((resolve) => rl.question(question, (a) => resolve(a.trim())))
+}
+
+function likert(rl, prompt, labels) {
+  const labelStr = labels.map((l, i) => `${i + 1}=${l}`).join('  ')
+  return ask(rl, `${BOLD}${prompt}${R}\n${DIM}${labelStr}${R}\n${GREEN}→ ${R}`)
+}
+
+function optional(rl, prompt) {
+  return ask(rl, `${DIM}${prompt} (or Enter to skip)${R}\n${GREEN}→ ${R}`)
+}
 
 export async function runSurvey() {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
 
-  console.log(`\n${BOLD}${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}`)
-  console.log(`${BOLD}${CYAN}  Weekly Check-In${RESET}`)
-  console.log(`${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}\n`)
-  console.log(`${YELLOW}Answer each question honestly — your responses are the`)
-  console.log(`ground truth that shapes this week's recommendations.${RESET}\n`)
+  console.log(`\n${BOLD}${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${R}`)
+  console.log(`${BOLD}${CYAN}  Weekly Check-In${R}`)
+  console.log(`${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${R}\n`)
 
-  const q1Raw = await ask(
-    rl,
-    `${BOLD}1. How did last week's training feel?${RESET}\n   1=too easy  2=manageable  3=just right  4=challenging  5=too hard\n${GREEN}→ ${RESET}`
+  // Q1: Sleep
+  const q1Raw = await likert(rl,
+    '1. How has your sleep been this week?',
+    ['poor', 'below avg', 'ok', 'good', 'great']
   )
+  const q1Note = await optional(rl, '   Any notes on sleep?')
 
-  const q2Raw = await ask(
-    rl,
-    `\n${BOLD}2. How is your energy and recovery right now?${RESET}\n   1=depleted  2=tired  3=normal  4=good  5=great\n${GREEN}→ ${RESET}`
+  // Q2: Body / recovery
+  const q2Raw = await likert(rl,
+    '\n2. How does your body feel right now?',
+    ['wrecked', 'beat up', 'normal', 'fresh', 'great']
   )
+  const q2Note = await optional(rl, '   Any specific soreness or injury to flag?')
 
-  const q3Raw = await ask(
-    rl,
-    `\n${BOLD}3. Any nagging pain or injury to flag?${RESET}\n   (type "n" if none, or briefly describe: e.g. "left knee soreness")\n${GREEN}→ ${RESET}`
+  // Q3: Training
+  const q3Raw = await likert(rl,
+    '\n3. How did last week\'s training go?',
+    ['much less than planned', 'a bit less', 'as planned', 'more than planned', 'crushed it']
   )
+  const q3Note = await optional(rl, '   What worked or didn\'t?')
 
-  const q4Raw = await ask(
-    rl,
-    `\n${BOLD}4. What worked or didn't in your training the past 1–2 weeks?${RESET}\n   (e.g. "ran twice, felt strong" / "skipped strength again" / "mobility feels neglected")\n${GREEN}→ ${RESET}`
-  )
-
-  const q5Raw = await ask(
-    rl,
-    `\n${BOLD}5. Anything coming up that affects training?${RESET}\n   (travel, stress, race, event — or press Enter to skip)\n${GREEN}→ ${RESET}`
+  // Q4: Upcoming context (text only)
+  const q4Raw = await optional(rl,
+    '\n4. Anything coming up that affects training?\n   (travel, event, big deadline, etc.)'
   )
 
   rl.close()
 
-  const effort = Math.min(5, Math.max(1, parseInt(q1Raw) || 3))
-  const energy = Math.min(5, Math.max(1, parseInt(q2Raw) || 3))
-  const injury = q3Raw.toLowerCase() === 'n' ? null : q3Raw
-  const reflection = q4Raw || null
-  const context = q5Raw || null
+  const sleep    = Math.min(5, Math.max(1, parseInt(q1Raw) || 3))
+  const recovery = Math.min(5, Math.max(1, parseInt(q2Raw) || 3))
+  const training = Math.min(5, Math.max(1, parseInt(q3Raw) || 3))
 
-  return { effort, energy, injury, reflection, context }
+  const injury    = q2Note || null
+  const reflection = q3Note || null
+  const context   = q4Raw  || null
+  const sleepNote = q1Note || null
+
+  return { sleep, recovery, training, injury, reflection, context, sleepNote }
 }

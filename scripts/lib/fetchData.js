@@ -50,6 +50,12 @@ export async function writeSession(userId, session) {
   await db.collection('users').doc(userId).collection('sessions').doc(session.id).set(session)
 }
 
+export async function deleteSession(userId, sessionId) {
+  initAdmin()
+  const db = admin.firestore()
+  await db.collection('users').doc(userId).collection('sessions').doc(sessionId).delete()
+}
+
 export async function updateSession(userId, sessionId, updates) {
   initAdmin()
   const db = admin.firestore()
@@ -64,6 +70,7 @@ export async function writeGoalAdvisorReport(userId, result, analysis) {
     analysis: {
       categoryStats: analysis.categoryStats,
       secondaryAvg: analysis.secondaryAvg,
+      subtypeBreakdown: analysis.subtypeBreakdown,
       acwr: analysis.acwr,
     },
     generatedAt: new Date().toISOString(),

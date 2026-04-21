@@ -64,7 +64,7 @@ const COROS_ACTIVITY_MAP = {
   'stretching':           { category: 'mobility',    subtype: 'stretching' },
   'flexibility':          { category: 'mobility',    subtype: 'stretching' },
   'balance':              { category: 'mobility',    subtype: 'balance' },
-  'plyometrics':          { category: 'mobility',    subtype: 'plyometrics' },
+  'plyometrics':          { category: 'strength',    subtype: 'plyometrics' },
   'meditation':           { category: 'mindfulness', subtype: 'meditation' },
   'breathing':            { category: 'mindfulness', subtype: 'breathing' },
 }

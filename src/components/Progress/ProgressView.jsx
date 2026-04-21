@@ -103,7 +103,7 @@ function buildPrimaryDatasets(sessions, settings, weekKeys) {
 }
 
 // Compute secondary attribute normalised scores for radar
-function buildSecondaryDatasets(sessions, weekKeys) {
+function buildSecondaryDatasets(sessions, weekKeys, optimalTargets) {
   const attrs = Object.keys(SECONDARY_ATTRIBUTES)
 
   function weekSecondaryAvg(keys) {
@@ -127,7 +127,42 @@ function buildSecondaryDatasets(sessions, weekKeys) {
 
   const allAvgVals = weekSecondaryAvg(weekKeys)
 
-  const maxVal = Math.max(...vals7, ...vals28, ...allAvgVals, 1)
+  const targetVals = optimalTargets ? attrs.map((a) => optimalTargets[a] ?? 0) : []
+  const maxVal = Math.max(...vals7, ...vals28, ...allAvgVals, ...targetVals, 1)
+
+  const datasets = [
+    {
+      label: 'All-time avg',
+      values: allAvgVals.map((v) => v / maxVal),
+      color: '#94a3b8',
+      opacity: 0.1,
+      dashed: true,
+    },
+    {
+      label: '28-day avg',
+      values: vals28.map((v) => v / maxVal),
+      color: '#f59e0b',
+      opacity: 0.15,
+      dashed: false,
+    },
+    {
+      label: '7-day',
+      values: vals7.map((v) => v / maxVal),
+      color: '#818cf8',
+      opacity: 0.25,
+      dashed: false,
+    },
+  ]
+
+  if (optimalTargets) {
+    datasets.unshift({
+      label: 'Target',
+      values: targetVals.map((v) => v / maxVal),
+      color: '#34d399',
+      opacity: 0.05,
+      dashed: true,
+    })
+  }
 
   return {
     axes: attrs.map((attr) => ({
@@ -135,29 +170,8 @@ function buildSecondaryDatasets(sessions, weekKeys) {
       icon: SECONDARY_ATTRIBUTES[attr].icon,
       color: SECONDARY_ATTRIBUTES[attr].arcColor,
     })),
-    datasets: [
-      {
-        label: 'All-time avg',
-        values: allAvgVals.map((v) => v / maxVal),
-        color: '#94a3b8',
-        opacity: 0.1,
-        dashed: true,
-      },
-      {
-        label: '28-day avg',
-        values: vals28.map((v) => v / maxVal),
-        color: '#f59e0b',
-        opacity: 0.15,
-        dashed: false,
-      },
-      {
-        label: '7-day',
-        values: vals7.map((v) => v / maxVal),
-        color: '#818cf8',
-        opacity: 0.25,
-        dashed: false,
-      },
-    ],
+    datasets,
+    hasTarget: !!optimalTargets,
   }
 }
 
@@ -205,8 +219,8 @@ export default function ProgressView() {
     [sessions, settings, weekKeys]
   )
   const secondaryData = useMemo(
-    () => buildSecondaryDatasets(sessions, weekKeys),
-    [sessions, weekKeys]
+    () => buildSecondaryDatasets(sessions, weekKeys, report?.optimalWeeklySecondary ?? null),
+    [sessions, weekKeys, report]
   )
   const acwr = useMemo(() => computeACWR(sessions), [sessions])
 
@@ -294,6 +308,9 @@ export default function ProgressView() {
             {secondaryData.axes.map((a) => (
               <span key={a.label} className="text-slate-500" style={{ fontSize: 9 }}>{a.icon} {a.label}</span>
             ))}
+            {secondaryData.hasTarget && (
+              <span className="text-emerald-500 w-full text-center" style={{ fontSize: 9 }}>— target</span>
+            )}
           </div>
         </div>
       </div>

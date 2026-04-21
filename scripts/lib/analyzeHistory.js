@@ -57,41 +57,45 @@ function categoryTarget(category, settings) {
 }
 
 // Secondary attribute scores from activity (inline to avoid ES module issues)
+// Keep in sync with src/config.js ACTIVITY_SECONDARY_SCORES
 const SECONDARY_SCORES = {
   strength: {
-    _default: { aerobicBase: 0, peakOutput: 2, structural: 1, restoration: 1 },
-    climbing:  { aerobicBase: 1, peakOutput: 3, structural: 2, restoration: 0 },
-    weights:   { aerobicBase: 0, peakOutput: 3, structural: 1, restoration: 1 },
-    HIIT:      { aerobicBase: 1, peakOutput: 3, structural: 1, restoration: 0 },
-    core:      { aerobicBase: 0, peakOutput: 2, structural: 3, restoration: 1 },
+    _default:    { aerobicBase: 0, peakOutput: 2, structural: 1, restoration: 1 },
+    climbing:    { aerobicBase: 1, peakOutput: 1, structural: 3, restoration: 0 },
+    weights:     { aerobicBase: 0, peakOutput: 1, structural: 3, restoration: 1 },
+    HIIT:        { aerobicBase: 1, peakOutput: 3, structural: 1, restoration: 0 },
+    plyometrics: { aerobicBase: 1, peakOutput: 3, structural: 2, restoration: 0 },
+    circuit:     { aerobicBase: 1, peakOutput: 1, structural: 3, restoration: 1 },
+    core:        { aerobicBase: 0, peakOutput: 2, structural: 3, restoration: 1 },
   },
   cardio: {
     _default:        { aerobicBase: 2, peakOutput: 2, structural: 0, restoration: 0 },
     run:             { aerobicBase: 3, peakOutput: 1, structural: 0, restoration: 0 },
+    'trail run':     { aerobicBase: 3, peakOutput: 2, structural: 2, restoration: 0 },
     bike:            { aerobicBase: 3, peakOutput: 1, structural: 0, restoration: 0 },
-    commute:         { aerobicBase: 1, peakOutput: 0, structural: 0, restoration: 1 },
-    row:             { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 0 },
+    commute:         { aerobicBase: 2, peakOutput: 1, structural: 0, restoration: 0 },
+    row:             { aerobicBase: 3, peakOutput: 3, structural: 1, restoration: 0 },
     swimming:        { aerobicBase: 3, peakOutput: 2, structural: 1, restoration: 1 },
-    basketball:      { aerobicBase: 2, peakOutput: 2, structural: 1, restoration: 0 },
+    basketball:      { aerobicBase: 2, peakOutput: 3, structural: 1, restoration: 0 },
     soccer:          { aerobicBase: 2, peakOutput: 2, structural: 1, restoration: 0 },
     frisbee:         { aerobicBase: 1, peakOutput: 1, structural: 2, restoration: 0 },
     surfing:         { aerobicBase: 1, peakOutput: 2, structural: 3, restoration: 1 },
+    hike:            { aerobicBase: 3, peakOutput: 1, structural: 3, restoration: 1 },
     'Orange Theory': { aerobicBase: 1, peakOutput: 3, structural: 0, restoration: 0 },
   },
   mobility: {
-    _default:    { aerobicBase: 0, peakOutput: 0, structural: 2, restoration: 2 },
-    plyometrics: { aerobicBase: 1, peakOutput: 3, structural: 2, restoration: 0 },
-    yoga:        { aerobicBase: 0, peakOutput: 0, structural: 2, restoration: 3 },
-    stretching:  { aerobicBase: 0, peakOutput: 0, structural: 1, restoration: 3 },
-    balance:     { aerobicBase: 0, peakOutput: 0, structural: 3, restoration: 2 },
+    _default:   { aerobicBase: 0, peakOutput: 0, structural: 2, restoration: 2 },
+    yoga:       { aerobicBase: 0, peakOutput: 0, structural: 2, restoration: 3 },
+    stretching: { aerobicBase: 0, peakOutput: 0, structural: 1, restoration: 3 },
+    balance:    { aerobicBase: 0, peakOutput: 0, structural: 3, restoration: 2 },
   },
   mindfulness: {
-    _default:   { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
-    meditation: { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
-    breathing:  { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
-    journaling: { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
-    reading:    { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
-    sauna:      { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
+    _default:    { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
+    meditation:  { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
+    breathing:   { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
+    journaling:  { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
+    reading:     { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 2 },
+    sauna:       { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
     'brain spa': { aerobicBase: 0, peakOutput: 0, structural: 0, restoration: 3 },
   },
 }
@@ -195,6 +199,21 @@ export function analyzeHistory(sessions, settings, weeksBack = 8) {
     }
   }
 
+  // Subtype breakdown per category over the analysis window
+  const subtypeBreakdown = {}
+  for (const cat of CATEGORIES) {
+    const counts = {}
+    for (const wk of weekKeys) {
+      for (const s of (byWeek[wk] || [])) {
+        if (s.category === cat) {
+          const key = s.subtype || '_unknown'
+          counts[key] = (counts[key] || 0) + 1
+        }
+      }
+    }
+    subtypeBreakdown[cat] = counts
+  }
+
   // Coros aggregate intensity — only computed when sessions have HR training effect data
   const corosSessions = sessions.filter((s) => s.corosMetrics?.aerobicTrainingEffect != null)
   const corosAggregate = corosSessions.length > 0 ? {
@@ -208,6 +227,7 @@ export function analyzeHistory(sessions, settings, weeksBack = 8) {
     weekKeys,
     categoryStats,
     secondaryAvg,
+    subtypeBreakdown,
     acwr,
     acwrAcuteMinutes: acute,
     acwrChronicAvgMinutes: chronicAvg,

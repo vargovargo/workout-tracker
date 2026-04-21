@@ -17,11 +17,10 @@ import { config } from 'dotenv'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import Anthropic from '@anthropic-ai/sdk'
-import { fetchUserSessions, fetchUserSettings, writeUserSettings, writeGoalAdvisorReport, fetchGoalAdvisorReport } from './lib/fetchData.js'
+import { fetchUserSessions, fetchUserSettings, writeGoalAdvisorReport, fetchGoalAdvisorReport } from './lib/fetchData.js'
 import { analyzeHistory } from './lib/analyzeHistory.js'
 import { runSurvey } from './lib/survey.js'
 import { buildSystemPrompt, buildUserPrompt } from './lib/buildPrompt.js'
-import readline from 'readline'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 config({ path: resolve(__dirname, '../.env') })
@@ -61,16 +60,6 @@ function acwrLabel(acwr) {
   if (acwr > 1.3) return `${YELLOW}${acwr.toFixed(2)} ⚠️  ELEVATED${R}`
   if (acwr < 0.8) return `${YELLOW}${acwr.toFixed(2)} ⚠️  LOW${R}`
   return `${GREEN}${acwr.toFixed(2)} ✅${R}`
-}
-
-async function askYesNo(question) {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-  return new Promise((resolve) => {
-    rl.question(`${question} (y/n) ${GREEN}→ ${R}`, (ans) => {
-      rl.close()
-      resolve(ans.trim().toLowerCase().startsWith('y'))
-    })
-  })
 }
 
 const ALL_USERS = ['Jason', 'Lauren', 'Benton', 'Leo']
@@ -115,13 +104,13 @@ async function runForUser(userId) {
   const analysis = analyzeHistory(sessions, settings, dataWindow)
 
   // Print summary
-  header('8-Week Training Summary')
+  header(`${dataWindow}-Week Training Summary`)
+
   for (const [cat, s] of Object.entries(analysis.categoryStats)) {
-    const pct = Math.round(s.completionRate * 100)
-    const bar = '█'.repeat(Math.round(pct / 10)).padEnd(10, '░')
-    console.log(
-      `\n  ${BOLD}${cat.padEnd(12)}${R} goal: ${s.target} ${s.unit}/wk  |  ${bar} ${pct}% hit  |  ${trend(s.trend)}`
-    )
+    const subtypes = analysis.subtypeBreakdown[cat] || {}
+    const subtypeStr = Object.entries(subtypes).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k}×${n}`).join('  ') || 'none'
+    console.log(`\n  ${BOLD}${cat.padEnd(12)}${R} ${trend(s.trend)}`)
+    console.log(`    ${DIM}${subtypeStr}${R}`)
   }
 
   console.log(`\n${BOLD}  Secondary attributes (weekly avg):${R}`)
@@ -150,40 +139,55 @@ async function runForUser(userId) {
     const msg = await client.messages.create({
       model: 'claude-sonnet-4-6',
       max_tokens: 2048,
-      system: buildSystemPrompt(userId),
+      system: buildSystemPrompt(),
       messages: [{ role: 'user', content: buildUserPrompt(userId, analysis, survey, prevReport) }],
     })
 
     clearInterval(interval)
     process.stdout.write(`${R}\n`)
-    result = JSON.parse(msg.content[0].text)
+    const raw = msg.content[0].text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/,'').trim()
+    result = JSON.parse(raw)
   } catch (err) {
     console.error(`\n${RED}Claude API error:${R} ${err.message}`)
     process.exit(1)
   }
 
   // 5. Display results
-  header('Recommended Goals')
+  header('Balance Assessment')
 
   const toneCol = toneColor(result.overallTone)
-  console.log(`\n  ${BOLD}Overall tone:${R} ${toneCol}${BOLD}${result.overallTone.toUpperCase()}${R}\n`)
+  console.log(`\n  ${BOLD}Overall tone:${R} ${toneCol}${BOLD}${result.overallTone.toUpperCase()}${R}`)
 
-  for (const [cat, goal] of Object.entries(result.suggestedGoals)) {
-    const current = settings?.[cat]?.target ?? 3
-    const changed = goal.changed ? ` ${YELLOW}(was ${current})${R}` : `${DIM} (no change)${R}`
-    console.log(`  ${BOLD}${cat.padEnd(12)}${R} → ${GREEN}${BOLD}${goal.target} ${goal.unit}/week${R}${changed}`)
-    if (result.reasoning[cat]) {
-      console.log(`    ${DIM}${result.reasoning[cat]}${R}`)
+  if (result.primaryGap) {
+    console.log(`\n  ${BOLD}${YELLOW}Primary gap:${R} ${result.primaryGap}`)
+  }
+
+  console.log(`\n${BOLD}  Secondary balance:${R}`)
+  const statusColor = (s) => s === 'low' ? RED : s === 'building' ? YELLOW : GREEN
+  for (const [attr, data] of Object.entries(result.balanceAssessment || {})) {
+    const col = statusColor(data.status)
+    const gap = data.gap ? `  ${DIM}${data.gap}${R}` : ''
+    console.log(`    ${attr.padEnd(14)} ${col}${data.status.padEnd(9)}${R} ${data.weeklyAvg?.toFixed(1) ?? '?'} pts/wk${gap}`)
+  }
+
+  if (result.optimalWeeklySecondary) {
+    console.log(`\n  ${BOLD}  Optimal targets:${R}`)
+    for (const [attr, val] of Object.entries(result.optimalWeeklySecondary)) {
+      console.log(`    ${attr.padEnd(14)} ${val.toFixed(1)} pts/wk`)
     }
   }
 
-  console.log(`\n${BOLD}${BLUE}  Focus activities this week:${R}`)
+  console.log(`\n${BOLD}${BLUE}  Focus this week:${R}`)
   for (const activity of result.focusThisWeek || []) {
     console.log(`    • ${activity}`)
   }
 
+  if (result.reasoning) {
+    console.log(`\n  ${DIM}${result.reasoning}${R}`)
+  }
+
   if (result.secondaryAlerts?.length) {
-    console.log(`\n${BOLD}${YELLOW}  Secondary attribute alerts:${R}`)
+    console.log(`\n${BOLD}${YELLOW}  Alerts:${R}`)
     for (const alert of result.secondaryAlerts) {
       console.log(`    ⚠️  ${alert}`)
     }
@@ -200,30 +204,6 @@ async function runForUser(userId) {
     console.log(`\n${DIM}✓ Report saved to app.${R}`)
   } catch (err) {
     console.error(`\n${YELLOW}Could not save report to Firestore:${R} ${err.message}`)
-  }
-
-  // 7. Offer to apply
-  const anyChanged = Object.values(result.suggestedGoals).some((g) => g.changed)
-  if (anyChanged) {
-    console.log('')
-    const apply = await askYesNo(`\n${BOLD}Apply these new goals to Firestore for ${userId}?${R}`)
-    if (apply) {
-      const newSettings = {}
-      for (const [cat, goal] of Object.entries(result.suggestedGoals)) {
-        newSettings[cat] = { target: goal.target, unit: goal.unit }
-      }
-      try {
-        await writeUserSettings(userId, newSettings)
-        console.log(`\n${GREEN}${BOLD}✓ Goals updated in Firestore for ${userId}!${R}`)
-        console.log(`${DIM}Refresh the web app to see your new targets.${R}\n`)
-      } catch (err) {
-        console.error(`\n${RED}Failed to write to Firestore:${R} ${err.message}`)
-      }
-    } else {
-      console.log(`\n${DIM}Goals not applied. Run the script again when you're ready.${R}\n`)
-    }
-  } else {
-    console.log(`\n${DIM}No goal changes recommended. Keep going!${R}\n`)
   }
 }
 
