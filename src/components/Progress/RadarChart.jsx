@@ -39,7 +39,7 @@ export default function RadarChart({ axes, datasets, title }) {
   return (
     <div className="flex flex-col items-center">
       {title && <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">{title}</p>}
-      <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="w-full max-w-[220px]">
+      <svg viewBox={`0 0 ${SIZE} ${SIZE}`} className="w-full max-w-xs">
         {/* Grid rings */}
         {Array.from({ length: RINGS }, (_, i) => {
           const r = (RADIUS * (i + 1)) / RINGS

@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { useApp } from '../../App.jsx'
-import { FITNESS_CONFIG, SECONDARY_ATTRIBUTES, sumSecondaryScores } from '../../config.js'
-import { getCategoryProgress } from '../../utils/progressUtils.js'
+import { SECONDARY_ATTRIBUTES, sumSecondaryScores } from '../../config.js'
 import { getWeekKey } from '../../utils/weekUtils.js'
 import RadarChart from './RadarChart.jsx'
 import ACWRGauge from './ACWRGauge.jsx'
@@ -40,66 +39,6 @@ function sessionsInLastNDays(sessions, n) {
     const t = new Date(s.occurredAt || s.loggedAt).getTime()
     return t >= cutoff
   })
-}
-
-// Compute primary category normalised scores for radar (indexed to personal max)
-function buildPrimaryDatasets(sessions, settings, weekKeys) {
-  const categories = Object.keys(FITNESS_CONFIG)
-
-  function weekValues(keys) {
-    return categories.map((cat) => {
-      const total = keys.reduce((sum, wk) => {
-        const wkSessions = sessions.filter((s) => s.weekKey === wk)
-        const { value } = getCategoryProgress(wkSessions, cat, settings)
-        return sum + value
-      }, 0)
-      return keys.length > 0 ? total / keys.length : 0
-    })
-  }
-
-  const sessions7 = sessionsInLastNDays(sessions, 7)
-  const sessions28 = sessionsInLastNDays(sessions, 28)
-
-  const vals7 = categories.map((cat) => getCategoryProgress(sessions7, cat, settings).value)
-  const vals28 = categories.map((cat) => getCategoryProgress(sessions28, cat, settings).value / 4)
-
-  const allAvg = weekValues(weekKeys)
-
-  // Normalise each axis to its goal target so all spokes are on the same scale:
-  // 1.0 = hitting your goal, >1.0 = exceeding it (capped at 1.5 to keep chart readable)
-  const goalPerCat = categories.map((cat) => Math.max(settings[cat]?.target ?? 1, 1))
-  const norm = (vals) => vals.map((v, i) => Math.min(v / goalPerCat[i], 1.5))
-
-  return {
-    axes: categories.map((cat) => ({
-      label: FITNESS_CONFIG[cat].label,
-      icon: FITNESS_CONFIG[cat].icon,
-      color: FITNESS_CONFIG[cat].arcColor,
-    })),
-    datasets: [
-      {
-        label: 'All-time avg',
-        values: norm(allAvg),
-        color: '#94a3b8',
-        opacity: 0.1,
-        dashed: true,
-      },
-      {
-        label: '28-day avg',
-        values: norm(vals28),
-        color: '#60a5fa',
-        opacity: 0.15,
-        dashed: false,
-      },
-      {
-        label: '7-day',
-        values: norm(vals7),
-        color: '#34d399',
-        opacity: 0.25,
-        dashed: false,
-      },
-    ],
-  }
 }
 
 // Compute secondary attribute normalised scores for radar
@@ -214,10 +153,6 @@ export default function ProgressView() {
     return range === 'all' ? allWeekKeys : full.filter((wk) => allWeekKeys.includes(wk))
   }, [range, allWeekKeys, rangeConfig])
 
-  const primaryData = useMemo(
-    () => buildPrimaryDatasets(sessions, settings, weekKeys),
-    [sessions, settings, weekKeys]
-  )
   const secondaryData = useMemo(
     () => buildSecondaryDatasets(sessions, weekKeys, report?.optimalWeeklySecondary ?? null),
     [sessions, weekKeys, report]
@@ -284,52 +219,34 @@ export default function ProgressView() {
         </div>
       )}
 
-      {/* Radar charts */}
-      <div className="grid grid-cols-2 gap-4 px-4 mb-3">
-        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
+      {/* Secondary radar — full width */}
+      <div className="px-4 mb-3">
+        <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
           <RadarChart
-            title="Primary"
-            axes={primaryData.axes}
-            datasets={primaryData.datasets}
-          />
-          <div className="flex flex-wrap justify-center gap-x-2 gap-y-0.5 mt-1">
-            {primaryData.axes.map((a) => (
-              <span key={a.label} className="text-slate-500" style={{ fontSize: 9 }}>{a.icon} {a.label}</span>
-            ))}
-          </div>
-        </div>
-        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
-          <RadarChart
-            title="Secondary"
+            title="Fitness Balance"
             axes={secondaryData.axes}
             datasets={secondaryData.datasets}
           />
-          <div className="flex flex-wrap justify-center gap-x-2 gap-y-0.5 mt-1">
+          {/* Axis labels */}
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-0.5 mt-2">
             {secondaryData.axes.map((a) => (
-              <span key={a.label} className="text-slate-500" style={{ fontSize: 9 }}>{a.icon} {a.label}</span>
+              <span key={a.label} className="text-xs text-slate-400">{a.icon} {a.label}</span>
             ))}
-            {secondaryData.hasTarget && (
-              <span className="text-emerald-500 w-full text-center" style={{ fontSize: 9 }}>— target</span>
-            )}
           </div>
         </div>
       </div>
 
       {/* Radar legend */}
-      <div className="flex gap-4 px-4 mb-4 justify-center">
+      <div className="flex flex-wrap gap-x-4 gap-y-1 px-4 mb-4 justify-center">
         {[
-          { color: '#34d399', label: '7-day' },
-          { color: '#60a5fa', label: '28-day avg' },
+          { color: '#818cf8', label: '7-day' },
+          { color: '#f59e0b', label: '28-day avg' },
           { color: '#94a3b8', label: 'All-time avg', dashed: true },
+          ...(secondaryData.hasTarget ? [{ color: '#34d399', label: 'Target', dashed: true }] : []),
         ].map(({ color, label, dashed }) => (
           <div key={label} className="flex items-center gap-1.5">
             <svg width="16" height="8">
-              <line
-                x1="0" y1="4" x2="16" y2="4"
-                stroke={color}
-                strokeWidth={dashed ? 1.5 : 2}
-                strokeDasharray={dashed ? '3 2' : undefined}
-              />
+              <line x1="0" y1="4" x2="16" y2="4" stroke={color} strokeWidth={dashed ? 1.5 : 2} strokeDasharray={dashed ? '3 2' : undefined} />
             </svg>
             <span className="text-xs text-slate-500">{label}</span>
           </div>
